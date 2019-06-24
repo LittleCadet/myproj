@@ -1,0 +1,24 @@
+# MySQL
+mysql:
+  db:
+    host: 47.99.112.38
+    port: 3306
+    username: normal
+    password: Sx920702
+
+# Redis
+spring:
+  redis:
+    host: 121.43.169.200
+    port: 6379
+    password: ZTgzNDkyODQ4YWYxNDA3Y2Y2NjQyMzA2
+    timeout: 0
+    database: 0
+
+    pool:
+      max-size: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+
+

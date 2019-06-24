@@ -15,13 +15,9 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-*.iwsa
+*.iws
 *.iml
 *.ipr
-*.md
-*.cmd
-mvnw
-
 
 ### NetBeans ###
 /nbproject/private/
@@ -33,6 +29,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### java ###
-target/**

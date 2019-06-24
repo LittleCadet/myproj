@@ -32,7 +32,7 @@ public class SendMessageController {
     @GetMapping("sendMessage")
     public DeferredResult<String> sendMessage(){
 
-        DeferredResult<String> outputMessage = new DeferredResult<>(30000L);
+        DeferredResult<String> outputMessage = new DeferredResult<String>(30000L);
         Message message = Message.builder()
                 .user("和尚")
                 .message("撩妹子")
@@ -40,7 +40,7 @@ public class SendMessageController {
                 .output(outputMessage)
                 .build();
 
-        DeferredResult<String> outputMessages = new DeferredResult<>(30000L);
+        DeferredResult<String> outputMessages = new DeferredResult<String>(30000L);
         Messages messages = Messages.builder()
                 .user("住持")
                 .message("棒打鸳鸯")

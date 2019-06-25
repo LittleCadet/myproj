@@ -26,13 +26,13 @@ import java.time.Duration;
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis.host:47.99.112.38}")
     private String host;
 
-    @Value("${spring.redis.port}")
+    @Value("${spring.redis.port:6379}")
     private Integer port;
 
-    @Value("${spring.redis.password}")
+    @Value("${spring.redis.password:cmVkaXNPZkVkd2FyZFNoZW4=}")
     private String password;
 
     //spring.redis.timeout = 0时，代表使用默认的超时时间：2000ms
@@ -78,7 +78,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxIdle(poolMaxIdle);
         jedisPoolConfig.setMaxTotal(poolMaxSize);
         jedisPoolConfig.setMaxWaitMillis(poolMaxWait);
-        jedisPoolConfig.setMinIdle(poolMinIdle);
 
         JedisClientConfiguration jedisClientConfiguration = JedisClientConfiguration.builder()
                 .connectTimeout(Duration.ofMillis(timeout))

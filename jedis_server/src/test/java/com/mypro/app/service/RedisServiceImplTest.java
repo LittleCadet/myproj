@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.UUID;
+
 /**
  * @author The flow developers
  */
@@ -31,8 +33,17 @@ public class RedisServiceImplTest {
     @Test
     public void setValue(){
 
-        Assert.assertEquals(value,redisService.setValue(key,value));
+        redisService.setValue(key,value);
 
+        Assert.assertEquals(value,redisService.getValue(key));
+
+    }
+
+    @Test
+    public void lock(){
+        value = UUID.randomUUID().toString();
+        value = value.replace("-","");
+        redisService.processData(key,value);
     }
 
 }

@@ -9,6 +9,8 @@
 	<name>myproj</name>
 	<description>myproj project for Spring Boot</description>
 
+    <packaging>pom</packaging>
+
 	<modules>
 		<module>bus_server</module>
 		<module>normal_server</module>
@@ -86,6 +88,32 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>rdc-releases</id>
+			<url>https://repo.rdc.aliyun.com/repository/34802-release-augJR2/</url>
+		</repository>
+		<snapshotRepository>
+			<id>rdc-snapshots</id>
+			<url>https://repo.rdc.aliyun.com/repository/34802-snapshot-aIMM7q/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>

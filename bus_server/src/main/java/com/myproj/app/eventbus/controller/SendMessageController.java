@@ -13,7 +13,8 @@ import org.springframework.web.context.request.async.DeferredResult;
 import java.util.Date;
 
 /**
- * @author The flow developers
+ * 发布类
+ * @author LittleCadet
  */
 @Slf4j
 @RestController

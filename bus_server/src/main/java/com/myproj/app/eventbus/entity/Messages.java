@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.context.request.async.DeferredResult;
 
 /**
- * @author The flow developers
+ * @author LittleCadet
  */
 @Data
 @Builder

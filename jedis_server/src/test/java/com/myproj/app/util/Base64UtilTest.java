@@ -1,6 +1,6 @@
-package com.mypro.app.util;
+package com.myproj.app.util;
 
-import com.mypro.app.tools.Base64Util;
+import com.myproj.app.tools.Base64Util;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author The flow developers
+ * @author LittleCadet
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)

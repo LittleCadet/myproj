@@ -9,7 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * @author The flow developers
+ * 订阅类
+ * @author LittleCadet
  */
 @Slf4j
 public class SendMessageImpl {

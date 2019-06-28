@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author The flow developers
+ * @author LittleCadet
  */
 @Slf4j
 @Component

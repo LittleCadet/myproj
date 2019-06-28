@@ -1,4 +1,4 @@
-package com.mypro.app.config;
+package com.myproj.app.config;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,8 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.time.Duration;
 
 /**
- * @author The flow developers
+ * redis配置
+ * @author LittleCadet
  */
 @Slf4j
 @Configuration
@@ -60,8 +61,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Autowired
     private JedisConnectionFactory jedisConnectionFactory;
 
-    @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
+    /*@Autowired
+    private RedisTemplate<String,Object> redisTemplate;*/
 
     /**
      * 初始化：jedisConnectionFactory
@@ -78,6 +79,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxIdle(poolMaxIdle);
         jedisPoolConfig.setMaxTotal(poolMaxSize);
         jedisPoolConfig.setMaxWaitMillis(poolMaxWait);
+        jedisPoolConfig.setMinIdle(poolMinIdle);
 
         JedisClientConfiguration jedisClientConfiguration = JedisClientConfiguration.builder()
                 .connectTimeout(Duration.ofMillis(timeout))

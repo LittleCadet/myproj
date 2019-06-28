@@ -10,6 +10,10 @@ spring:
     ## 三种方式：console【打印到控制台】,log【打印到日志】,"off"【关闭】
     banner-mode: log
 
+  devtools:
+    restart:
+      enabled: false
+
 
 server:
   port: 8080
@@ -21,4 +25,5 @@ server:
     min-spare-threads: 30
     max-queue-size: 100
     max-idle-time: 60000
+
 

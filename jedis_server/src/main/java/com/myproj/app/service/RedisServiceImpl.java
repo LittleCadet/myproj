@@ -1,14 +1,17 @@
-package com.mypro.app.service;
+package com.myproj.app.service;
 
-import com.mypro.app.tools.RedisServiceUtil;
+import com.myproj.app.tools.DistributeLock;
+import com.myproj.app.tools.RedisServiceUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 
 
 /**
- * @author The flow developers
+ * redis逻辑类
+ * @author LittleCadet
  */
 @Slf4j
 @Service
@@ -17,6 +20,9 @@ public class RedisServiceImpl {
 
     @Autowired
     private RedisServiceUtil redis;
+
+    @Autowired
+    private DistributeLock distributeLock;
 
     /**
      * 放值
@@ -49,7 +55,7 @@ public class RedisServiceImpl {
 
         Long start = System.currentTimeMillis();
 
-        if(!redis.lock(key,value)){
+        if(!distributeLock.lock(key,value)){
 
             return;
 
@@ -70,7 +76,7 @@ public class RedisServiceImpl {
             log.info("failed to calculate,e:{}",e.getMessage());
         }
         finally {
-            redis.unlock(key,value);
+            distributeLock.unlock(key,value);
 
             Long end = System.currentTimeMillis();
 

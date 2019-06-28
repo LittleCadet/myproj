@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.*;
  *
  * 注意：Pair不能当作Controller层的返回值，或者入参。会出问题，因为它不是标准的javaBean，序列化和反序列化会出问题。一般用于系统内部，比如Service方法直接、工具方法之间传递数据，是一把利器，多用于RPC方法的调用的返回值
  *
- * @author The flow developers
+ * @author LittleCadet
  */
 public class MuiltyParam {
 

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * java返回多参的测试
- * @author The flow developers
+ * @author LittleCadet
  */
 public class MuiltyParamTest {
 

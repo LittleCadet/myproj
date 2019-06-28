@@ -1,4 +1,4 @@
-package com.mypro.app.tools;
+package com.myproj.app.tools;
 
 
 import java.io.UnsupportedEncodingException;
@@ -6,7 +6,7 @@ import java.util.Base64;
 
 /**
  * java.util的Base64加密，解密【源自于apache的Base64，java8以后的jdk功能】
- * @author The flow developers
+ * @author LittleCadet
  */
 public class Base64Util {
 

@@ -1,4 +1,4 @@
-package com.mypro.app.service;
+package com.myproj.app.service;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.UUID;
 
 /**
- * @author The flow developers
+ * @author LittleCadet
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -26,8 +26,8 @@ public class RedisServiceImplTest {
 
     @Before
     public void init(){
-        key = "firstTest";
-        value = "succeed";
+        key = UUID.randomUUID().toString();;
+        value = UUID.randomUUID().toString();;
     }
 
     @Test
@@ -42,7 +42,9 @@ public class RedisServiceImplTest {
     @Test
     public void lock(){
         value = UUID.randomUUID().toString();
+        key = key.replace("-","");
         value = value.replace("-","");
+
         redisService.processData(key,value);
     }
 

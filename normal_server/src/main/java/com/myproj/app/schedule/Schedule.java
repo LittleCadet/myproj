@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * spring cron,fixed delay,fixed rated
  *
- * @author The flow developers
+ * @author LittleCadet
  */
 @Component
 public class Schedule {

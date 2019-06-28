@@ -57,8 +57,8 @@ public class RedisServiceImpl {
 
             return;
 
-        }
-*/
+        }*/
+
         try{
 
             for(int i = 0 ; i<100 ;i++){

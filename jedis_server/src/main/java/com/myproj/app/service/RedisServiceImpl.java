@@ -6,8 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
-
 
 /**
  * redis逻辑类
@@ -55,12 +53,12 @@ public class RedisServiceImpl {
 
         Long start = System.currentTimeMillis();
 
-        if(!distributeLock.lock(key,value)){
+        /*if(!distributeLock.lock(key,value)){
 
             return;
 
         }
-
+*/
         try{
 
             for(int i = 0 ; i<100 ;i++){

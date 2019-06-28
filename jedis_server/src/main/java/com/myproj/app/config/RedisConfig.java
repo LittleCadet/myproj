@@ -4,9 +4,13 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
@@ -58,11 +62,9 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.pool.min-idle:0}")
     private Integer poolMinIdle;
 
-    @Autowired
-    private JedisConnectionFactory jedisConnectionFactory;
-
     /*@Autowired
-    private RedisTemplate<String,Object> redisTemplate;*/
+    private JedisConnectionFactory jedisConnectionFactory;*/
+
 
     /**
      * 初始化：jedisConnectionFactory
@@ -125,12 +127,24 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(fastJsonSerializer);
 
-        redisTemplate.setConnectionFactory(jedisConnectionFactory);
+        redisTemplate.setConnectionFactory(jedisConnectionFactory());
 
         log.info("===============successed to create redisTemplate==============");
 
         return redisTemplate;
 
+    }
+
+    @Override
+    @Bean
+    public CacheManager cacheManager() {
+        // 设置缓存有效期
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofHours(23));
+
+        return RedisCacheManager
+                .builder(RedisCacheWriter.nonLockingRedisCacheWriter(jedisConnectionFactory()))
+                .cacheDefaults(redisCacheConfiguration).build();
     }
 
 }

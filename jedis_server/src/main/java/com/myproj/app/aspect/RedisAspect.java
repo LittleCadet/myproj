@@ -9,12 +9,16 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 /**
- * 切面类
+ * 切面类：为aop加日志【下次使用的时候名，需要将@Component的注解打开】
+ *
+ * 注意：切点的方法不能写在切面的类中！！！否则不起作用！！！！
+ *      标记@Aspect的类仅仅用于CGLib通过IOC注入到Spring容器中，实现切面的功能，没有其他作用
+ *
  * @author LittleCadet
  */
 @Slf4j
 @Aspect
-@Component
+//@Component
 public class RedisAspect {
 
     /**

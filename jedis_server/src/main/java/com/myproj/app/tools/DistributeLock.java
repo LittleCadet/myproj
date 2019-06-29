@@ -47,8 +47,6 @@ public class DistributeLock {
 
         Boolean flag = false;
 
-        int count = 0;
-
         key = key.concat(symbol).concat(fixValue).concat(suffix);
 
         String thradLocalValue = threadLocal.get();

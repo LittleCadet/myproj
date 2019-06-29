@@ -120,6 +120,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springBoot.version}</version>
 			</plugin>
 
 			<!-- 如果不指定编译器版本，那么idea会默认使用jdk1.5去编译，会报错，比如：lamdar：在1.8才有 -->

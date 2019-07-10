@@ -20,6 +20,12 @@
 
 	<dependencies>
 		<!-- springBoot -->
+		<!-- springBoot启动需要web，否则，启动就停-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>

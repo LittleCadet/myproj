@@ -29,5 +29,10 @@ public class DingTalkServiceTest {
         }
     }
 
+    @Test
+    public void sendMsg(){
+        dingTalkService.sendMsgTODIngTalk(new Exception());
+    }
+
 
 }

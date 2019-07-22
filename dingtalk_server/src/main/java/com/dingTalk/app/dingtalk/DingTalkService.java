@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 /**
  * 接入钉钉服务
@@ -25,6 +27,10 @@ public class DingTalkService {
 
     private String url = "https://oapi.dingtalk.com/gettoken?appkey=" + appkey + "&appsecret=" + appsecret;
 
+    private String hook = "https://oapi.dingtalk.com/robot/send?access_token=2213ae47a82ba1f29ded442ec687bc2ca999ad5f8b8b260c6caa6c3d7abdb79d";
+
+    private String metaType = "application/x-www-form-urlencoded;charset=utf-8";
+
     @PostConstruct
     public void init() {
 
@@ -40,6 +46,7 @@ public class DingTalkService {
         int code = 200;
         int errcode = 0;
         String accessToken = null;
+        Response response = null;
 
         Request request = new Request.Builder()
                 .get()
@@ -49,7 +56,7 @@ public class DingTalkService {
                 .build();
 
         try {
-            Response response = httpClient.newCall(request).execute();
+            response = httpClient.newCall(request).execute();
 
             // 校验okHttp自身返回码
             if (null == response || code != response.code()) {
@@ -72,8 +79,45 @@ public class DingTalkService {
             }
         } catch (IOException e) {
             log.error("network error!");
+        }finally {
+            response.close();
         }
         return accessToken;
+    }
+
+    /**
+     * 发送消息到钉钉
+     */
+    public void sendMsgTODIngTalk(Exception e){
+
+        Response response = null;
+
+        //定义发送文本
+        PrintWriter pw = new PrintWriter(new StringWriter());
+        pw.print(e);
+
+
+        //远程调用dingTalk
+        RequestBody body = new FormBody.Builder()
+                .add("Content-Type",metaType)
+                .add("msgtype","test")
+                .add("content","测试文本")
+                .add("isAtAll","false")
+                .build();
+        Request request = new Request.Builder()
+                .post(body)
+                .url(hook)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+        } catch (IOException ex) {
+            log.error("network error!,ex:" + ex);
+        }finally {
+            //关闭response
+            response.close();
+        }
+
     }
 
 }

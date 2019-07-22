@@ -1,5 +1,6 @@
 package com.dingTalk.app.dingtalk;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dingTalk.app.exception.NetworkException;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 接入钉钉服务
@@ -27,9 +30,11 @@ public class DingTalkService {
 
     private String url = "https://oapi.dingtalk.com/gettoken?appkey=" + appkey + "&appsecret=" + appsecret;
 
-    private String hook = "https://oapi.dingtalk.com/robot/send?access_token=2213ae47a82ba1f29ded442ec687bc2ca999ad5f8b8b260c6caa6c3d7abdb79d";
+    private String hook = "https://oapi.dingtalk.com/robot/send?access_token=fc100712270d291cf950e8485dbb24bb46b8ab0605c572e1edffa0e67675677a";
 
     private String metaType = "application/x-www-form-urlencoded;charset=utf-8";
+
+    public static final MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
 
     @PostConstruct
     public void init() {
@@ -87,6 +92,10 @@ public class DingTalkService {
 
     /**
      * 发送消息到钉钉
+     * 注意：
+     * 1.务必使用dingTalk的自定义机器人
+     * 2.传输格式：务必定义为json。否则即使代码运行不报错，也是发送无效的
+     * 3.字符集格式：务必定义为UTF-8，否则传到钉钉的时候，会出现乱码【例如：？？？】
      */
     public void sendMsgTODIngTalk(Exception e){
 
@@ -96,16 +105,17 @@ public class DingTalkService {
         PrintWriter pw = new PrintWriter(new StringWriter());
         pw.print(e);
 
+        //远程调用dingtalk
+        Map<String, Object> items = new HashMap<>();
+        items.put("msgtype", "text");
+        Map<String, String> textContent = new HashMap<>();
+        textContent.put("content", "测试文本");
+        items.put("text", textContent);
 
-        //远程调用dingTalk
-        RequestBody body = new FormBody.Builder()
-                .add("Content-Type",metaType)
-                .add("msgtype","test")
-                .add("content","测试文本")
-                .add("isAtAll","false")
-                .build();
+        RequestBody requestBody = RequestBody.create(mediaType, JSON.toJSONString(items));
+
         Request request = new Request.Builder()
-                .post(body)
+                .post(requestBody)
                 .url(hook)
                 .build();
 

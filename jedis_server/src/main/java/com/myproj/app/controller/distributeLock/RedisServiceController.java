@@ -1,4 +1,4 @@
-package com.myproj.app.controller;
+package com.myproj.app.controller.distributeLock;
 
 import com.myproj.app.service.RedisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

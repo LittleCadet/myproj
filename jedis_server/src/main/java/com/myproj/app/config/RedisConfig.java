@@ -62,9 +62,6 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.pool.min-idle:0}")
     private Integer poolMinIdle;
 
-    /*@Autowired
-    private JedisConnectionFactory jedisConnectionFactory;*/
-
 
     /**
      * 初始化：jedisConnectionFactory

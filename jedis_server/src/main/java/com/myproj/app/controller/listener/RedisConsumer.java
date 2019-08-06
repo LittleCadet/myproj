@@ -34,17 +34,16 @@ public class RedisConsumer {
 
         container.setConnectionFactory(jedisConnectionFactory);
 
-        //设置redis的消费消息的topic + 消息处理类
 
-        container.addMessageListener(new MessageListenerAdapter(this.processMessageContainer()),new ChannelTopic(RedisListenerConstants.channel));
+        container.addMessageListener(
+
+                //定义任务执行器
+                new MessageListenerAdapter(new ProcessMessage()),
+
+                //定义topic
+                new ChannelTopic(RedisListenerConstants.channel));
 
         return container;
     }
-
-    @Bean
-    public ProcessMessage processMessageContainer(){
-        return new ProcessMessage();
-    }
-
 
 }

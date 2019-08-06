@@ -61,26 +61,11 @@
         </dependency>
 
         <!-- aop -->
-
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.7.4</version>
-        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.13</version>
         </dependency>
-
-        <!-- devTools 热部署-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>2.1.6.RELEASE</version>
-            <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
-        </dependency>
-
     </dependencies>
 
     <build>

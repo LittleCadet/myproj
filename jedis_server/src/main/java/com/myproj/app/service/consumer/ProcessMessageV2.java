@@ -7,10 +7,10 @@ import org.springframework.data.redis.connection.MessageListener;
  * 消息处理类
  * @author LittleCadet
  */
-public class ProcessMessage implements MessageListener {
+public class ProcessMessageV2 implements MessageListener {
 
     @Override
     public void onMessage(Message message, byte[] bytes) {
-        System.out.println("ProcessMessage consume message : " + message + "bytes :" + bytes.toString());
+        System.out.println("ProcessMessageV2 consume message : " + message + "bytes :" + bytes.toString());
     }
 }

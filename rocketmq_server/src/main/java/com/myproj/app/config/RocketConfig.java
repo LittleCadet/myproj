@@ -49,8 +49,8 @@ public class RocketConfig
                 consumerGroup + "_ct", RocketConstants.TOPIC_ROCKET);
 
         //注册消息监听器
-        //consumer.registerMessageListener(rocketConcurrentlyListener());
-        consumer.registerMessageListener(rocketOrderlyListener());
+        consumer.registerMessageListener(rocketConcurrentlyListener());
+        //consumer.registerMessageListener(rocketOrderlyListener());
         return consumer;
     }
     @Bean

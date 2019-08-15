@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: rocket-server
+  main:
+    banner-mode: log
+
+# Server
+server:
+  port: 8673
+  tomcat:
+    max-connections: 10000
+    accept-count: 100
+    connection-timeout: 60000
+    max-threads: 500
+    min-spare-threads: 30
+    max-queue-size: 100
+    max-idle-time: 60000
+
+# RocketMQ
+rocket:
+  name_server:
+    address: 47.99.112.38:9876
+  producer:
+    group: test_rocket_server
+    timeout: 20000
+    consumer:
+      group: test_rocket_server
+

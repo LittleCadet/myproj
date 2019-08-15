@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.dingTalk</groupId>
-	<artifactId>dingtalk</artifactId>
+	<artifactId>dingTalk_server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>dingTalk_server</name>
 	<description>Demo dingTalk for Spring Boot</description>

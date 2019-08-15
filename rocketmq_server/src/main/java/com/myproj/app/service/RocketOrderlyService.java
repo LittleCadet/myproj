@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class RocketService
+public class RocketOrderlyService
 {
     public void getMwssage(String text,String tags){
-        log.info("receipt message:text:" + text + ",tags:" + tags);
+        log.info("RocketOrderlyService : receipt message:text:" + text + ",tags:" + tags);
     }
 }

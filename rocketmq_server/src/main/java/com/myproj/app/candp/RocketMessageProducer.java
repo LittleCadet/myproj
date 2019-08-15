@@ -5,14 +5,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.MessageQueueSelector;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
+import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.exception.RemotingException;
-import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -71,7 +73,7 @@ public class RocketMessageProducer {
     }
 
     /**
-     * 发送同步消息
+     * 发送同步消息：用于顺序消费
      *
      * @param topic
      * @param tag
@@ -88,12 +90,23 @@ public class RocketMessageProducer {
             }
             byte[] content = text.getBytes(RemotingHelper.DEFAULT_CHARSET);
             Message msg = new Message(topic, tag, content);
-            SendResult result = producer.send(msg);
-            log.info("Sent message: {}, {}, {}", topic, tag, text);
+
+            //不保证顺序消费
+            //SendResult result = producer.send(msg);
+
+            //保证顺序消费
+            SendResult result = producer.send(msg, new MessageQueueSelector() {
+                public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                    Integer id = (Integer) arg;
+                    int index = id % mqs.size();
+                    return mqs.get(index);
+                }
+            }, 0);
+            log.info("Send message: {}, {}, {}", topic, tag, text);
             log.info("{}", result.toString());
             // TODO：失败重试
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| MQBrokerException| InterruptedException e) {
-            log.error("Sent error", e);
+            log.error("Send error", e);
         }
     }
 
@@ -104,7 +117,9 @@ public class RocketMessageProducer {
      * @param tag
      * @param payload
      */
-    public void sendAsync(String topic, String tag, Object payload) {
+    public void sendAsync(String topic, String tag, Object payload)
+        throws MQBrokerException
+    {
         start();
         try {
             String text;
@@ -115,10 +130,18 @@ public class RocketMessageProducer {
             }
             byte[] content = text.getBytes(RemotingHelper.DEFAULT_CHARSET);
             Message msg = new Message(topic, tag, content);
-            producer.send(msg, defaultSendCallback);
-            log.info("Sent message: {}, {}, {}", topic, tag, text);
+            //producer.send(msg, defaultSendCallback);
+
+            producer.send(msg, new MessageQueueSelector() {
+                public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+                    Integer id = (Integer) arg;
+                    int index = id % mqs.size();
+                    return mqs.get(index);
+                }
+            }, 0,defaultSendCallback);
+            log.info("send message: {}, {}, {}", topic, tag, text);
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| InterruptedException e) {
-            log.error("Sent error", e);
+            log.error("send error", e);
         }
     }
 
@@ -129,7 +152,7 @@ public class RocketMessageProducer {
         }
         @Override
         public void onException(Throwable throwable) {
-            log.error("Sent error", throwable);
+            log.error("send error", throwable);
             // TODO：失败重试
         }
     }
@@ -153,9 +176,9 @@ public class RocketMessageProducer {
             byte[] content = text.getBytes(RemotingHelper.DEFAULT_CHARSET);
             Message msg = new Message(topic, tag, content);
             producer.sendOneway(msg);
-            log.info("Sent message: {}, {}, {}", topic, tag, text);
+            log.info("send message: {}, {}, {}", topic, tag, text);
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| InterruptedException e) {
-            log.error("Sent error", e);
+            log.error("send error", e);
         }
     }
 
@@ -180,11 +203,11 @@ public class RocketMessageProducer {
             Message msg = new Message(topic, tag, content);
             msg.setDelayTimeLevel(level);
             SendResult result = producer.send(msg);
-            log.info("Sent message: {}, {}, {}", topic, tag, text);
+            log.info("send message: {}, {}, {}", topic, tag, text);
             log.info("{}", result.toString());
             // TODO：失败重试
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| MQBrokerException| InterruptedException e) {
-            log.error("Sent error", e);
+            log.error("send error", e);
         }
     }
 }

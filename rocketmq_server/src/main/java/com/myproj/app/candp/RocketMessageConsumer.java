@@ -5,6 +5,8 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 /**
  * RocketMQ Consumer
@@ -42,6 +44,14 @@ public class RocketMessageConsumer {
             return;
         }
         try {
+            /**
+             * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费
+             * 如果非第一次启动，那么按照上次消费的位置继续消费
+             */
+            consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+
+            // 设置为集群消费模式【默认就是集群的消费方式：平均消费】
+            consumer.setMessageModel(MessageModel.CLUSTERING);
             consumer.subscribe(topic, "*");
             consumer.start();
             started = true;

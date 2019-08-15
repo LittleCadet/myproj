@@ -1,6 +1,6 @@
 package com.myproj.app.listener;
 
-import com.myproj.app.service.RocketService;
+import com.myproj.app.service.RocketConcurrentlyService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -15,10 +15,10 @@ import java.util.List;
  *
  */
 @Slf4j
-public class RocketListener implements MessageListenerConcurrently
+public class RocketConcurrentlyListener implements MessageListenerConcurrently
 {
     @Autowired
-    private RocketService rocketService;
+    private RocketConcurrentlyService rocketService;
 
     @Override
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
@@ -28,7 +28,15 @@ public class RocketListener implements MessageListenerConcurrently
         for (MessageExt msg : msgs)
         {
             String text = new String(msg.getBody());
-            rocketService.getMwssage(text, msg.getTags());
+            try
+            {
+                rocketService.getMwssage(text, msg.getTags());
+            }
+            catch (Exception e)
+            {
+                log.info("exception !");
+                return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+            }
         }
         return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }

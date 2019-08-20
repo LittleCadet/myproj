@@ -52,6 +52,8 @@ public class RocketMessageConsumer {
 
             // 设置为集群消费模式【默认就是集群的消费方式：平均消费】
             consumer.setMessageModel(MessageModel.CLUSTERING);
+
+            //订阅topic和tag【这里tag用*全匹配】
             consumer.subscribe(topic, "*");
             consumer.start();
             started = true;

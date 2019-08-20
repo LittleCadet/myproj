@@ -91,10 +91,10 @@ public class RocketMessageProducer {
             byte[] content = text.getBytes(RemotingHelper.DEFAULT_CHARSET);
             Message msg = new Message(topic, tag, content);
 
-            //不保证顺序消费
+            //不保证顺序消费（广播消息）
             //SendResult result = producer.send(msg);
 
-            //保证顺序消费
+            //保证顺序消费（顺序消息）
             SendResult result = producer.send(msg, new MessageQueueSelector() {
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
                     Integer id = (Integer) arg;
@@ -158,7 +158,7 @@ public class RocketMessageProducer {
     }
 
     /**
-     * 发送单向消息
+     * 发送单向消息：用于不关注发送消息的结果
      *
      * @param topic
      * @param tag
@@ -183,7 +183,7 @@ public class RocketMessageProducer {
     }
 
     /**
-     * 发送延迟消息
+     * 发送延迟消息：即为发送定时消息
      *
      * @param topic
      * @param tag

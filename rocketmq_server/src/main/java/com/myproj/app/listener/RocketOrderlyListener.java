@@ -24,6 +24,10 @@ public class RocketOrderlyListener implements MessageListenerOrderly
     {
         log.info("Consume message: {}", list.size());
 
+        //默认是自动提交,自动提交后，消息不能被再次消费
+        //非自动提交，消息可能会被重复消费
+        consumeOrderlyContext.setAutoCommit(true);
+
         //批量消费，保证吞吐量
         for (MessageExt msg : list)
         {

@@ -154,6 +154,7 @@ public class RocketMessageProducer {
         public void onException(Throwable throwable) {
             log.error("send error", throwable);
             // TODO：失败重试
+            //TODO:2次重试，依旧失败，写入fail表，用定时任务（每隔10分钟扫一次），执行发送任务，因为上链成功，我们这里必须成功，消息必须发送出去，所以定时发送。发送成功后，用txid删除fail表的记录
         }
     }
 

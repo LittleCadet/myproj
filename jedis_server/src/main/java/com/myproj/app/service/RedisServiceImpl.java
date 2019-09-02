@@ -49,6 +49,8 @@ public class RedisServiceImpl {
      */
     public void processData(String key,String value){
 
+        log.info("processData enter , key:{},value:{}",key,value);
+
         int sum = 0;
 
         Long start = System.currentTimeMillis();

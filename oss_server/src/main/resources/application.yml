@@ -1,0 +1,12 @@
+spring:
+  server:
+    port: 8080
+
+  oss:
+    access_key: LTAI4FtqaYhp88W4UvyJEjej
+    access_secret: bJtzYDi3IPfjMDHdBeW8UhE4QAZlRZ
+    # 存储空间 ：只支持小写 + 数字 + 中短横线
+    bucket_name: littlecadet
+    # 终端域名 :区分外网和内网
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+

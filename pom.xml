@@ -18,6 +18,7 @@
 		<module>dingtalk_server</module>
 		<module>rocketmq_server</module>
 		<module>loadingcache_server</module>
+		<module>oss_server</module>
 	</modules>
 
 	<properties>

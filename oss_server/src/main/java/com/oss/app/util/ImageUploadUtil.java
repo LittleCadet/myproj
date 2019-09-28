@@ -23,17 +23,18 @@ public class ImageUploadUtil {
     /**
      * 文件上传接口
      */
-    public static void imageUpload(File file,OSS ossClient,String bucketName){
+    public static PutObjectResult imageUpload(File file,OSS ossClient,String bucketName){
 
         String fileName = System.currentTimeMillis() + file.getName();
         InputStream is = null;
+        PutObjectResult result = null;
         try {
             is = new FileInputStream(file);
-            PutObjectResult result =  ossClient.putObject(bucketName,fileName,is);
+            result =  ossClient.putObject(bucketName,fileName,is);
 
             log.info("succeed to upload image !");
 
-            //return result.getResponse().getUri();
+
         } catch (FileNotFoundException e) {
             log.error("filed to upload image ! e:{}",e.getMessage());
         } finally {
@@ -46,7 +47,7 @@ public class ImageUploadUtil {
             }
         }
 
-        //return null;
+        return result;
     }
 
     /**

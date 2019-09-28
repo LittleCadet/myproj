@@ -1,6 +1,7 @@
 package com.oss.app.service;
 
 import com.aliyun.oss.OSS;
+import com.aliyun.oss.model.PutObjectResult;
 import com.oss.app.util.ImageUploadUtil;
 import com.oss.app.util.QRCodeUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +27,19 @@ public class ImageUploadService {
     @Autowired
     private OSS ossClient;
 
-    public void operation(){
+    public String operation(){
 
         //生成二维码
-        File file =  QRCodeUtil.zxingCodeCreate("http://www.baidu.com","C:\\Users\\Administrator\\Desktop\\sql",200,null);
+        File file =  QRCodeUtil.zxingCodeCreate("http://47.99.112.38:8090/image/judge","/usr/portal/image/",200,null);
 
         //二维码上传到Oss
-        ImageUploadUtil.imageUpload(file,ossClient,bucketName);
+        PutObjectResult result = ImageUploadUtil.imageUpload(file,ossClient,bucketName);
 
-        String key = "1569584939401sql891.jpg";
+        //String key = "1569584939401sql891.jpg";
         //从OSS下载到本地
-        ImageUploadUtil.download(ossClient,bucketName,"C:\\Users\\Administrator\\Desktop\\sql",key);
+        //ImageUploadUtil.download(ossClient,bucketName,"C:\\Users\\Administrator\\Desktop\\sql",key);
+
+        return (null != result?"success":"fail");
 
     }
 

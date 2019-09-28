@@ -41,9 +41,7 @@ public class QRCodeUtil {
             if (!file.exists()) {
                 file.mkdirs();
             }
-
             ImageIO.write(image, imageType, file);
-            FileUtils.forceDelete(file);
             return file;
         } catch (IOException var8) {
             var8.printStackTrace();

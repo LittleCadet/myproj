@@ -20,10 +20,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
- * @author: wq
- * @description: httpUtils
- * @date: Create in 2018/3/15 0015 下午 8:59
- * @modified:
+ * LittleCadet
  */
 @Slf4j
 public class HttpUtils {
@@ -48,12 +45,9 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:52
-     * @modified:
+     * @return
      */
     public String requestGet(String url){
         try {
@@ -65,13 +59,10 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
      * @param params
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:53
-     * @modified:
+     * @return
      */
     public String requestGet(String url, Map<String, Object> params){
         try {
@@ -100,13 +91,10 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
      * @param params
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:53
-     * @modified:
+     * @return
      */
     public InputStream requestGetStream(String url, Map<String, Object> params){
         try {
@@ -133,13 +121,10 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
      * @param params
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:53
-     * @modified:
+     * @return
      */
     public HttpEntity requestGetAsEntity(String url, Map<String, Object> params){
         try {
@@ -166,13 +151,10 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
      * @param params
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:53
-     * @modified:
+     * @return
      */
     public String requestPost(String url, Map<String, Object> params){
         HttpClient httpClient = null;
@@ -202,13 +184,10 @@ public class HttpUtils {
     }
 
     /**
-     * @author: wq
-     * @description: http get method
+     * http get
      * @param url
      * @param params
-     * @return: string
-     * @date: Create in 2018/3/15 0015 下午 9:53
-     * @modified:
+     * @return
      */
     public HttpEntity requestPostAsEntity(String url, Map<String, Object> params){
         HttpClient httpClient = null;

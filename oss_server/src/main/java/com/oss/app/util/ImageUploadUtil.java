@@ -23,14 +23,16 @@ public class ImageUploadUtil {
     /**
      * 文件上传接口
      */
-    public static PutObjectResult imageUpload(File file,OSS ossClient,String bucketName){
+    public static String imageUpload(File file,OSS ossClient,String bucketName){
 
-        String fileName = System.currentTimeMillis() + file.getName();
+        //String fileName = System.currentTimeMillis() + file.getName();
+        String fileName = file.getName();
         InputStream is = null;
         PutObjectResult result = null;
         try {
             is = new FileInputStream(file);
             result =  ossClient.putObject(bucketName,fileName,is);
+
 
             log.info("succeed to upload image !");
 
@@ -47,7 +49,7 @@ public class ImageUploadUtil {
             }
         }
 
-        return result;
+        return fileName;
     }
 
     /**

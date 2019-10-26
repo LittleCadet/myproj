@@ -19,6 +19,7 @@
 		<module>rocketmq_server</module>
 		<module>loadingcache_server</module>
 		<module>oss_server</module>
+		<module>fuyou_server</module>
 	</modules>
 
 	<properties>
@@ -34,6 +35,9 @@
 		<mysql.version>5.1.40</mysql.version>
 		<mybatis.version>2.0.0</mybatis.version>
 		<druid.version>1.1.15</druid.version>
+		<ftp.version>3.3</ftp.version>
+		<hutool.version>4.6.3</hutool.version>
+		<gson.version>2.2.4</gson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -82,6 +86,12 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
 			</dependency>
 
 			<!-- redis -->
@@ -136,6 +146,33 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>${druid.version}</version>
+			</dependency>
+
+			<!-- ftp -->
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${ftp.version}</version>
+			</dependency>
+
+			<!-- hutool(zip) -->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+
+			<!-- httpClient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>4.5.9</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -20,6 +20,7 @@
 		<module>loadingcache_server</module>
 		<module>oss_server</module>
 		<module>fuyou_server</module>
+		<module>ocr_server</module>
 	</modules>
 
 	<properties>

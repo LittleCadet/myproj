@@ -21,7 +21,7 @@ public class OrcTest {
 
     public static void main(String[] args) throws Exception {
         IClientProfile profile = DefaultProfile
-                .getProfile("cn-shanghai", "LTAI4FtqaYhp88W4UvyJEjej", "bJtzYDi3IPfjMDHdBeW8UhE4QAZlRZ");
+                .getProfile("cn-shanghai", "LTAI4Ff6LjbrgESvCDR9w8Xg", "rTTwoDhDe4dFpBN3JlIqDXdicRMNUl");
         DefaultProfile
                 .addEndpoint("cn-shanghai", "cn-shanghai", "Green", "green.cn-shanghai.aliyuncs.com");
         IAcsClient client = new DefaultAcsClient(profile);
@@ -52,7 +52,7 @@ public class OrcTest {
         task.put("dataId", UUID.randomUUID().toString());
 
         //设置图片链接
-        task.put("url", "https://facepay-test.oss-cn-hangzhou.aliyuncs.com/facepay/1572925895270.jpg");
+        task.put("url", "https://facepay-test.oss-cn-hangzhou.aliyuncs.com/facepay/1572883899974.jpg");
         task.put("time", new Date());
         httpBody.put("tasks", Arrays.asList(task));
 
@@ -63,9 +63,9 @@ public class OrcTest {
         //身份证反面
         //cardExtras.put("card", "id-card-back");
         //银行卡正面
-        cardExtras.put("card", "bank-card");
+        //cardExtras.put("card", "bank-card");
         //营业执照
-        //cardExtras.put("card", "businessLicenseInfo");
+        cardExtras.put("card", "business-license");
 
         httpBody.put("extras", cardExtras);
         imageSyncScanRequest.setHttpContent(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(httpBody.toJSONString()), "UTF-8", FormatType.JSON);
@@ -108,10 +108,10 @@ public class OrcTest {
                             if("review" .equals(suggestion) && "ocr".equals(scene)){
                                 //JSONObject idCardInfo =  ((JSONObject) sceneResult).getJSONObject("idCardInfo");
                                 //System.out.println(idCardInfo.toJSONString());
-                                JSONObject bankCardInfo =  ((JSONObject) sceneResult).getJSONObject("bankCardInfo");
-                                System.out.println(bankCardInfo.toJSONString());
-                                /*JSONObject businessLicenseInfo =  ((JSONObject) sceneResult).getJSONObject("businessLicenseInfo");
-                                System.out.println(businessLicenseInfo.toJSONString());*/
+                                /*JSONObject bankCardInfo =  ((JSONObject) sceneResult).getJSONObject("bankCardInfo");
+                                System.out.println(bankCardInfo.toJSONString())*/;
+                                JSONObject businessLicenseInfo =  ((JSONObject) sceneResult).getJSONObject("businessLicenseInfo");
+                                System.out.println(businessLicenseInfo.toJSONString());
                             }
                         }
                     }else{

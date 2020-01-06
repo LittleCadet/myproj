@@ -1,0 +1,10 @@
+spring:
+  port: 8080
+  sms:
+    domain: dysmsapi.aliyuncs.com
+    version: 2017-05-25
+    regionId: cn-hangzhou
+    signName: LittleCadet
+    templateCode: SMS_181851404
+    accessKeyId: LTAI4FtqaYhp88W4UvyJEjej
+    secret: bJtzYDi3IPfjMDHdBeW8UhE4QAZlRZ

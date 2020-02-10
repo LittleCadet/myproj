@@ -151,7 +151,7 @@ public class DistributeLock {
 
             log.info("succeed to release distributed lock");
         } else {
-            log.info("failed to release distributed lock");
+            log.error("failed to release distributed lock");
         }
 
     }

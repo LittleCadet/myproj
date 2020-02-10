@@ -21,9 +21,9 @@
 		<module>oss_server</module>
 		<module>fuyou_server</module>
 		<module>ocr_server</module>
-		<module>ftp_server</module>
 		<module>suixinfu_server</module>
 		<module>sms_server</module>
+		<module>spring_cache_server</module>
 	</modules>
 
 	<properties>
@@ -111,6 +111,13 @@
 				<version>${jedis.version}</version>
 			</dependency>
 
+			<!-- spring整合redis -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+				<version>2.1.10.RELEASE</version>
+			</dependency>
+
 			<!-- okhttp -->
 			<dependency>
 				<groupId>com.squareup.okhttp3</groupId>
@@ -192,6 +199,25 @@
 				<groupId>com.aliyun</groupId>
 				<artifactId>aliyun-java-sdk-core</artifactId>
 				<version>4.0.6</version>
+			</dependency>
+
+			<!-- mybaytis代码生成器 -->
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-core</artifactId>
+				<version>1.3.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>2.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>1.1.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

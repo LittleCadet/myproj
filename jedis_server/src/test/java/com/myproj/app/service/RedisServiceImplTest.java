@@ -31,10 +31,10 @@ public class RedisServiceImplTest {
     }
 
     @Test
-    public void setValue(){
-
+    public void setValue()throws InterruptedException
+    {
+        System.out.println("key:" + key + ",value:" + value);
         redisService.setValue(key,value);
-
         Assert.assertEquals(value,redisService.getValue(key));
 
     }

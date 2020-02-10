@@ -34,8 +34,8 @@ public class RedisServiceUtil {
 
         key = key.concat(symbol).concat(fixValue).concat(suffix);
 
-        redis.opsForValue().set(key, value, 5000L, TimeUnit.MILLISECONDS);
-
+        redis.opsForValue().set(key, value, 30*1000L, TimeUnit.MILLISECONDS);
+        log.info("key:{}",key);
     }
 
     /**
@@ -47,6 +47,8 @@ public class RedisServiceUtil {
     public String getValue(String key) {
 
         key = key.concat(symbol).concat(fixValue).concat(suffix);
+
+        log.info("key:{}",key);
 
         return redis.opsForValue().get(key);
     }

@@ -41,7 +41,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     private String password;
 
     //spring.redis.timeout = 0时，代表使用默认的超时时间：2000ms
-    @Value("${spring.redis.timeout:0}")
+    @Value("${spring.redis.timeout:30000}")
     private Integer timeout;
 
     @Value("${spring.redis.database:0}")
@@ -74,7 +74,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
 
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        System.out.println("poolMaxIdle:" + poolMaxIdle);
+        System.out.println("poolMaxIdle:" + poolMaxIdle + ",timeout:" + timeout);
         jedisPoolConfig.setMaxIdle(poolMaxIdle);
         jedisPoolConfig.setMaxTotal(poolMaxSize);
         jedisPoolConfig.setMaxWaitMillis(poolMaxWait);
@@ -89,6 +89,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration,jedisClientConfiguration);
 
+        log.info("在jedis_server中初始化jedisConnectionFactory成功");
         return jedisConnectionFactory;
 
     }
@@ -132,16 +133,16 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     }
 
-    @Override
+   /* @Override
     @Bean
     public CacheManager cacheManager() {
         // 设置缓存有效期
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofHours(23));
-
+        log.info("在jedis_server中初始化redisCacheManager成功");
         return RedisCacheManager
                 .builder(RedisCacheWriter.nonLockingRedisCacheWriter(jedisConnectionFactory()))
                 .cacheDefaults(redisCacheConfiguration).build();
     }
-
+*/
 }

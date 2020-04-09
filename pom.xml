@@ -24,7 +24,9 @@
 		<module>suixinfu_server</module>
 		<module>sms_server</module>
 		<module>spring_cache_server</module>
-	</modules>
+        <module>error_server</module>
+        <module>custom_localcache_server</module>
+    </modules>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -50,6 +52,11 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${springBoot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-parent</artifactId>
 				<version>${springBoot.version}</version>
 			</dependency>
 
@@ -140,11 +147,11 @@
 			</dependency>
 
             <!-- jdbc -->
-            <!--<dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-jdbc</artifactId>
-                <version>2.0.8.RELEASE</version>
-            </dependency>-->
+                <version>${springBoot.version}</version>
+            </dependency>
 
 			<!-- mybatis -->
 			<dependency>
@@ -218,6 +225,20 @@
 				<groupId>org.mybatis.spring.boot</groupId>
 				<artifactId>mybatis-spring-boot-starter</artifactId>
 				<version>1.1.1</version>
+			</dependency>
+
+			<!-- aop -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+				<version>2.1.7.RELEASE</version>
+			</dependency>
+
+			<!-- 用concurrentLinkedHashMap实现lru的过期策略 -->
+			<dependency>
+				<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+				<artifactId>concurrentlinkedhashmap-lru</artifactId>
+				<version>1.4.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

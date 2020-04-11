@@ -46,7 +46,7 @@ public class RocketMessageConsumer {
         try {
             /**
              * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费
-             * 如果非第一次启动，那么按照上次消费的位置继续消费
+             * 如果非第一次启动【包括挂了，从重启，也是非第一次启动】，那么按照上次消费的位置继续消费
              */
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
 

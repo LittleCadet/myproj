@@ -38,9 +38,10 @@ public class RocketMessageProducer {
 
         // 默认开启VIP，连接内部IP的10909端口
         producer.setVipChannelEnabled(false);
-        // 默认3秒，经常timeout
+        // 默认3秒，经常timeout【注意这个超时 需要包含发送失败 重试的时间才可以】
         producer.setSendMsgTimeout(timeout);
 
+        //用于异步发送
         defaultSendCallback = new SilentSendCallback();
 
         lock = new ReentrantLock();
@@ -94,7 +95,7 @@ public class RocketMessageProducer {
             //不保证顺序消费（广播消息）
             //SendResult result = producer.send(msg);
 
-            //保证顺序消费（顺序消息）
+            //保证顺序消费（顺序消息）,MessageQueueSelector：用于定义负载均衡策略【按照什么规则发送到哪个messageQueue上】，比如：同一个orderId的消息，发送到同一个messageQueue上
             SendResult result = producer.send(msg, new MessageQueueSelector() {
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
                     Integer id = (Integer) arg;
@@ -103,7 +104,7 @@ public class RocketMessageProducer {
                 }
             }, 0);
             log.info("Send message: {}, {}, {}", topic, tag, text);
-            log.info("{}", result.toString());
+            log.info("SendResultV2{}", result.toString());
             // TODO：失败重试
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| MQBrokerException| InterruptedException e) {
             log.error("Send error", e);
@@ -130,15 +131,18 @@ public class RocketMessageProducer {
             }
             byte[] content = text.getBytes(RemotingHelper.DEFAULT_CHARSET);
             Message msg = new Message(topic, tag, content);
-            //producer.send(msg, defaultSendCallback);
 
-            producer.send(msg, new MessageQueueSelector() {
+            //异步不需要保证顺序消费，所以不需要指定发送到哪个messageQueue上
+            producer.send(msg, defaultSendCallback);
+
+            //指定发送到哪个messageQueue上
+            /*producer.send(msg, new MessageQueueSelector() {
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
                     Integer id = (Integer) arg;
                     int index = id % mqs.size();
                     return mqs.get(index);
                 }
-            }, 0,defaultSendCallback);
+            }, 0,defaultSendCallback);*/
             log.info("send message: {}, {}, {}", topic, tag, text);
         } catch (UnsupportedEncodingException| MQClientException| RemotingException| InterruptedException e) {
             log.error("send error", e);
@@ -148,7 +152,7 @@ public class RocketMessageProducer {
     private static class SilentSendCallback implements SendCallback {
         @Override
         public void onSuccess(SendResult result) {
-            log.info("{}", result.toString());
+            log.info("SendResult：{}", result.toString());
         }
         @Override
         public void onException(Throwable throwable) {

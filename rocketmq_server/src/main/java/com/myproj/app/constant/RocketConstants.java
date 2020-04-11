@@ -9,7 +9,7 @@ public interface RocketConstants
     /**
      * RocketMQ topics
      */
-    String TOPIC_ROCKET = "topic";
+    String TOPIC_ROCKET = "test";
 
     /**
      * RocketMQ tags

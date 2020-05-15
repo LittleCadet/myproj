@@ -38,7 +38,6 @@ public class RocketConcurrentlyListener implements MessageListenerConcurrently
                 return ConsumeConcurrentlyStatus.RECONSUME_LATER;
             }
         }
-
         return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }
 

@@ -36,5 +36,6 @@ public class TryTest {
         }catch (Exception e) {
             log.error(String.format("在junit  Exception中捕获到异常: %s",e));
         }
+
     }
 }

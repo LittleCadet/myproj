@@ -26,6 +26,7 @@
 		<module>spring_cache_server</module>
         <module>error_server</module>
         <module>custom_localcache_server</module>
+        <module>spring_server</module>
     </modules>
 
 	<properties>
@@ -239,6 +240,13 @@
 				<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
 				<artifactId>concurrentlinkedhashmap-lru</artifactId>
 				<version>1.4.2</version>
+			</dependency>
+
+			<!-- spring 重试框架 -->
+			<dependency>
+				<groupId>org.springframework.retry</groupId>
+				<artifactId>spring-retry</artifactId>
+				<version>1.2.4.RELEASE</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -27,7 +27,7 @@ public class RedisPublisherController {
 
     private String msg = "send one message";
 
-    @RequestMapping("/publish")
+    @RequestMapping("/publisher")
     public void publish(){
 
         redisTemplate.convertAndSend(RedisListenerConstants.channel,msg);

@@ -2,14 +2,14 @@ package com.myproj.app.eventbus.config;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.myproj.app.eventbus.service.SendMessageImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author LittleCadet
@@ -36,6 +36,18 @@ public class ConfigServer {
 
     @Bean
     public ExecutorService threadPool(){
+
+        //定义队列
+        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+
+        //定义线程名
+        ThreadFactory factory = new ThreadFactoryBuilder().setNameFormat("bus-worker-%d").build();
+
+        //定义拒接策略
+        RejectedExecutionHandler handler = new ThreadPoolExecutor.AbortPolicy();
+
+        executorService = new ThreadPoolExecutor(16,32,60, TimeUnit.SECONDS,queue,factory,handler);
+
         executorService = Executors.newFixedThreadPool(20);
 
         System.out.println("==============successed to init threadPool=============");

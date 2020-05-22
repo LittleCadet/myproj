@@ -37,7 +37,7 @@ public class SendMessageController {
         Message message = Message.builder()
                 .user("和尚")
                 .message("撩妹子")
-                .date(new Date().getTime())
+                .date(System.currentTimeMillis())
                 .output(outputMessage)
                 .build();
 
@@ -45,7 +45,7 @@ public class SendMessageController {
         Messages messages = Messages.builder()
                 .user("住持")
                 .message("棒打鸳鸯")
-                .date(new Date().getTime())
+                .date(System.currentTimeMillis())
                 .output(outputMessages)
                 .build();
 

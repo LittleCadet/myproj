@@ -1,14 +1,13 @@
 package com.spring.app;
 
-import com.spring.app.springTry.CustomException;
-import com.spring.app.springTry.TryConfig;
-import com.spring.app.springTry.TryFacade;
+import com.spring.app.springtry.CustomException;
+import com.spring.app.springtry.TryConfig;
+import com.spring.app.springtry.TryFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -36,6 +35,5 @@ public class TryTest {
         }catch (Exception e) {
             log.error(String.format("在junit  Exception中捕获到异常: %s",e));
         }
-
     }
 }

@@ -1,8 +1,7 @@
-package com.spring.app.springTry;
+package com.spring.app.springtry;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.retry.backoff.FixedBackOffPolicy;

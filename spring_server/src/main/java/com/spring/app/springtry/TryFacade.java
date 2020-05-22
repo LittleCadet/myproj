@@ -1,4 +1,4 @@
-package com.spring.app.springTry;
+package com.spring.app.springtry;
 
 /**
  * @author shenxie

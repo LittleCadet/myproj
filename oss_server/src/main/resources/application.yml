@@ -3,7 +3,8 @@ spring:
     port: 8080
 
   oss:
-    access_key: LTAI4FtqaYhp88W4UvyJEjej
+    # 正确的key为LTAI4FtqaYhp88W4UvyJEjej
+    access_key: LTAI4FtqaYhp88W4UvyJEjea
     access_secret: bJtzYDi3IPfjMDHdBeW8UhE4QAZlRZ
     # 存储空间 ：只支持小写 + 数字 + 中短横线
     bucket_name: littlecadet

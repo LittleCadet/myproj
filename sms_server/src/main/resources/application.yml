@@ -6,5 +6,6 @@ spring:
     regionId: cn-hangzhou
     signName: LittleCadet
     templateCode: SMS_181851404
-    accessKeyId: LTAI4FtqaYhp88W4UvyJEjej
+    # 正确的key为LTAI4FtqaYhp88W4UvyJEjej
+    accessKeyId: LTAI4FtqaYhp88W4UvyJEjea
     secret: bJtzYDi3IPfjMDHdBeW8UhE4QAZlRZ

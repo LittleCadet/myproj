@@ -1,151 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>myproj</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>myproj</name>
-	<description>myproj project for Spring Boot</description>
+    <groupId>com.example</groupId>
+    <artifactId>myproj</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>myproj</name>
+    <description>myproj project for Spring Boot</description>
 
     <packaging>pom</packaging>
 
-	<modules>
-		<module>bus_server</module>
-		<module>normal_server</module>
-		<module>jedis_server</module>
-		<module>dingtalk_server</module>
-		<module>rocketmq_server</module>
-		<module>loadingcache_server</module>
-		<module>oss_server</module>
-		<module>fuyou_server</module>
-		<module>ocr_server</module>
-		<module>suixinfu_server</module>
-		<module>sms_server</module>
-		<module>spring_cache_server</module>
+    <modules>
+        <module>bus_server</module>
+        <module>normal_server</module>
+        <module>jedis_server</module>
+        <module>dingtalk_server</module>
+        <module>rocketmq_server</module>
+        <module>loadingcache_server</module>
+        <module>oss_server</module>
+        <module>fuyou_server</module>
+        <module>ocr_server</module>
+        <module>suixinfu_server</module>
+        <module>sms_server</module>
+        <module>spring_cache_server</module>
         <module>error_server</module>
         <module>custom_localcache_server</module>
         <module>spring_server</module>
     </modules>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<lombok.version>1.18.8</lombok.version>
-		<springBoot.version>2.1.6.RELEASE</springBoot.version>
-		<commons.version>3.8.1</commons.version>
-		<guava.version>27.1-jre</guava.version>
-		<fastjson.version>1.2.56</fastjson.version>
-		<jedis.version>2.9.0</jedis.version>
-		<okhttp.version>3.11.0</okhttp.version>
-		<rocket.version>4.5.1</rocket.version>
-		<mysql.version>5.1.40</mysql.version>
-		<mybatis.version>2.0.0</mybatis.version>
-		<druid.version>1.1.15</druid.version>
-		<ftp.version>3.3</ftp.version>
-		<hutool.version>4.6.3</hutool.version>
-		<gson.version>2.2.4</gson.version>
-		<httpClient.version>4.5.1</httpClient.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <lombok.version>1.18.8</lombok.version>
+        <springBoot.version>2.1.6.RELEASE</springBoot.version>
+        <commons.version>3.8.1</commons.version>
+        <guava.version>27.1-jre</guava.version>
+        <fastjson.version>1.2.56</fastjson.version>
+        <jedis.version>2.9.0</jedis.version>
+        <okhttp.version>3.11.0</okhttp.version>
+        <rocket.version>4.5.1</rocket.version>
+        <mysql.version>5.1.40</mysql.version>
+        <mybatis.version>2.0.0</mybatis.version>
+        <druid.version>1.1.15</druid.version>
+        <ftp.version>3.3</ftp.version>
+        <hutool.version>4.6.3</hutool.version>
+        <gson.version>2.2.4</gson.version>
+        <httpClient.version>4.5.1</httpClient.version>
+    </properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-web</artifactId>
-				<version>${springBoot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-parent</artifactId>
-				<version>${springBoot.version}</version>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springBoot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-parent</artifactId>
+                <version>${springBoot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter</artifactId>
-				<version>${springBoot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${springBoot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-				<optional>true</optional>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>${springBoot.version}</version>
-				<scope>test</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springBoot.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-			<!-- commons -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${commons.version}</version>
-			</dependency>
+            <!-- commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
 
-			<!-- guava -->
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${guava.version}</version>
-			</dependency>
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
 
-			<!-- json -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>fastjson</artifactId>
-				<version>${fastjson.version}</version>
-			</dependency>
+            <!-- json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>${gson.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
 
-			<!-- redis -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-redis</artifactId>
-				<version>${springBoot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>redis.clients</groupId>
-				<artifactId>jedis</artifactId>
-				<version>${jedis.version}</version>
-			</dependency>
+            <!-- redis -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${springBoot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
 
-			<!-- spring整合redis -->
-			<dependency>
-				<groupId>org.springframework.data</groupId>
-				<artifactId>spring-data-redis</artifactId>
-				<version>2.1.10.RELEASE</version>
-			</dependency>
+            <!-- spring整合redis -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>2.1.10.RELEASE</version>
+            </dependency>
 
-			<!-- okhttp -->
-			<dependency>
-				<groupId>com.squareup.okhttp3</groupId>
-				<artifactId>okhttp</artifactId>
-				<version>${okhttp.version}</version>
-			</dependency>
+            <!-- okhttp -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
 
-			<!-- httpClient-->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>${httpClient.version}</version>
-			</dependency>
+            <!-- httpClient-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpClient.version}</version>
+            </dependency>
 
-			<!-- rocket MQ -->
-			<dependency>
-				<groupId>org.apache.rocketmq</groupId>
-				<artifactId>rocketmq-client</artifactId>
-				<version>${rocket.version}</version>
-			</dependency>
+            <!-- rocket MQ -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocket.version}</version>
+            </dependency>
 
             <!-- jdbc -->
             <dependency>
@@ -154,149 +154,149 @@
                 <version>${springBoot.version}</version>
             </dependency>
 
-			<!-- mybatis -->
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>${mybatis.version}</version>
-			</dependency>
+            <!-- mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
 
-			<!-- mysql connector -->
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>${mysql.version}</version>
-			</dependency>
+            <!-- mysql connector -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
 
-			<!-- druid -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>druid</artifactId>
-				<version>${druid.version}</version>
-			</dependency>
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
 
-			<!-- ftp -->
-			<dependency>
-				<groupId>commons-net</groupId>
-				<artifactId>commons-net</artifactId>
-				<version>${ftp.version}</version>
-			</dependency>
+            <!-- ftp -->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${ftp.version}</version>
+            </dependency>
 
-			<!-- hutool(zip) -->
-			<dependency>
-				<groupId>cn.hutool</groupId>
-				<artifactId>hutool-all</artifactId>
-				<version>${hutool.version}</version>
-			</dependency>
+            <!-- hutool(zip) -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
 
-			<!-- httpClient -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>4.5.1</version>
-			</dependency>
+            <!-- httpClient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.1</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>4.5.9</version>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>4.5.9</version>
+            </dependency>
 
-			<!-- aliyun -->
-			<dependency>
-				<groupId>com.aliyun</groupId>
-				<artifactId>aliyun-java-sdk-core</artifactId>
-				<version>4.0.6</version>
-			</dependency>
+            <!-- aliyun -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>4.0.6</version>
+            </dependency>
 
-			<!-- mybaytis代码生成器 -->
-			<dependency>
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-core</artifactId>
-				<version>1.3.5</version>
-			</dependency>
+            <!-- mybaytis代码生成器 -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>1.3.5</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.mybatis</groupId>
-				<artifactId>mybatis-spring</artifactId>
-				<version>2.0.0</version>
-			</dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>2.0.0</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>1.1.1</version>
-			</dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.1.1</version>
+            </dependency>
 
-			<!-- aop -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-aop</artifactId>
-				<version>2.1.7.RELEASE</version>
-			</dependency>
+            <!-- aop -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>2.1.7.RELEASE</version>
+            </dependency>
 
-			<!-- 用concurrentLinkedHashMap实现lru的过期策略 -->
-			<dependency>
-				<groupId>com.googlecode.concurrentlinkedhashmap</groupId>
-				<artifactId>concurrentlinkedhashmap-lru</artifactId>
-				<version>1.4.2</version>
-			</dependency>
+            <!-- 用concurrentLinkedHashMap实现lru的过期策略 -->
+            <dependency>
+                <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+                <artifactId>concurrentlinkedhashmap-lru</artifactId>
+                <version>1.4.2</version>
+            </dependency>
 
-			<!-- spring 重试框架 -->
-			<dependency>
-				<groupId>org.springframework.retry</groupId>
-				<artifactId>spring-retry</artifactId>
-				<version>1.2.4.RELEASE</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+            <!-- spring 重试框架 -->
+            <dependency>
+                <groupId>org.springframework.retry</groupId>
+                <artifactId>spring-retry</artifactId>
+                <version>1.2.4.RELEASE</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
-			<releases>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<distributionManagement>
-		<repository>
-			<id>rdc-releases</id>
-			<url>https://repo.rdc.aliyun.com/repository/34802-release-augJR2/</url>
-		</repository>
-		<snapshotRepository>
-			<id>rdc-snapshots</id>
-			<url>https://repo.rdc.aliyun.com/repository/34802-snapshot-aIMM7q/</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/34802-release-augJR2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/34802-snapshot-aIMM7q/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${springBoot.version}</version>
-			</plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springBoot.version}</version>
+            </plugin>
 
-			<!-- 如果不指定编译器版本，那么idea会默认使用jdk1.5去编译，会报错，比如：lamdar：在1.8才有 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+            <!-- 如果不指定编译器版本，那么idea会默认使用jdk1.5去编译，会报错，比如：lamdar：在1.8才有 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

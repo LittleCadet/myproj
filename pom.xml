@@ -27,6 +27,7 @@
         <module>error_server</module>
         <module>custom_localcache_server</module>
         <module>spring_server</module>
+        <module>reactive_server</module>
     </modules>
 
     <properties>
@@ -247,6 +248,13 @@
                 <groupId>org.springframework.retry</groupId>
                 <artifactId>spring-retry</artifactId>
                 <version>1.2.4.RELEASE</version>
+            </dependency>
+
+            <!-- 响应式编程-->
+            <dependency>
+                <groupId>io.reactivex.rxjava2</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>2.2.7</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

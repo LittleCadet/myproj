@@ -2,7 +2,6 @@ package com.spring.app.springpublish.publisher;
 
 import com.spring.app.springpublish.event.MessageEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**

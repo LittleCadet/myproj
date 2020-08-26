@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring;
 
 import com.spring.app.springpublish.event.MessageEvent;
 import com.spring.app.springpublish.publisher.MessagePublish;

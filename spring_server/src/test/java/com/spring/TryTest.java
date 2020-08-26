@@ -1,8 +1,8 @@
-package com.spring.app;
+package com.spring;
 
+import com.spring.app.springtry.TryFacade;
 import com.spring.app.springtry.CustomException;
 import com.spring.app.springtry.TryConfig;
-import com.spring.app.springtry.TryFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

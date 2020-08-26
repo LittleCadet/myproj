@@ -1,5 +1,6 @@
 package com.myproj.app.eventbus.config;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.*;
 
 /**
@@ -48,7 +51,7 @@ public class ConfigServer {
 
         executorService = new ThreadPoolExecutor(16,32,60, TimeUnit.SECONDS,queue,factory,handler);
 
-        executorService = Executors.newFixedThreadPool(20);
+        //executorService = Executors.newFixedThreadPool(20);
 
         System.out.println("==============successed to init threadPool=============");
 
@@ -64,5 +67,14 @@ public class ConfigServer {
         System.out.println("===========successed to register ============");
 
         return sendMessageImpl;
+    }
+
+    public static void main(String[] args) {
+
+        Map<String,  String> param = new HashMap<>();
+        param.put("1" ,"1");
+        String jsonString = JSONObject.toJSONString(param);
+        Map params = JSONObject.parseObject(jsonString, Map.class);
+        System.out.println(params);
     }
 }

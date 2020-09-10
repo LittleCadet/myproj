@@ -59,7 +59,8 @@ public class TestAgent {
 
     /**
      * 关于jdk中 tools.jar maven编译报错的问题：
-     * 在vm options : -Xbootclasspath/a:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/lib/tools.jar
+     * 方式一 ；在vm options : -Xbootclasspath/a:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/lib/tools.jar
+     * 方式二： jdk的jdk + jre要分开安装。
      * @param args
      * @throws IOException
      * @throws AttachNotSupportedException

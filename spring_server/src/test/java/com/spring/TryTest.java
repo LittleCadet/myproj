@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2020/5/21
  */
 @Slf4j
-@SpringBootTest
+@SpringBootTest(classes = {TryTest.class})
 @RunWith(SpringRunner.class)
 public class TryTest {
 

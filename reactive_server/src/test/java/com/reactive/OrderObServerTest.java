@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2020/8/26
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {OrderObServerTest.class})
 public class OrderObServerTest {
 
     @Test

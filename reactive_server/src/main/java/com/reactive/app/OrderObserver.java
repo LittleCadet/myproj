@@ -15,6 +15,10 @@ public class OrderObserver implements Observer<OrderInfo> {
         System.out.println("触发了onSubscribe");
     }
 
+    /**
+     * 主要自定
+     * @param info
+     */
     @SneakyThrows
     @Override
     public void onNext(@NonNull OrderInfo info) {
@@ -26,6 +30,9 @@ public class OrderObserver implements Observer<OrderInfo> {
         System.out.println(String.format("触发了onError , e = %s" , e));
     }
 
+    /**
+     * 主要定义
+     */
     @Override
     public void onComplete() {
         System.out.println("触发了onComplete");

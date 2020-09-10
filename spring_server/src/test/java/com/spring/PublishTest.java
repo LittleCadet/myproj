@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author shenxie
  * @date 2020/5/21
  */
-@SpringBootTest
+@SpringBootTest(classes = {PublishTest.class})
 @RunWith(SpringRunner.class)
 public class PublishTest {
 

@@ -52,6 +52,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- spring-boot-starter-web : 包含内置tomcat的依赖。 没有她，启动后，容器立即停止-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>

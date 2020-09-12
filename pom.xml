@@ -29,6 +29,8 @@
         <module>spring_server</module>
         <module>reactive_server</module>
         <module>jvm_ti_server</module>
+        <module>jvm_ti_premain_server</module>
+        <module>jvm_ti_agentmain_server</module>
     </modules>
 
     <properties>

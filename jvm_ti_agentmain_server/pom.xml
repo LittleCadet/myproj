@@ -8,9 +8,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.myproj</groupId>
-	<artifactId>jvm_ti_server</artifactId>
+	<artifactId>jvm_ti_agentmain_server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jvm_ti_server</name>
+	<name>jvm_ti_agentmain_server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -73,8 +73,7 @@
 						</manifest>
 						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class-->
 						<manifestEntries>
-							<Premain-Class>com.jvm.ti.server.agent.TestTiAgent</Premain-Class>
-							<Agent-Class>com.jvm.ti.server.agent.TestTiAgent</Agent-Class>
+							<Agent-Class>com.jvm.ti.server.agent.TestAgentMain</Agent-Class>
 						</manifestEntries>
 					</archive>
 				</configuration>

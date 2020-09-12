@@ -8,9 +8,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.myproj</groupId>
-	<artifactId>jvm_ti_server</artifactId>
+	<artifactId>jvm_ti_premain_server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jvm_ti_server</name>
+	<name>jvm_ti_premain_server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -65,7 +65,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>3.1.2</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -73,13 +73,13 @@
 						</manifest>
 						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class-->
 						<manifestEntries>
-							<Premain-Class>com.jvm.ti.server.agent.TestTiAgent</Premain-Class>
-							<Agent-Class>com.jvm.ti.server.agent.TestTiAgent</Agent-Class>
+							<Premain-Class>com.jvm.ti.server.agent.TestPreAgent</Premain-Class>
+							<Can-Redefine-Classes>true</Can-Redefine-Classes>
+							<Can-Retransform-Classes>true</Can-Retransform-Classes>
 						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 

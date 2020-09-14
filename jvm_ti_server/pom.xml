@@ -73,8 +73,9 @@
 						</manifest>
 						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class-->
 						<manifestEntries>
-							<Premain-Class>com.jvm.ti.server.agent.TestTiAgent</Premain-Class>
 							<Agent-Class>com.jvm.ti.server.agent.TestTiAgent</Agent-Class>
+							<Can-Redefine-Classes>true</Can-Redefine-Classes>
+							<Can-Retransform-Classes>true</Can-Retransform-Classes>
 						</manifestEntries>
 					</archive>
 				</configuration>

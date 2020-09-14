@@ -62,23 +62,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
-						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class-->
-						<manifestEntries>
-							<Agent-Class>com.jvm.ti.server.agent.TestAgentMain</Agent-Class>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 

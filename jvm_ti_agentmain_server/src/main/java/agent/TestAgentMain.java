@@ -27,7 +27,7 @@ public class TestAgentMain {
     /**
      * 关于jdk中 tools.jar maven编译报错的问题：
      * 方式一 ；在vm options : -Xbootclasspath/a:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/lib/tools.jar
-     * 方式二： jdk的jdk + jre要分开安装。
+     * 方式二 ：在maven中直接引入com.sun.tools的依赖，手动指定系统路径即可。
      * @param args
      * @throws IOException
      * @throws AttachNotSupportedException

@@ -35,7 +35,7 @@ public class TestAgentMain {
      * @throws AgentInitializationException
      */
     public static void main(String[] args) throws IOException, AttachNotSupportedException, AgentLoadException, AgentInitializationException, InterruptedException {
-        System.out.println("=============main start===========");
+        System.out.println("=============agent main start===========");
 
         while(true){
 

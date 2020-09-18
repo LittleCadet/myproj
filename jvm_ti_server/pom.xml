@@ -71,7 +71,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 						</manifest>
-						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class-->
+						<!-- 会在mvn package后，生成jar的MANIFEST.MF中包含：Premain-Class 和 Agent-Class ： 分别代表： premain（）和 agentmain（）在哪个类中-->
 						<manifestEntries>
 							<Agent-Class>com.jvm.ti.server.agent.TestTiAgent</Agent-Class>
 							<Can-Redefine-Classes>true</Can-Redefine-Classes>

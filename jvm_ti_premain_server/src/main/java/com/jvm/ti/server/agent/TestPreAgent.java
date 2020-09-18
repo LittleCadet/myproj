@@ -80,7 +80,7 @@ public class TestPreAgent {
                                     return byteCode;
                                 }
 
-                                //重新定义的类， 能否通过retransformClasses 的形成 ，再次变更。
+                                //重新定义的类， 能否通过retransformClasses 的形式 ，再次变更。
                             } , true
         );
     }

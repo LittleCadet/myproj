@@ -37,11 +37,18 @@ public class TestTiAgent {
             System.out.println(String.format("args: %s" , args[i]));
         }
 
+        //大招： 容器挂了 ， 会用shutdown的钩子 ， 执行指定的任务。
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            //TODO : 用netty发送消息到 jvm_ti_agentmain_server
+        }));
+
+
         while(true){
 
             System.out.println("============TestAgent 运行中 ==============");
             Thread.sleep(1000);
         }
+
 
     }
 

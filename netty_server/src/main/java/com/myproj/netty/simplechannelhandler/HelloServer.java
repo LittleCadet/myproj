@@ -1,18 +1,14 @@
-package com.myproj.netty.demo;
+package com.myproj.netty.simplechannelhandler;
 
 /**
  * @author shenxie
  * @date 2020/9/30
  */
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 import lombok.SneakyThrows;
 import org.jboss.netty.bootstrap.ServerBootstrap;
-import org.jboss.netty.channel.Channel;
-import org.jboss.netty.channel.ChannelHandler;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;

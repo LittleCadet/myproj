@@ -1,4 +1,4 @@
-package com.myproj.netty.demo;
+package com.myproj.netty.simplechannelhandler;
 
 import lombok.Data;
 

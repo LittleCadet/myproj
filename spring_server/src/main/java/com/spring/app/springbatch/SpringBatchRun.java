@@ -49,6 +49,9 @@ public class SpringBatchRun implements ApplicationRunner {
     @Autowired
     private JobLauncher jobLauncher;
 
+    /**
+     * 初始化需要运行的job
+     */
     static{
         //JOB_NAMES.add(JOB_NAME_V1);
         JOB_NAMES.add(JOB_NAME_V2);
@@ -65,8 +68,6 @@ public class SpringBatchRun implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===============spring batch start===========");
         JOB_NAMES.forEach(this::process);
-
-        Thread.currentThread().join();
         System.out.println("================spring batch end===========");
     }
 

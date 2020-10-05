@@ -1,5 +1,5 @@
-Message(name=小明, sex=男)
-Message(name=校长, sex=男)
-Message(name=小兰, sex=女)
 Message(name=小红, sex=女)
+Message(name=小明, sex=男)
+Message(name=小兰, sex=女)
+Message(name=校长, sex=男)
 Message(name=副校长, sex=男)

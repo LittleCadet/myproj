@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,7 +69,9 @@ public class MessageMigrationJobConfiguration {
     @Bean
     public Job messageMigrationJob(@Qualifier("messageMigrationStep") Step messageMigrationStep) {
         return jobBuilderFactory.get("messageMigrationJob")
+                //开始的step
                 .start(messageMigrationStep)
+                //也可以指定下一步 ：next ; 实现串行执行的任务编排。等等
                 .build();
     }
 
@@ -152,7 +155,7 @@ public class MessageMigrationJobConfiguration {
 
     @Bean
     public TaskExecutor taskExecutor(){
-        return new SimpleAsyncTaskExecutor("s_spring_batch");
+        return new ConcurrentTaskExecutor();
     }
 
 

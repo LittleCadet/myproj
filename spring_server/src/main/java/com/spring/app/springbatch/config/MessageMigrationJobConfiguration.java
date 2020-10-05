@@ -1,5 +1,7 @@
 package com.spring.app.springbatch.config;
 
+import com.spring.app.springbatch.core.AlarmPartitionerV1;
+import com.spring.app.springbatch.core.AlarmPartitionerV2;
 import com.spring.app.springbatch.core.MessageItemReadListener;
 import com.spring.app.springbatch.core.MessageLineMapper;
 import com.spring.app.springbatch.core.MessageProcessor;
@@ -9,7 +11,6 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.transform.LineAggregator;
@@ -17,12 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.charset.Charset;
-import java.util.function.Function;
+
 
 /**
  * @author shenxie
@@ -43,6 +45,11 @@ public class MessageMigrationJobConfiguration {
      */
     private static final Integer SKIP_LIMIT = 1;
 
+    /**
+     * 默认网格大小
+     */
+    private static final Integer DEFAULT_GRID_SIZE = 6;
+
     private static final String MESSAGE_READER_FILE = "spring_server/src/main/resources/source.txt";
     private static final String MESSAGE_WRITER_FILE = "spring_server/src/main/resources/target.txt";
 
@@ -52,12 +59,43 @@ public class MessageMigrationJobConfiguration {
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
 
+
+    /**
+     * 批处理任务 【普通】
+     * @param messageMigrationStep
+     * @return
+     */
     @Bean
     public Job messageMigrationJob(@Qualifier("messageMigrationStep") Step messageMigrationStep) {
         return jobBuilderFactory.get("messageMigrationJob")
                 .start(messageMigrationStep)
                 .build();
     }
+
+    /**
+     * 批处理任务 【支持数据分片】
+     * @param partitionerStepV1
+     * @return
+     */
+    @Bean
+    public Job messageMigrationJobV2(@Qualifier("partitionerStepV1") Step partitionerStepV1) {
+        return jobBuilderFactory.get("messageMigrationJobV2")
+                .start(partitionerStepV1)
+                .build();
+    }
+
+    /**
+     * 批处理任务 【支持数据分片】
+     * @param partitionerStepV2
+     * @return
+     */
+    @Bean
+    public Job messageMigrationJobV3(@Qualifier("partitionerStepV2") Step partitionerStepV2) {
+        return jobBuilderFactory.get("messageMigrationJobV3")
+                .start(partitionerStepV2)
+                .build();
+    }
+
 
     /**
      * 定义 reader
@@ -112,6 +150,12 @@ public class MessageMigrationJobConfiguration {
         return writer;
     }
 
+    @Bean
+    public TaskExecutor taskExecutor(){
+        return new SimpleAsyncTaskExecutor("s_spring_batch");
+    }
+
+
 
     /**
      * 初始化step ： chunk 【 reader + processor + writer + listener】
@@ -130,6 +174,46 @@ public class MessageMigrationJobConfiguration {
                 .processor(messageProcessor)
                 .writer(messageItemWriter).faultTolerant().skip(Exception.class).skipLimit(SKIP_LIMIT)
                 .listener(new MessageWriteListener())
+
+                // 使用本地分区
+                // 线程池完成数据分片 ，  【也可以使用远程分区，这里暂不使用】
+                .taskExecutor(taskExecutor())
+                .build();
+    }
+
+    /**
+     * 支持数据分片 【使用线程池的方式】
+     * @param jsonMessageReader
+     * @param messageItemWriter
+     * @param messageProcessor
+     * @return
+     */
+    @Bean
+    public Step partitionerStepV1(@Qualifier("jsonMessageReader") FlatFileItemReader<Message> jsonMessageReader,
+                                @Qualifier("messageItemWriter") FlatFileItemWriter<Message> messageItemWriter,
+                                @Qualifier("messageProcessor") MessageProcessor messageProcessor){
+        return stepBuilderFactory.get("partitionerStep")
+                .partitioner("partitionerStep" , new AlarmPartitionerV1())
+                .gridSize(DEFAULT_GRID_SIZE)
+                .step(messageMigrationStep(jsonMessageReader , messageItemWriter , messageProcessor))
+                .build();
+    }
+
+    /**
+     * 支持数据分片 【使用线程池的方式】
+     * @param jsonMessageReader
+     * @param messageItemWriter
+     * @param messageProcessor
+     * @return
+     */
+    @Bean
+    public Step partitionerStepV2(@Qualifier("jsonMessageReader") FlatFileItemReader<Message> jsonMessageReader,
+                                @Qualifier("messageItemWriter") FlatFileItemWriter<Message> messageItemWriter,
+                                @Qualifier("messageProcessor") MessageProcessor messageProcessor){
+        return stepBuilderFactory.get("partitionerStep")
+                .partitioner("partitionerStep" , new AlarmPartitionerV2())
+                .gridSize(DEFAULT_GRID_SIZE)
+                .step(messageMigrationStep(jsonMessageReader , messageItemWriter , messageProcessor))
                 .build();
     }
 

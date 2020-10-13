@@ -13,7 +13,7 @@ import java.util.Map;
  * @author shenxie
  * @date 2020/9/25
  */
-@Service
+/*@Service*/
 public class Oom implements InitializingBean {
 
 

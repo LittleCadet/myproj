@@ -27,11 +27,9 @@
         <module>error_server</module>
         <module>custom_localcache_server</module>
         <module>spring_server</module>
-        <module>reactive_server</module>
         <module>jvm_ti_server</module>
         <module>jvm_ti_premain_server</module>
         <module>jvm_ti_agentmain_server</module>
-        <module>asyn_server</module>
         <module>netty_server</module>
     </modules>
 

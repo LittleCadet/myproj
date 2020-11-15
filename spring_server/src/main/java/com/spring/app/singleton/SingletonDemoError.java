@@ -1,11 +1,8 @@
 package com.spring.app.singleton;
 
-import com.sun.deploy.net.protocol.ProtocolType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.boot.context.properties.ConfigurationBeanFactoryMetadata;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 /**
  * @author shenxie

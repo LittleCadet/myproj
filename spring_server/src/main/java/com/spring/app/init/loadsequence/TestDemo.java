@@ -1,4 +1,4 @@
-package com.spring.app.init;
+package com.spring.app.init.loadsequence;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;

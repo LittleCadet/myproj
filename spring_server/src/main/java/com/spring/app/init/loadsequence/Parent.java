@@ -1,4 +1,4 @@
-package com.spring.app.init;
+package com.spring.app.init.loadsequence;
 
 /**
  * @author shenxie

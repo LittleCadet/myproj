@@ -1,7 +1,4 @@
-package com.spring.app.init;
-
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Service;
+package com.spring.app.init.loadsequence;
 
 /**
  * @author shenxie

@@ -33,7 +33,7 @@ public class ConfigServer {
 
         eventBus = new AsyncEventBus("eventBus",executorService);
 
-        System.out.println("==============successed to init eventBus===============");
+        System.out.println("==============successed to init eventBus=============== ");
         return eventBus;
     }
 

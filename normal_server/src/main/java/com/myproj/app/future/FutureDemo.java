@@ -1,9 +1,13 @@
 package com.myproj.app.future;
 
+import lombok.SneakyThrows;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author shenxie
@@ -12,7 +16,9 @@ import java.util.concurrent.ExecutionException;
 public class FutureDemo {
     public static void main(String[] args) {
 
-        showInfoV4();
+        showInfoV2();
+//        getNow();
+//        showInfo();
     }
 
     /**
@@ -32,7 +38,11 @@ public class FutureDemo {
      */
     public static void showInfoV2(){
         CompletableFuture.supplyAsync(() -> "hello")
-                .thenApply(s -> s + "world")
+                .thenApply(s -> {
+                    s = s + "world";
+                    System.out.println(s);
+                    return s;
+                })
                 .thenApply(String :: toUpperCase)
                 .thenCombine(CompletableFuture.completedFuture("JAVA") , (s1 , s2) -> s1 + s2)
                 .thenAccept(System.out::println);
@@ -77,5 +87,29 @@ public class FutureDemo {
         CompletableFuture.runAsync(()->{
             System.out.println("执行runAsync");
         });
+    }
+
+    /**
+     * 立即返回运行结果，如果有，则返回真实结果， 不然返回设置的默认值
+     */
+    @SneakyThrows
+    public static void getNow(){
+        String valueIfAbsent = CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getName());
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println(Thread.currentThread().getName() + "等待结束");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "trueValue";
+        })
+                .getNow("valueIfAbsent");
+
+        System.out.println(Thread.currentThread().getName() + "当前线程执行结束");
+        System.out.println("执行结果：" + valueIfAbsent);
+
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await();
     }
 }

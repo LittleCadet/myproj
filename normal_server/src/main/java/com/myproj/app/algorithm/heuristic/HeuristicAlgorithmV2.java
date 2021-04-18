@@ -518,6 +518,9 @@ public class HeuristicAlgorithmV2 {
         }
     }
 
+    /**
+     * 先序遍历
+     */
     private static Optional<GeneralizationTree.ExceptionTree> getParentNode(GeneralizationTree.ExceptionTree paramException, GeneralizationTree.ExceptionTree exceptionTree){
         if(exceptionTree.getId().equals(paramException.getParentId())){
             return Optional.of(exceptionTree);
@@ -535,7 +538,10 @@ public class HeuristicAlgorithmV2 {
     }
 
     /**
+     * 先序遍历
+     *
      * 根据异常名返回节点, 从顶层开始找
+     *
      * @param exception 异常名
      * @return 节点
      */
@@ -601,6 +607,7 @@ public class HeuristicAlgorithmV2 {
     }
 
     /**
+     * 先序遍历
      * 获取当前节点下 所有子集的parentId
      * @param exceptionTree 异常树
      * @param parentIds parentIds

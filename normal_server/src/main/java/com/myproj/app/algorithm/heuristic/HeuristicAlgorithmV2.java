@@ -578,7 +578,7 @@ public class HeuristicAlgorithmV2 {
             for (int j = i + 1 ; j < alertDtos.size() ; j ++) {
                 GeneralizationTree.MinParentNode minParentNode = new GeneralizationTree.MinParentNode();
                 // 找个下一条记录的同一个属性的值
-                String exception2 = alertDtos.get(i + 1).getException();
+                String exception2 = alertDtos.get(j).getException();
 
                 // 获取两个相同属性的值的不相似度： 通过找父节点的方式：循环n次，那么不相似度为n
                 getMinParentNode(Objects.requireNonNull(getNode(exception1, generalizationTree.getExceptions())),

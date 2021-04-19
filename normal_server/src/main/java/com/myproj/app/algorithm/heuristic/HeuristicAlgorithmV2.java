@@ -71,12 +71,11 @@ public class HeuristicAlgorithmV2 {
             String minFiled = getMinFiled(mergeDtos);
             System.out.println("minFiled:" + minFiled);
 
-            // 将两个错误日志中的特征属性： 替换为有公共节点的父类属性的值
-            replaceFiled(minFiled, mergeDtos);
-
             // 获取不相似度最小的两个属性值的覆盖量
             List<GeneralizationTree.MinParentNode> minDissimilarities = getDissimilarityValue(mergeDtos);
 
+            // 将两个错误日志中的特征属性： 替换为有公共节点的父类属性的值
+            replaceFiled(minFiled, mergeDtos);
 
             // 合并告警
             count = mergeSourceV2(mergeDtos, minDissimilarities);
@@ -296,41 +295,20 @@ public class HeuristicAlgorithmV2 {
     private static Integer mergeSourceV2(List<AlertDto> alertDtos , List<GeneralizationTree.MinParentNode> minParentNodes){
 
         final long[] count = {0L};
-        List<AlertDto> deleteDtos  =Lists.newArrayList();
-
-        // 用于存放第二个异常： 指的是blog中的 a`
-        Set<String> exceptions = new HashSet<>();
-
         // 只用于不重复统计相同的异常
         Set<String> exceptionsAll = new HashSet<>();
 
         minParentNodes.forEach(n -> {
+            GeneralizationTree.ExceptionTree parentNode = n.getParentNode();
             List<GeneralizationTree.ExceptionTree> exceptionChildNodes = n.getExceptionChildNodes();
-            String e1 = exceptionChildNodes.get(0).getException();
-            String e2 = exceptionChildNodes.get(1).getException();
-            if(e1.equals(e2)){
-                if( ! exceptionsAll.contains(e1)){
-                    count[0] = alertDtos.stream().filter(a -> a.getException().equals(e1)).count() + count[0];
-                }
-            }else{
-                long count1 = 0L;
-                long count2 = 0L;
-                if( !exceptionsAll.contains(e1)){
-                    count1 = alertDtos.stream().filter(a -> a.getException().equals(e1)).count();
-                }
-                if( !exceptionsAll.contains(e2)){
-                    count2 = alertDtos.stream().filter(a -> a.getException().equals(e2)).count();
-                }
-                count[0] = count1 + count2 + count[0];
+            exceptionChildNodes.get(1).setException(parentNode.getException());
+            if( ! exceptionsAll.contains(parentNode.getException())){
+                count[0] = alertDtos.stream().filter(a -> a.getException().equals(parentNode.getException())).count();
             }
-            exceptions.add(e2);
-            exceptionsAll.add(e1);
-            exceptionsAll.add(e2);
+            exceptionsAll.add(parentNode.getException());
+            alertDtos.remove(n.getAlertDtos().get(1));
         });
 
-        alertDtos.stream().filter(d -> exceptions.contains(d.getException())).forEach(deleteDtos::add);
-
-        alertDtos.removeAll(deleteDtos);
         System.out.println("第2次告警聚类：size:" + alertDtos.size() + "\n结果：" + alertDtos);
         return (int)count[0];
     }
@@ -448,6 +426,22 @@ public class HeuristicAlgorithmV2 {
 
     }
 
+//    private static void replaceFiledV2(String filed , List<GeneralizationTree.MinParentNode> dissimilarities) {
+//
+//        if("exception".equals(filed)){
+//            dissimilarities.forEach(d -> {
+//                // 获取当前节点
+//                getNode(d.get(), generalizationTree.getExceptions())
+//                        // 获取当前节点的父节点
+//                        .flatMap(node -> getParentNode(node, generalizationTree.getExceptions()))
+//                        .ifPresent(parentNode -> {
+//                            d.setException(parentNode.getException());
+//                });
+//            });
+//        }
+//
+//    }
+
 
     /**
      * 根据两个当前节点的parentId找到相同的parentId为止， 再用parentId换取父节点的值
@@ -471,7 +465,7 @@ public class HeuristicAlgorithmV2 {
 
         if ( ! ObjectUtils.isEmpty(tree1) && ! ObjectUtils.isEmpty(tree2)) {
             if (tree1.getParentId().equals(tree2.getParentId())) {
-                minParentNode.setDissimilarity(minParentNode.getDissimilarity() + 1);
+                minParentNode.setDissimilarity(minParentNode.getDissimilarity() + 2);
                 minParentNode.setParentNode(getParentNode(tree1, generalizationTree.getExceptions()).orElse(null));
                 return;
             }
@@ -577,6 +571,8 @@ public class HeuristicAlgorithmV2 {
 
             for (int j = i + 1 ; j < alertDtos.size() ; j ++) {
                 GeneralizationTree.MinParentNode minParentNode = new GeneralizationTree.MinParentNode();
+
+                minParentNode.setAlertDtos(Lists.newArrayList(alertDtos.get(i), alertDtos.get(j)));
                 // 找个下一条记录的同一个属性的值
                 String exception2 = alertDtos.get(j).getException();
 
@@ -596,7 +592,7 @@ public class HeuristicAlgorithmV2 {
             @Override
             // 升序排序
             public int compare(GeneralizationTree.MinParentNode o1, GeneralizationTree.MinParentNode o2) {
-                return o2.getDissimilarity().compareTo(o1.getDissimilarity());
+                return o1.getDissimilarity().compareTo(o2.getDissimilarity());
             }
         }).collect(Collectors.toList());
 

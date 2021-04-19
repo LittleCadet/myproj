@@ -72,6 +72,11 @@ public class GeneralizationTree {
 
         private List<ExceptionTree> exceptionChildNodes = Lists.newArrayList();
 
+        /**
+         * 原告警记录： 用于聚合告警
+         */
+        private List<AlertDto> alertDtos = Lists.newArrayList();
+
         private GeneralizationTree.ExceptionTree parentNode;
 
         /**

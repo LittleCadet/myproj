@@ -67,12 +67,18 @@ public class HeuristicAlgorithmV2 {
 
         // 判定是否需要聚类告警
         while (count <= minSize) {
+
             // 找到当前泛化程度最小的属性
             String minFiled = getMinFiled(mergeDtos);
             System.out.println("minFiled:" + minFiled);
 
             // 获取不相似度最小的两个属性值的覆盖量
             List<GeneralizationTree.MinParentNode> minDissimilarities = getDissimilarityValue(mergeDtos);
+
+            // 最小不相似度的集合大小 为0 时， 代表永远不会不会触发合并，与算法本身违背。
+            if(CollectionUtils.isEmpty(minDissimilarities)) {
+                break;
+            }
 
             // 将两个错误日志中的特征属性： 替换为有公共节点的父类属性的值
             replaceFiled(minFiled, mergeDtos);
@@ -426,22 +432,6 @@ public class HeuristicAlgorithmV2 {
 
     }
 
-//    private static void replaceFiledV2(String filed , List<GeneralizationTree.MinParentNode> dissimilarities) {
-//
-//        if("exception".equals(filed)){
-//            dissimilarities.forEach(d -> {
-//                // 获取当前节点
-//                getNode(d.get(), generalizationTree.getExceptions())
-//                        // 获取当前节点的父节点
-//                        .flatMap(node -> getParentNode(node, generalizationTree.getExceptions()))
-//                        .ifPresent(parentNode -> {
-//                            d.setException(parentNode.getException());
-//                });
-//            });
-//        }
-//
-//    }
-
 
     /**
      * 根据两个当前节点的parentId找到相同的parentId为止， 再用parentId换取父节点的值
@@ -596,10 +586,13 @@ public class HeuristicAlgorithmV2 {
             }
         }).collect(Collectors.toList());
 
-        GeneralizationTree.MinParentNode minParentNode = minParentNodes.get(0);
+        if( ! CollectionUtils.isEmpty(minParentNodes)) {
+            GeneralizationTree.MinParentNode minParentNode  = minParentNodes.get(0);
+            //  获取所有相同最小不相似度的记录
+            return minParentNodes.stream().filter(n -> minParentNode.getDissimilarity().equals(n.getDissimilarity())).collect(Collectors.toList());
+        }
 
-        //  获取所有相同最小不相似度的记录
-        return minParentNodes.stream().filter(n -> minParentNode.getDissimilarity().equals(n.getDissimilarity())).collect(Collectors.toList());
+        return minParentNodes;
     }
 
     /**

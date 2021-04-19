@@ -59,7 +59,7 @@ public class HeuristicAlgorithmV2 {
         // 获取error日志源数据
         List<AlertDto> alertDtos = errorSource();
 
-        // 第一轮合并日志信息 【根据exception】
+        // 第一轮聚类告警
         List<AlertDto> mergeDtos = mergeSource(alertDtos);
 
         // 定义鲁棒值 : 这里的告警集合使用的是： 原始告警集合 ： 原因： 聚合后的告警集合的值：可能太小了。完全不会触发告警聚类
@@ -83,7 +83,7 @@ public class HeuristicAlgorithmV2 {
             // 将两个错误日志中的特征属性： 替换为有公共节点的父类属性的值
             replaceFiled(minFiled, mergeDtos);
 
-            // 合并告警
+            // 聚类告警
             count = mergeSourceV2(mergeDtos, minDissimilarities);
         }
 
@@ -312,6 +312,8 @@ public class HeuristicAlgorithmV2 {
                 count[0] = alertDtos.stream().filter(a -> a.getException().equals(parentNode.getException())).count();
             }
             exceptionsAll.add(parentNode.getException());
+
+            // 聚类告警
             alertDtos.remove(n.getAlertDtos().get(1));
         });
 

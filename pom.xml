@@ -268,6 +268,14 @@
                 <artifactId>spring-batch-core</artifactId>
                 <version>4.2.2.RELEASE</version>
             </dependency>
+
+            <!-- transmittableThreadLocal-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>2.11.5</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -24,6 +24,7 @@ public class CustomProperty {
         Properties properties = new Properties();
         properties.load(new FileReader("/Users/littlecadet/workspace/self/myproj/spring_server/target/classes/customer.properties"));
 
+
         // 将properites中的配置项，注入到bean中
         Class<Health> healthClass = Health.class;
         Health health = healthClass.newInstance();

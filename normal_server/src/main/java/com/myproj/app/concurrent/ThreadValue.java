@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,8 +28,11 @@ public class ThreadValue {
 //        testInheritableThreadLocal();
 //        testTransmittableTHreadLocal();
 //        testReactor();
+//        while(true){
+//            testReactorEntity();
+//        }
         while(true){
-            testReactorEntity();
+            testReactorEntity2();
         }
 //        testForEach();
     }
@@ -161,11 +165,12 @@ public class ThreadValue {
                 .doOnNext(t -> {
                     next(t, executor);
 //                    innerClass.getContext().remove();
-//                    innerClass.getContext().set("childValue");
-//                    System.out.println("子线程：" + Thread.currentThread().getName() + ", 值："  + innerClass.getContext().get());
+                    InnerClass2 innerClass3 = new InnerClass2();
+                    innerClass3.setContent("childValue");
+                    innerClass.getContext().set(Lists.newArrayList(innerClass3));
+                    System.out.println("子线程：" + Thread.currentThread().getName() + ", 值："  + innerClass.getContext().get());
 
                 })
-                .doOnSuccess(t -> t.getContext().remove())
                 .subscribeOn(Schedulers.fromExecutor(executor))
                 .subscribe();
 
@@ -180,6 +185,38 @@ public class ThreadValue {
 
         System.out.println("父线程：" +Thread.currentThread().getName() + ", 值："  +  innerClass.getContext().get());
 
+    }
+
+    public static void testReactorEntity2(){
+        InnerClass innerClass = new InnerClass();
+        InnerClass2 innerClass2 = new InnerClass2();
+        innerClass2.setContent("value");
+        innerClass.getContext().set(Lists.newArrayList(innerClass2));
+        Executor executor = threadPool();
+//        for (int i = 0; i < 20; i++) {
+            CountDownLatch latch = new CountDownLatch(2);
+            Mono.just(innerClass)
+                    // 获取最小不相似度
+                    .doOnNext(ThreadValue::next2)
+                    .doFinally(t -> latch.countDown())
+                    .subscribeOn(Schedulers.fromExecutor(executor))
+                    .subscribe();
+
+            Mono.just(innerClass)
+                    // 将记录中的泛化属性的值替换为泛化树的父节点的值
+                    .doOnNext(ThreadValue::next3)
+                    .doFinally(t -> latch.countDown())
+                    .subscribeOn(Schedulers.fromExecutor(executor))
+                    .subscribe();
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+//        }
+
+        System.out.println("父线程：" +Thread.currentThread().getName() + ", context值："  +  innerClass.getContext().get()  + ", txt值：" + innerClass.getTxt());
     }
 
     public static void testForEach(){
@@ -200,7 +237,7 @@ public class ThreadValue {
 
     public static Executor threadPool(){
         return new ThreadPoolExecutor(
-                10, 10, 10,
+                3, 3, 3,
                 TimeUnit.MINUTES,
                 new LinkedBlockingQueue<>(100),
                 new ThreadFactoryBuilder().setNameFormat("biz-thread").build(),
@@ -216,15 +253,26 @@ public class ThreadValue {
                 .subscribe();
     }
     public static void next2(InnerClass innerClass) {
-        System.out.println("next子线程2：" + Thread.currentThread().getName() + ", 值：" + innerClass.getContext().get());
+        innerClass.setTxt("next2Txt");
+        System.out.println("next子线程2：" + Thread.currentThread().getName() + ", context值：" + innerClass.getContext().get() + ", txt值：" + innerClass.getTxt());
     }
     public static void next3(InnerClass innerClass) {
-        System.out.println("next子线程3：" + Thread.currentThread().getName() + ", 值：" + innerClass.getContext().get());
+//        List<InnerClass2> tmp = innerClass.getContext().get();
+//        tmp.get(0).setContent("value2");
+        TransmittableThreadLocal<List<InnerClass2>> contxt = new TransmittableThreadLocal<>();
+        InnerClass2 innerClass2 = new InnerClass2();
+        innerClass2.setContent("new value2");
+        List<InnerClass2> innerClass2s = Lists.newArrayList(innerClass2);
+        contxt.set(innerClass2s);
+        innerClass.setContext(contxt);
+        System.out.println("next子线程3：" + Thread.currentThread().getName() + ", context值：" + innerClass.getContext().get()  + ", txt值：" + innerClass.getTxt());
     }
 
     @Data
     static class InnerClass{
         private TransmittableThreadLocal<List<InnerClass2>> context = new TransmittableThreadLocal<>();
+
+        private String txt;
     }
 
     @Data

@@ -1,3 +1,12 @@
+server:
+  port: 8080
+#management:
+#  endpoint:
+#    health:
+      # never	详细信息从不显示。
+      # when-authorized	详细信息仅显示给授权用户，可以使用management.endpoint.health.roles配置授权角色。
+      # always	详细信息显示给所有用户。
+#      show-details: always
 test:
   io:
     user--name: test1,test2

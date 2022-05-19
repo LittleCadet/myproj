@@ -17,7 +17,7 @@ public class NormalServerApplication {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.myproj.app");
 
 		//开始执行死锁代码
-		//deadLock();
+//		deadLock();
 
 		SpringApplication.run(NormalServerApplication.class, args);
 	}

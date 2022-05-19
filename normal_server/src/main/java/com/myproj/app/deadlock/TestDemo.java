@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author shenxie
  * @date 2020/9/24
  */
-@Service
+//@Service
 public class TestDemo implements InitializingBean{
 
     @Override

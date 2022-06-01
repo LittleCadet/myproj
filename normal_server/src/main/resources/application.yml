@@ -1,2 +1,8 @@
 server:
   port: 8079
+spring:
+  application:
+    name: normal_server
+application:
+  log:
+    folder: /home/logs

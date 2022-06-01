@@ -19,21 +19,23 @@ public class TestDemo implements InitializingBean{
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("======InitializingBean开始执行死锁=======");
-        DeadThread dt1 = new DeadThread();
-        dt1.setFlag("a");
-        Thread t1 = new Thread(dt1);
-        t1.start();
+        new Thread(()-> {
+            System.out.println("======InitializingBean开始执行死锁=======");
+            DeadThread dt1 = new DeadThread();
+            dt1.setFlag("a");
+            Thread t1 = new Thread(dt1);
+            t1.start();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        dt1.setFlag("b");
-        Thread t2 = new Thread(dt1);
+            dt1.setFlag("b");
+            Thread t2 = new Thread(dt1);
 
-        t2.start();
+            t2.start();
+        }).start();
     }
 }

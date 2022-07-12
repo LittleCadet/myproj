@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * callable 与 DeferredResult：
  * 1. 共同点：
  *  a. 都用于springServlet的异步通信。
- *  b. 都用于第一时间返回服务端的线程。 【filter  + interceptor会关闭，  但是response开启】
+ *  b. 都用于第一时间返回服务端的响应。 【filter  + interceptor会关闭，  但是response开启】
  * 2. 不同点：
  *   后者： 可以替代前者： 原因： 后者： 扩展性更好： 更利于将其他线程产生的结果 与 SpringServlet的响应绑定在一起。
  *

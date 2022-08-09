@@ -9,14 +9,28 @@
 	</parent>
 
 	<groupId>com.normal</groupId>
-	<artifactId>normal_server</artifactId>
+	<artifactId>sentinel_server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>normal_server</name>
+	<name>sentinel_server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<prometheus.version>0.15.0</prometheus.version>
+		<sentinel.version>2.1.4.RELEASE</sentinel.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+				<version>${sentinel.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<!-- springBoot -->
@@ -33,14 +47,7 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- commons -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<!-- lombok -->
@@ -49,40 +56,72 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
 
-		<!-- mybaytis代码生成器 -->
-		<dependency>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator-core</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>transmittable-thread-local</artifactId>
-			<version>2.11.5</version>
-		</dependency>
-
-		<!-- reactor-->
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-core</artifactId>
-			<version>3.3.13.RELEASE</version>
-		</dependency>
-
+		<!-- sentinel start-->
+		<!-- sentinel-->
 		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
 			<version>2.1.4.RELEASE</version>
 		</dependency>
+
+		<!-- nacos -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+			<version>2.1.4.RELEASE</version>
+		</dependency>
+
+		<!-- sentinel + nacos-->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-nacos</artifactId>
+			<version>1.8.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.3.2</version>
+<!--			<scope>runtime</scope>-->
+<!--			<version>1.9.2</version>-->
+		</dependency>
+
+		<!-- sentinel end-->
+
+		<!-- prometheus start-->
+		<!-- The client -->
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<!-- Hotspot JVM metrics-->
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient_hotspot</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<!-- Exposition HTTPServer-->
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient_httpserver</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+		<!-- Pushgateway exposition-->
+		<dependency>
+			<groupId>io.prometheus</groupId>
+			<artifactId>simpleclient_pushgateway</artifactId>
+			<version>${prometheus.version}</version>
+		</dependency>
+
+		<!-- prometheus end-->
 	</dependencies>
 
 	<build>
@@ -100,29 +139,6 @@
                         </goals>
                     </execution>
                 </executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<version>1.3.5</version>
-				<configuration>
-					<configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
-					<verbose>true</verbose>
-					<overwrite>true</overwrite>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.mybatis.generator</groupId>
-						<artifactId>mybatis-generator-core</artifactId>
-						<version>1.3.5</version>
-					</dependency>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>8.0.17</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 
 

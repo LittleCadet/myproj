@@ -3,6 +3,16 @@ server:
 spring:
   application:
     name: normal_server
+#  cloud:
+#    sentinel:
+#      transport:
+#        port: 8719
+#        dashboard: localhost:8080
 application:
   log:
     folder: /home/logs
+#csp:
+#  sentinel:
+#    dashboard:
+#      port: 8719
+#      server: localhost:8080

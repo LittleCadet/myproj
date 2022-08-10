@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 /**
+ * sentinel的数据： 推送到prometheus的方式一：  手动实现PushGateway 并 推送。
+ *
+ * 缺点： 并不能优雅的解决问题。
+ *
  * @author shenxie
  * @date 2022/8/8
  */

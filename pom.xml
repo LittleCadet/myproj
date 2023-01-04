@@ -32,6 +32,8 @@
         <module>jvm_ti_agentmain_server</module>
         <module>netty_server</module>
         <module>sentinel_server</module>
+        <module>sentinel_token_server</module>
+        <module>log4j2_server</module>
 <!--        <module>error_server</module>-->
     </modules>
 

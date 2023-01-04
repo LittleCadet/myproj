@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="warn" monitorInterval="5">
+    <properties>
+        <property name="APPLICATION_NAME">${spring:spring.application.name:-log4j2_server}</property>
+        <property name="LOG_HOME">${spring:application.log.folder:-/home/logs/log4j2_server}</property>
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{EagleEye-TraceID}] [%thread] %-5level %logger{50} - %msg%n"/>
+    </properties>
+
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="${LOG_HOME}/${APPLICATION_NAME}.log" filePattern="${LOG_HOME}/root/${APPLICATION_NAME}.%d{yyyy-MM-dd}.%i.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %m%n" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="2"/>
+        </RollingFile>
+
+    </Appenders>
+
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="rollingFile" />
+        </Root>
+    </Loggers>
+
+
+</configuration>

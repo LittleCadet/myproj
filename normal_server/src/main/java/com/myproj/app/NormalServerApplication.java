@@ -30,6 +30,8 @@ public class NormalServerApplication {
 
 		SpringApplication.run(NormalServerApplication.class, args);
 
+		System.out.println("启动成功！！！");
+
 //		initFlowRules();
 //		while (true) {
 //			Entry entry = null;

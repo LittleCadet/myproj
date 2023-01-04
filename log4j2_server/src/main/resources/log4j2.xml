@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration status="warn" monitorInterval="5">
     <properties>
-        <property name="APPLICATION_NAME">${spring:spring.application.name:-log4j2_server}</property>
-        <property name="LOG_HOME">${spring:application.log.folder:-/home/logs/log4j2_server}</property>
+        <property name="APPLICATION_NAME">${sys:spring.application.name:-log4j2_server}</property>
+        <property name="LOG_HOME">${sys:application.log.folder:-/home/logs}</property>
         <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{EagleEye-TraceID}] [%thread] %-5level %logger{50} - %msg%n"/>
     </properties>
 
@@ -12,12 +12,12 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingFile name="rollingFile" fileName="${LOG_HOME}/${APPLICATION_NAME}.log" filePattern="${LOG_HOME}/root/${APPLICATION_NAME}.%d{yyyy-MM-dd}.%i.log">
+        <RollingFile name="rollingFile" fileName="${LOG_HOME}/${APPLICATION_NAME}/${APPLICATION_NAME}.log" filePattern="${LOG_HOME}/${APPLICATION_NAME}/root/${APPLICATION_NAME}.%d{yyyy-MM-dd}.%i.log">
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %m%n" />
             <Policies>
                 <OnStartupTriggeringPolicy />
                 <TimeBasedTriggeringPolicy />
-                <SizeBasedTriggeringPolicy size="1 MB"/>
+                <SizeBasedTriggeringPolicy size="300 MB"/>
             </Policies>
             <DefaultRolloverStrategy max="2"/>
         </RollingFile>
@@ -26,6 +26,10 @@
 
 
     <Loggers>
+        // name为目录，  additivity:默认为true: 如果设置为false, 则所有满足该logger的event都不会传递给Root Logger
+        <Logger name="com.log4j2.app.log" level="trace" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="console" />
             <AppenderRef ref="rollingFile" />

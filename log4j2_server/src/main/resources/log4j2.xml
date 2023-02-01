@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration status="warn" monitorInterval="5">
+<configuration status="debug" monitorInterval="5">
     <properties>
         <property name="APPLICATION_NAME">${sys:spring.application.name:-log4j2_server}</property>
         <property name="LOG_HOME">${sys:application.log.folder:-/home/logs}</property>
-        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{EagleEye-TraceID}] [%thread] %-5level %logger{50} - %msg%n"/>
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-3level [%X{EagleEye-TraceID}] [%thread] %logger{50} - %msg%n"/>
     </properties>
 
 
@@ -27,9 +27,9 @@
 
     <Loggers>
         // name为目录，  additivity:默认为true: 如果设置为false, 则所有满足该logger的event都不会传递给Root Logger
-        <Logger name="com.log4j2.app.log" level="trace" additivity="false">
-            <AppenderRef ref="rollingFile"/>
-        </Logger>
+<!--        <Logger name="com.log4j2.app.log" level="trace" additivity="true">-->
+<!--            <AppenderRef ref="rollingFile"/>-->
+<!--        </Logger>-->
         <Root level="info">
             <AppenderRef ref="console" />
             <AppenderRef ref="rollingFile" />

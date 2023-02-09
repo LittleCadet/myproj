@@ -22,7 +22,7 @@ import java.util.Map;
  * @author shenxie
  * @date 2022/11/3
  */
-public class Test {
+public class ConfigProcess {
 
     @SneakyThrows
     public static void main(String[] args) {

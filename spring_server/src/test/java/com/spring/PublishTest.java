@@ -1,7 +1,7 @@
 package com.spring;
 
-import com.spring.app.springpublish.event.MessageEvent;
-import com.spring.app.springpublish.publisher.MessagePublish;
+import com.spring.app.publish.springpublish.event.MessageEvent;
+import com.spring.app.publish.springpublish.publisher.MessagePublish;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

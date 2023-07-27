@@ -1,6 +1,6 @@
-package com.spring.app.springpublish.publisher;
+package com.spring.app.publish.springpublish.publisher;
 
-import com.spring.app.springpublish.event.MessageEvent;
+import com.spring.app.publish.springpublish.event.MessageEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

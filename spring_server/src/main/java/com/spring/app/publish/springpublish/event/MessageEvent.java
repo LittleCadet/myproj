@@ -1,4 +1,4 @@
-package com.spring.app.springpublish.event;
+package com.spring.app.publish.springpublish.event;
 
 import lombok.ToString;
 import org.springframework.context.ApplicationEvent;

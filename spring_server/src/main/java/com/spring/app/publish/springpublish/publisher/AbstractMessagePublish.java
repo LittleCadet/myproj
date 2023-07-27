@@ -1,16 +1,17 @@
-package com.spring.app.springpublish.consumer;
+package com.spring.app.publish.springpublish.publisher;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
+ * 所有事件发布的父类
  * @author shenxie
  * @date 2020/5/21
  */
-public abstract class AbstractMessageConsumer implements ApplicationContextAware {
+public abstract class AbstractMessagePublish implements ApplicationContextAware {
 
-    private ApplicationContext context;
+    protected ApplicationContext context;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

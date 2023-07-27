@@ -62,7 +62,12 @@ public class ConfigProcess {
                 content = content.replaceAll(" = ", "=");
                 configs1.add(content);
                 String[] split = content.split("=");
+                try{
+
                 configMap1.put(split[0], split[1]);
+                }catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.printf("");
+                }
                 if (split[0].startsWith("ewt360.gateway")) {
                     String gatewayKey = split[0].replace("ewt360.gateway.", "");
                     finalConfig.put(String.format("ewt360.gateway%s.%s", toGateway, gatewayKey), split[1]);
@@ -89,8 +94,7 @@ public class ConfigProcess {
             if (configs1.stream().noneMatch(c1 -> c1.equals(c2))) {
                 String[] split = c2.split("=");
                 if (configMap1.keySet().stream().noneMatch(c1 -> c1.contains(split[0]))) {
-//                    System.out.println("cps-gateway与admin-gateway不一样的配置：额外的key:" + c2);
-//                    System.out.println(c2);
+                    System.out.println("cps-gateway与admin-gateway不一样的配置：额外的key:" + c2);
                     if (split[0].startsWith("ewt360.gateway")) {
                         String gatewayKey = split[0].replace("ewt360.gateway.", "");
                         finalConfig.put(String.format("ewt360.gateway%s.%s", sourceGateway, gatewayKey), split.length == 2? split[1] : "");
@@ -100,8 +104,8 @@ public class ConfigProcess {
                     continue;
                 }
 
-//                System.out.println("cps-gateway与admin-gateway不一样的配置：key相同value不同:" + "key:" + split[0] + ", value:" + split[1]
-//                        + "    【api-gateway:" + configMap1.get(split[0]) + "】");
+                System.out.println("cps-gateway与admin-gateway不一样的配置：key相同value不同:" + "key:" + split[0] + ", value:" + split[1]
+                        + "    【api-gateway:" + configMap1.get(split[0]) + "】");
 
                 if (split[0].startsWith("ewt360.gateway")) {
                     String gatewayKey = split[0].replace("ewt360.gateway.", "");
@@ -114,29 +118,29 @@ public class ConfigProcess {
         }
 
         // 写入文件：
-        if (finalConfig.size() > 0) {
-            BufferedOutputStream out = new BufferedOutputStream(
-                    Files.newOutputStream(Paths.get("/Users/littlecadet/workspace/self/myproj/normal_server/src/main/resources/final-gateway.properties")));
+//        if (finalConfig.size() > 0) {
+//            BufferedOutputStream out = new BufferedOutputStream(
+//                    Files.newOutputStream(Paths.get("/Users/littlecadet/workspace/self/myproj/normal_server/src/main/resources/final-gateway.properties")));
+//
+//            try {
+//                finalConfig.forEach((k, v) -> {
+//                    try {
+//                        out.write(String.format("%s=%s", k, v).getBytes(StandardCharsets.UTF_8));
+//                        out.write('\n');
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                });
+//            } finally {
+//                try {
+//                    out.close();
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }
 
-            try {
-                finalConfig.forEach((k, v) -> {
-                    try {
-                        out.write(String.format("%s=%s", k, v).getBytes(StandardCharsets.UTF_8));
-                        out.write('\n');
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-            } finally {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-
-        System.out.println("文件写入成功： final-gateway.properties");
+//        System.out.println("文件写入成功： final-gateway.properties");
     }
 
 }

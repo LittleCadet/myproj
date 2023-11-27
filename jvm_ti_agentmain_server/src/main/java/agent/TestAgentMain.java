@@ -40,7 +40,7 @@ public class TestAgentMain {
             Assert.notEmpty(virtualMachineDescriptors , "获取本机的java进程失败");
 
             //获取进程id
-            List<VirtualMachineDescriptor> descriptors = virtualMachineDescriptors.stream().filter(virtualMachineDescriptor -> virtualMachineDescriptor.toString().contains("TestTiAgent")).collect(Collectors.toList());
+            List<VirtualMachineDescriptor> descriptors = virtualMachineDescriptors.stream().filter(virtualMachineDescriptor -> virtualMachineDescriptor.toString().contains("JvmTiServerApplication")).collect(Collectors.toList());
 
             if(CollectionUtils.isEmpty(descriptors)){
                 continue;
@@ -72,16 +72,16 @@ public class TestAgentMain {
      * @param args
      * @param instrumentation
      */
-    /*public static void agentmain(String args , Instrumentation instrumentation) throws Exception {
-        System.out.println("=============afterMain start=========");
-
-        //获取所有加载的类
-        Class[] allLoadedClasses = instrumentation.getAllLoadedClasses();
-        for (Class cls : allLoadedClasses){
-            System.out.println(String.format("cls.getName() : %s , cls.getCanonicalName() : %s , cls.getSimpleName() : %s ,  cls.getTypeName() : %s" , cls.getName() , cls.getCanonicalName() , cls.getSimpleName() , cls.getTypeName()) );
-        }
-        //throw new Exception();
-        System.out.println(String.format("args : %s , instrumentation : %s" , args , instrumentation));
-        System.out.println("=============afterMain stop=========");
-    }*/
+//    public static void agentmain(String args , Instrumentation instrumentation) throws Exception {
+//        System.out.println("=============afterMain start=========");
+//
+//        //获取所有加载的类
+//        Class[] allLoadedClasses = instrumentation.getAllLoadedClasses();
+//        for (Class cls : allLoadedClasses){
+//            System.out.println(String.format("cls.getName() : %s , cls.getCanonicalName() : %s , cls.getSimpleName() : %s ,  cls.getTypeName() : %s" , cls.getName() , cls.getCanonicalName() , cls.getSimpleName() , cls.getTypeName()) );
+//        }
+//        //throw new Exception();
+//        System.out.println(String.format("args : %s , instrumentation : %s" , args , instrumentation));
+//        System.out.println("=============afterMain stop=========");
+//    }
 }

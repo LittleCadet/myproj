@@ -5,6 +5,10 @@ import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
+import java.lang.instrument.UnmodifiableClassException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -74,6 +78,46 @@ public class TestTiAgent {
         }
         //throw new Exception();
         System.out.println(String.format("args : %s , instrumentation : %s" , args , instrumentation));
+
+        instrumentation.addTransformer(new ClassFileTransformer() {
+            @Override
+            public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+                if (!className.equals("com/jvm/ti/server/agent/TestTiAgent")) {
+                    return null;
+                }
+                try {
+                    // 在instrumentation中使用javassist的方式修改字节码
+                    System.out.println("MyClassTransformer，当前类名:" + className);
+                    ClassPool classPool = ClassPool.getDefault();
+                    CtClass ctClass = classPool.get("com.jvm.ti.server.agent.TestTiAgent");
+                    CtMethod ctMethod = ctClass.getDeclaredMethod("showInfo");
+                    // 先解冻， 否则报错： com.jvm.ti.server.agent.TestTiAgent class is frozen
+                    ctClass.defrost();
+                    ctMethod.insertBefore("{ System.out.println(\"start\");}");
+                    ctMethod.insertAfter("{ System.out.println(\"end\"); }");
+                    return ctClass.toBytecode();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+        }, true);
+
+        try {
+            // 重新对类加载 触发MyClassTransformer
+            instrumentation.retransformClasses(TestTiAgent.class);
+            TestTiAgent.class.newInstance().showInfo();
+            System.out.println("attach agent 加载完毕");
+        } catch (UnmodifiableClassException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("=============afterMain stop=========");
+    }
+
+
+    public void showInfo(){
+        System.out.println("正在运行的类是retransformClasses类");
     }
 }

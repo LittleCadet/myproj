@@ -12,11 +12,11 @@ public class IngressDemo {
 
     @GetMapping("test/v1")
     public String testV1() {
-        return "ingress success!!! /test/v1";
+        return "ingress success!!! canary deployment success!!! /test/v1\n";
     }
 
     @GetMapping("test/v2")
     public String testV2() {
-        return "ingress success!!! /test/v2";
+        return "ingress success!!! canary deployment success!!! /test/v2\n";
     }
 }

@@ -7,7 +7,7 @@ MAINTAINER LittleCadet <LittleCadet@163.com>
 VOLUME /tmp
 # 将jar包添加到容器中并更名为app.jar
 ADD normal_server-0.0.1-SNAPSHOT.jar app.jar
-#ADD pinpoint-agent-ewt-2.2.2-SNAPSHOT.tar.gz ./
+ADD pinpoint-agent-ewt-2.2.2-SNAPSHOT.tar.gz ./
 
 # 替换镜像源
 ADD sources.list /etc/apt
@@ -22,9 +22,9 @@ RUN echo 'deb http://archive.debian.org/debian jessie-backports main' > /etc/apt
 RUN echo "Acquire::Check-Valid-Until \"false\";" > /etc/apt/apt.conf.d/100disablechecks
 
 # 安装基础linux命令
-RUN apt-get update && apt-get install --force-yes -y iputils-ping  && apt-get install --force-yes -y telnet && apt-get install --force-yes -y net-tools
+#RUN apt-get update && apt-get install --force-yes -y iputils-ping  && apt-get install --force-yes -y telnet && apt-get install --force-yes -y net-tools
 
 # 运行jar包
 RUN bash -c 'touch /app.jar'
-#ENTRYPOINT ["java","-Dpinpoint.applicationName=normal-server","-Dprofiler.transport.grpc.collector.ip=pp-collector-service", "-javaagent:./pinpoint-agent-ewt-2.2.2-SNAPSHOT/pinpoint-bootstrap.jar" , "-Djava.security.egd=file:/dev/./urandom","-jar", "app.jar"]
-ENTRYPOINT ["java","-Dspring.cloud.sentinel.transport.port=8719", "-Dspring.cloud.sentinel.transport.dashboard=121.43.160.21:31868" , "-Djava.security.egd=file:/dev/./urandom","-jar", "app.jar"]
+ENTRYPOINT ["java","-Dpinpoint.applicationName=normal-server","-Dprofiler.transport.grpc.collector.ip=pp-collector-service.default.svc.cluster.local", "-javaagent:./pinpoint-agent-ewt-2.2.2-SNAPSHOT/pinpoint-bootstrap.jar" , "-Djava.security.egd=file:/dev/./urandom","-jar", "app.jar"]
+#ENTRYPOINT ["java","-Dspring.cloud.sentinel.transport.port=8719", "-Dspring.cloud.sentinel.transport.dashboard=121.43.160.21:31868" , "-Djava.security.egd=file:/dev/./urandom","-jar", "app.jar"]

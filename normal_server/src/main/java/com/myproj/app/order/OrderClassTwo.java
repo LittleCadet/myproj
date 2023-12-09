@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @Author LittleCadet
  * @Date 2020/2/21
  */
-@Order(0)
+@Order(2)
 @Component
 public class OrderClassTwo implements OrderInterface
 {

@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.dynamicProgramming;
+package com.myproj.app.algorithm.动态规划;
 
 import java.util.Arrays;
 import java.util.List;

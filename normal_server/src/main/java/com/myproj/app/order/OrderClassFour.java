@@ -11,7 +11,7 @@ import java.util.List;
  * @Author LittleCadet
  * @Date 2020/2/21
  */
-@Order(0)
+@Order(4)
 @Component
 public class OrderClassFour implements OrderInterface
 {

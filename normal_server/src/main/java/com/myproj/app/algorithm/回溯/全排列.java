@@ -2,9 +2,31 @@ package com.myproj.app.algorithm.回溯;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import org.apache.commons.compress.utils.Lists;
 
 /**
+ * 题目：
+ * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
+ * 示例 1：
+ * 输入：nums = [1,2,3]
+ * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+ *
+ * 思路：
+ * 1. 回溯算法：
+ *      核心问题：
+ *          1.1 如何控制给定数组元素的循环
+ *              答案： for循环数组元素， 但是起始下标为 i=index.
+ *          1.2 如何维护生成的新数组。
+ *              答案： 替换元素： 使用Collections.swap(list, index, i);; 在list中将index和i位置的元素互换。
+ *          1.3 如何撤销操作。
+ *              答案： 把元素换回来即可 : Collections.swap(list, i, index);
+ *          1.4 何时执行回溯操作。
+ *              答案： 在1.2 - 1.3之间
+ *          1.5 当前回溯完成的标志是什么 ？
+ *              答案： 下标 = 给定数组的长度时， 当前回溯完成
+ *
  * @author shenxie
  * @date 2023/12/7
  */
@@ -14,14 +36,39 @@ public class 全排列 {
      * 给定数组的元素，在数字不重复的情况下，  输出所有可能的排序。
      */
     public static void main(String[] args) {
-        System.out.println(permutationsI(new int[]{1,3,2}));
+//        System.out.println(permutationsI(new int[]{1,3,2}));
+//        List<Integer> list=  Lists.newArrayList();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        Collections.swap(list, 0, 1);
+//        System.out.println(list);
+
+        System.out.println(permute(new int[]{1,2,3}));
     }
 
-    /* 全排列 I */
+
+    /**
+     * 解法一：
+     *
+     */
     public static List<List<Integer>> permutationsI(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         backtrack(new ArrayList<Integer>(), nums, new boolean[nums.length], res);
         return res;
+    }
+
+    /**
+     * 解法二：
+     */
+    public static List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+        List<Integer> output = new ArrayList<Integer>();
+        for (int num : nums) {
+            output.add(num);
+        }
+        dfs(lists, nums, 0, output);
+        return lists;
     }
 
     /**
@@ -51,6 +98,25 @@ public class 全排列 {
                 // 回退：撤销选择，恢复到之前的状态
                 selected[i] = false;
                 state.remove(state.size() - 1);
+            }
+        }
+    }
+
+
+    public static void dfs(List<List<Integer>> lists, int[] nums, int index, List<Integer> list){
+        // 一次组合完成的标志
+        if(index == nums.length) {
+            // 需要new ArrayList(), 而不是直接使用list的原因： list在堆中一直都是同一个地址， 即为变更N次， 都是最后一次都数据。
+            lists.add(new ArrayList<>(list));
+        }else{
+            // 如何控制给定数组元素的循环。
+            for(int i = index; i< nums.length; i++) {
+                // 维护操作：
+                Collections.swap(list, index, i);
+                // 回溯
+                dfs(lists, nums, index + 1, list);
+                // 撤销操作
+                Collections.swap(list, i, index);
             }
         }
     }

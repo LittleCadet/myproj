@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.tree;
+package com.myproj.app.algorithm.二叉树;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,10 @@ import java.util.List;
  * @date 2023/12/8
  */
 public class 中序遍历 {
+
+    public static void main(String[] args) {
+        inorderTraversal(null);
+    }
 
     public static class TreeNode {
         int val;

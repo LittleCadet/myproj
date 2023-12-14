@@ -60,6 +60,11 @@ public class 爬楼梯 {
         }
     }
 
+    /**
+     * 这里不使用nums[n] = nums[n-1] + nums[n-2]的原因：
+     * 1. nums[n] = nums[n-1] + nums[n-2]的空间复杂度： 为0(n)
+     * 2. num = a + b的空间复杂度: 0(1)
+     */
     public static int climbStairs(int n) {
         // 动态规划。
         if(n == 1 || n == 2) {

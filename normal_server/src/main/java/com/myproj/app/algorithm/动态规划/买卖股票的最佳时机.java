@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.数组;
+package com.myproj.app.algorithm.动态规划;
 
 /**
  * 题目：
@@ -11,8 +11,10 @@ package com.myproj.app.algorithm.数组;
  *
  * 思路：
  * 1. 动态规划： 用以前问题的解 来解答当前的问题。特殊API: Integer.MAX_VALUE.
- * 2. 以前问题的解： 即为： 曾经的最小花费： cost.
- * 3. 当前的问题： 即为： 当天的价格 - cost。
+ * 2. 最优子结构的确立：
+ *         int profit = Math.max(profit, prices[i] - cost);
+ * 3. 以前问题的解： 即为： Math.max(profit, prices[i] - cost)中的profit;
+ * 4. 当前的问题： 即为： int profit = Math.max(profit, prices[i] - cost)中的等于左边的profit;
  *
  * @author shenxie
  * @date 2023/12/9

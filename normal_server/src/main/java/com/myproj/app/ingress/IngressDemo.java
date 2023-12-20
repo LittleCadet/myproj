@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IngressDemo {
 
-    @GetMapping("test/v1")
+    @GetMapping("冒泡排序/v1")
     public String testV1() {
-        return "ingress success!!! canary deployment success!!! /test/v1\n";
+        return "ingress success!!! canary deployment success!!! /冒泡排序/v1\n";
     }
 
-    @GetMapping("test/v2")
+    @GetMapping("冒泡排序/v2")
     public String testV2() {
-        return "ingress success!!! canary deployment success!!! /test/v2\n";
+        return "ingress success!!! canary deployment success!!! /冒泡排序/v2\n";
     }
 }

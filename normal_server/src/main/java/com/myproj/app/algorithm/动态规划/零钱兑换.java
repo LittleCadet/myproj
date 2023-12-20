@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.数组;
+package com.myproj.app.algorithm.动态规划;
 
 import java.util.Arrays;
 
@@ -15,7 +15,10 @@ import java.util.Arrays;
  *              1.1 可以将每种不同数额的硬币 都计算下， 避免漏解；
  *                  既能同一硬币多次使用， 又能每次使用不同数额的硬币
  *              1.2 每次最外面那层递归， 使用的是原来的值。
- *          2. 动态规划在这题中的表现： 存储剩余amount的解。
+ *          2. 动态规划在这题中的表现：
+ *                  存储剩余amount所需的最少硬币个数。
+ *          3. 确定不用执行最优子结构都知道的结果：
+ *                  if (rem == 0) return 0;
  *
  * @author shenxie
  * @date 2023/12/16

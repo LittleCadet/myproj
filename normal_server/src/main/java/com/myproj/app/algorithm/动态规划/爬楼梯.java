@@ -12,6 +12,11 @@ import java.util.List;
  *
  * 思路：
  * 1. 动态规划。用tmp为变量a,b 完成互相赋值的动作 即可。
+ *         最优子结构的确立：
+ *              通过找规律可知： 第n阶楼梯， 共有nums[n] = nums[n-1] + nums[n-2]种方法。
+ *         确定不用执行最优子结构都知道的结果：
+ *              nums[0] = 1;
+ *              nums[1] = 2;
  *
  * @author shenxie
  * @date 2023/12/7

@@ -58,7 +58,7 @@ public class ConfigProcess {
                                 new File("/Users/littlecadet/workspace/self/myproj/normal_server/src/main/resources/cps-gateway.properties").toPath()), StandardCharsets.UTF_8));
 
         while ((content = reader1.readLine()) != null) {
-            if (StringUtils.isNotEmpty(content) && !(content.contains("demo") || content.contains("test"))) {
+            if (StringUtils.isNotEmpty(content) && !(content.contains("demo") || content.contains("冒泡排序"))) {
                 content = content.replaceAll(" = ", "=");
                 configs1.add(content);
                 String[] split = content.split("=");
@@ -78,7 +78,7 @@ public class ConfigProcess {
         }
 
         while ((content = reader2.readLine()) != null) {
-            if (StringUtils.isNotEmpty(content) && !(content.contains("demo") || content.contains("test"))) {
+            if (StringUtils.isNotEmpty(content) && !(content.contains("demo") || content.contains("冒泡排序"))) {
                 content = content.replaceAll(" = ", "=");
                 String[] split = content.split("=");
                 if(split.length == 2) {

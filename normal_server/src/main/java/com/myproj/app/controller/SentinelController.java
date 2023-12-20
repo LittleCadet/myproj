@@ -24,7 +24,7 @@ public class SentinelController {
     @GetMapping("get")
     public String showInfo(HttpServletRequest request) {
 //        String gatewayType = request.getHeader("gatewayType");
-//        return "sentinel test succeed --- from normal3: gatewayType:" + gatewayType;
-        return "sentinel test succeed --- from normal3: gatewayType:" + "gateway-merge";
+//        return "sentinel 冒泡排序 succeed --- from normal3: gatewayType:" + gatewayType;
+        return "sentinel 冒泡排序 succeed --- from normal3: gatewayType:" + "gateway-merge";
     }
 }

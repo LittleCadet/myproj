@@ -7,6 +7,10 @@ import java.util.List;
  * 题目：
  * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。请你判断是否可以利用字典中出现的单词拼接出 s 。
  * 注意：不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+ * 示例 1：
+ * 输入: s = "leetcode", wordDict = ["leet", "code"]
+ * 输出: true
+ * 解释: 返回 true 因为 "leetcode" 可以由 "leet" 和 "code" 拼接成。
  * 思路：
  * 动态规划：
  *      1. 最优子结构的确立：
@@ -34,7 +38,7 @@ import java.util.List;
  * @author shenxie
  * @date 2023/12/17
  */
-public class 单次拆分 {
+public class 单词拆分 {
 
     public static void main(String[] args) {
         List<String> sts = new ArrayList<>();
@@ -53,6 +57,8 @@ public class 单次拆分 {
                 // 这里需要res[j]的原因： 判定前j个字符是否在wordDict中。
                 // 而wordDict.contains(s.substring(j,i))的原因： 判定后N个字符是否在wordDict中。
                 if(res[j] && wordDict.contains(s.substring(j,i))){
+                    // res[j]相当于存量数据， 用动态规划。
+                    // res[i]相当于增量数据， 为后续的动态规划做准备。
                     res[i] = true;
                 }
             }

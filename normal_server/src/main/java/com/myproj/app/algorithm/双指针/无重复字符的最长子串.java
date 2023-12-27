@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.字符串;
+package com.myproj.app.algorithm.双指针;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,9 @@ import java.util.Set;
  *      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串
  *
  * 思路：
- * 1. 滑动窗口： 最大长度的不重复的子串为： 右指针 - 左指针。 特殊api: string.charAt(index);
+ * 1. 滑动窗口 + set容器：
+ *      1.1 快慢指针： 最大长度的不重复的子串为： 右指针 - 左指针。 特殊api: string.charAt(index);
+ *      1.2 set容器： 用于判定： 右指针的元素是否出现过。
  * 2. 其中左右指针； 都在一直往前走。
  * 3. 只不过左指针每一动一次：
  *    3.1 set就移除对应的字节。

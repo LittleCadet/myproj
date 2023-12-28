@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.二叉树;
+package com.myproj.app.algorithm.二叉树.二叉搜索树;
 
 import java.util.ArrayList;
 import java.util.List;

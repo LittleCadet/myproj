@@ -16,6 +16,7 @@ package com.myproj.app.algorithm.数学;
      *             reverseNumber = reverseNumber * 10 + x % 10;
      *             x = x / 10;
      *         }
+ *      3. 方法3【推荐】： 回文字符串的思想： 用StringBuffer求解。
  *
  *
  * @author shenxie
@@ -26,6 +27,17 @@ public class 回文数 {
     public static void main(String[] args) {
 //        System.out.println(isPalindrome(121));
         System.out.println(isPalindromeV2(121));
+        System.out.println(isPalindromeV3(121));
+    }
+
+    /**
+     * 方法3： 回文字符串的思想： 用StringBuffer 求解。
+     */
+    public static boolean isPalindromeV3(int x) {
+        String str1 = String.valueOf(x);
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(str1);
+        return str1.equals(buffer.reverse().toString());
     }
 
     /**

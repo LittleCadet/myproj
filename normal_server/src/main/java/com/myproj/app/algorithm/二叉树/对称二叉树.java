@@ -6,7 +6,9 @@ package com.myproj.app.algorithm.二叉树;
  * 思路：
  * 深度优先算法：
  *      1. 对称二叉树 与 相同的树， 本质上是一个题目。
- *      2. 一棵树是否是对称二叉树， 该问题转换为两棵树是否是对称二叉树即可
+ *      2. 方法一：搞两颗树对比。
+ *      3. 方法二：一棵树的左右子树对比：
+ *      4. 2个方法的核心思想相同:  当前节点的左右子树对比。
  *
  *
  * @author shenxie
@@ -15,11 +17,22 @@ package com.myproj.app.algorithm.二叉树;
 public class 对称二叉树 {
 
     public static void main(String[] args) {
-        isSymmetric(null);
+        isSymmetricV1(null);
+        isSymmetricV2(null);
     }
 
-    public static boolean isSymmetric(TreeNode root) {
+    /**
+     * 方法1： 搞2棵树对比
+     */
+    public static boolean isSymmetricV1(TreeNode root) {
         return check(root, root);
+    }
+
+    /**
+     * 方法2： 1棵树的左右子树对比
+     */
+    public static boolean isSymmetricV2(TreeNode root) {
+        return check(root.left, root.right);
     }
 
     public static boolean check(TreeNode p, TreeNode q) {
@@ -28,6 +41,7 @@ public class 对称二叉树 {
         } else if (null == p || null == q) {
             return false;
         }
+        // 当前节点的左右子节点对比。
         return p.val == q.val && check(p.left, q.right) && check(p.right, q.left);
     }
 

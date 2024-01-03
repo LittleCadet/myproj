@@ -40,6 +40,9 @@ public class Pow一xn {
         return n > 0 ? process(x, n) : 1/ process(x,n);
     }
 
+    /**
+     * 递归：自底向上
+     */
     private static double process(double x, int n){
         if(n == 0) {
             return 1;

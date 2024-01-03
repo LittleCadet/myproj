@@ -3,10 +3,12 @@ package com.myproj.app.algorithm.二叉树;
 /**
  * 题目：
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
- * 思路：
- * 递归左子树： 判定在左子树是否能找到节点 p/q
- * 递归右子树： 判定在右子树是否能找到节点 p/q
- * 找到的标准： root = null || root = p || root == q
+ * 思路：【先序 + 后序遍历】
+ *      先序遍历： 自顶而下， 用于数据的前置处理。
+ *      后序遍历： 自底而上， 用于数据的后置处理。
+     * 递归左子树： 判定在左子树是否能找到节点 p/q
+     * 递归右子树： 判定在右子树是否能找到节点 p/q
+     * 找到的标准： root = null || root = p || root == q
  *
  * 所以分为三种情况：
  * 1. 节点p/q在左子树： 则right = null , 此时返回left 就是最近公共祖先。
@@ -23,7 +25,11 @@ public class 二叉树的最近公共祖先 {
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) {
+        if(root == null ) {
+            return null;
+        }
+
+        if(root == p || root == q) {
             return root;
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);

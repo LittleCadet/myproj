@@ -56,10 +56,20 @@ public class 电话号码的字母组合 {
         return combinations;
     }
 
-    public static void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
+    /**
+     *
+     * @param combinations 输出的集合
+     * @param phoneMap 号码与字母的对应关系
+     * @param digits 输入的数字
+     * @param index 数字的下标
+     * @param combination 子集合
+     */
+    public static void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits,
+                                 int index, StringBuffer combination) {
         // 当index满足指定数字的长度后， 将组合好的字符串放入combinations中。
         if (index == digits.length()) {
             combinations.add(combination.toString());
+            System.out.println("最终：" + combination.toString());
         } else {
             char digit = digits.charAt(index);
             String letters = phoneMap.get(digit);
@@ -67,10 +77,15 @@ public class 电话号码的字母组合 {
             for (int i = 0; i < lettersCount; i++) {
                 // 在combination中放入字符的组合。
                 combination.append(letters.charAt(i));
+                System.out.println("combination前：i:" +i+ ", index:"+index+ ",combination:"+combination );
                 // 通过index + 1 控制： 当前要循环哪个 电话号码的内容。
                 backtrack(combinations, phoneMap, digits, index + 1, combination);
                 // 为了让放入combination的首个字符 重新组合。
+                // 这个不能删除第i个字符，只能删除第index个字符: 原因：
+                // i代表的是： 字母的下标： 为他的最大长度为4【在数字7，9的时候， 有4个字母】
+                // combination代表的是： 字母的组合， 组合长度 = 数字长度， 如果输入的数字长度为2， 那么此时会出现数组下标越界。
                 combination.deleteCharAt(index);
+                System.out.println("combination后：i:" +i+ ", index:"+index+ ",combination:"+combination );
             }
         }
     }

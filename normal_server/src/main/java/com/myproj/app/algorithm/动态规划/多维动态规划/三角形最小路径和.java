@@ -23,6 +23,7 @@ import java.util.List;
  *      2. 方法2： 动态规划【自底向上】
  *      3. 2个方法核心思想：
  *              当前节点的最小路径和 = 当前节点值 + 下一行的相邻2个节点的最小值。
+ *              该三角形： 是长宽都相等的三角形！！！
  * @author shenxie
  * @date 2023/12/31
  */
@@ -83,6 +84,7 @@ public class 三角形最小路径和 {
         int[] nums = new int[size + 1];
         // 自底向上：
         for(int i = size -1 ; i>=0; i--) {
+            // 该三角形： 是长宽都相等的三角形！！！
             for(int j = 0; j <= i; j++) {
                 // 思想： 当前节点的最小路径和 = 当前节点 + 下一行的相邻2个节点的最小值。
                 nums[j] = Math.min(nums[j], nums[j+1]) + triangle.get(i).get(j);

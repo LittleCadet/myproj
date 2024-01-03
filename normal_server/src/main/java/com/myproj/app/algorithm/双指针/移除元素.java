@@ -23,7 +23,11 @@ package com.myproj.app.algorithm.双指针;
  */
 public class 移除元素 {
 
-    public int removeElement(int[] nums, int val) {
+    public static void main(String[] args) {
+        System.out.println(removeElement(new int[]{3,2,2,3}, 3));
+    }
+
+    public static int removeElement(int[] nums, int val) {
         int fast = 0;
         int slow = 0;
         int length = nums.length;

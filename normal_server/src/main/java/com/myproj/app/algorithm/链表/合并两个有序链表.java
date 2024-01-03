@@ -39,6 +39,12 @@ public class 合并两个有序链表 {
         System.out.println(node);
     }
 
+    /**
+     * 最终返回的链表： 一定是含有最大值的链表！！！
+     * 核心思想：
+     *  1. 移动链表list1的next指针， 就要赋值给list1.next。
+     *  2. 但是赋值的条件是： list1的值比list2对应位置的元素 小， 否则当前list1的值给到list2.
+     */
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         // 2个链表的元素逐一比较， 按照升序形成新链表。 
         // 原链表的元素为空时， val = 0;

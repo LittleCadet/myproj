@@ -64,7 +64,7 @@ public class LRU缓存机制 {
          * 记住： 方法名： 是removeEldestEntry 而不是 removeEldestValue !!!
          */
         @Override
-        protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        public boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
             return size() > capacity;
         }
     }

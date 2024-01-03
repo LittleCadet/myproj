@@ -36,9 +36,9 @@ public class 删除链表的倒数第N个节点 {
         // 方法一：
 //        ListNode listNode = removeNthFromEnd(head, 2);
         // 方法2：
-//        ListNode listNode = removeNthFromEndV2(head, 2);
+        ListNode listNode = removeNthFromEndV2(head, 2);
         // 方法3
-        ListNode listNode = removeNthFromEndV3(head, 2);
+//        ListNode listNode = removeNthFromEndV3(head, 2);
     }
 
     /**

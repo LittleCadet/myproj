@@ -17,12 +17,10 @@ public class 完全二叉树的节点个数 {
     }
 
     public static int countNodes(TreeNode root) {
-        if(null == root) {
+        if(null == root){
             return 0;
         }
-        int left = countNodes(root.left);
-        int right = countNodes(root.right);
-        return left + right + 1;
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
 
     public static class TreeNode {

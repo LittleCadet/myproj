@@ -69,10 +69,10 @@ public class 二叉树的锯齿形层序遍历 {
                 TreeNode node = queue.poll();
 
                 if(reverse){
-                    // 从第一个开始插入， 其余元素向后移动。
+                    // 从栈底插入， 其余元素向后移动。
                     nums.offerFirst(node.val);
                 }else{
-                    // 从最后一个开始插入， 其余元素向前移动。
+                    // 从栈顶插入， 其余元素向前移动。
                     // 与add的结果相同。
                     nums.offerLast(node.val);
                 }

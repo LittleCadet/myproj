@@ -7,6 +7,11 @@ import java.util.Arrays;
  * 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
  * 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
  * 你可以认为每种硬币的数量是无限的。
+ * 示例 1：
+ * 输入：coins = [1, 2, 5], amount = 11
+ * 输出：3
+ * 解释：11 = 5 + 5 + 1
+ *
  * 思路：
  * 1. 动态规划：
  *      坑点1： 绝对不能使用贪心算法， 因为： 对于金额 - 最大硬币数 < 所有硬币的数额时， 不生效。
@@ -46,12 +51,14 @@ public class 零钱兑换 {
      * count:存储中间计算结果，空间换时间
      */
     private static int coinChange(int[] coins, int rem, int[] count) {
-        // 结束条件：此路径不通
+        // 结束条件：此路径不通：
+        // 返回 -1的原因： 避免： 将错误情况 + 1.
         if (rem < 0) return -1;
         // 结束条件：余额为0，成功结束
         if (rem == 0) return 0;
         // 之前已经计算过这种情况，直接返回结果，避免重复计算
         if (count[rem - 1] != 0) return count[rem - 1];
+        // min用于存储锁使用硬币的最少个数。
         int min = Integer.MAX_VALUE;
         int nums = 0;
         // 遍历当前递归子树的每一种情况
@@ -60,11 +67,13 @@ public class 零钱兑换 {
             System.out.println("运行：" + ++nums + ",rem:" + rem + ",coin:" + coin);
             int res = coinChange(coins, rem - coin, count);
             // res<0 即为 res=-1,此法失败，res>min不是最优情况，舍去
-            if (res >= 0 && res < min)
-                min = 1 + res;
+            if (res >= 0){
+                min = Math.min(min, res + 1);
+            }
         }
-        // count[rem - 1]存储着给定金额amount的解
+        // count[rem - 1]存储着给定金额amount【即为余额rem】的解
         // 若为Integer.MAX_VALUE则该情况无解
+        // 余额rem 确用rem-1的原因： count[] 声明的大小为amount, 而amount在count的最后一个位置【即为amount-1】
         count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
         System.out.println("count[" + (rem -1) + "]:" + count[rem - 1]);
         return count[rem - 1];

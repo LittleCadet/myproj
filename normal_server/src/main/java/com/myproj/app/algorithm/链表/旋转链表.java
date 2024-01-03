@@ -46,6 +46,9 @@ public class 旋转链表 {
         // 链表闭合成环。
         node.next = head;
         // 找到要断开的位置。
+        // 题目虽然是旋转链表， 但是跟旋转数组一样的是： 载体本身没有旋转：
+        // 旋转数组： 是直接赋值： nums[k % nums.length] = nums[i];
+        // 旋转链表： 是移动next指针到要断开前的位置！！！而此时node在最后一个元素的位置， 所以需要移动next指针的次数为total - k % total。
         int move = total - k % total;
         // 移动链表move次，且从当前链表的最后一个元素开始移动。
         while(move -- > 0) {

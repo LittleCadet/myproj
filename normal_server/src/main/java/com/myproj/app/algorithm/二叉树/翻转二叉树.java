@@ -19,13 +19,12 @@ public class 翻转二叉树 {
     public static TreeNode invertTree(TreeNode root) {
         if(null == root) {
             return null;
-        }else{
-            TreeNode left = invertTree(root.left);
-            TreeNode right = invertTree(root.right);
-            root.left = right;
-            root.right = left;
-            return root;
         }
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 
     public static class TreeNode {

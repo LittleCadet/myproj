@@ -9,6 +9,7 @@ import java.util.List;
  * 思路：
  * 1. 中序遍历：原因：
  *      二叉搜索树的特性： 左子节点 < 当前节点 < 右子节点
+ *      所以： 中序遍历的结果放到List中，  list的元素是自增的。
  *
  * @author shenxie
  * @date 2023/12/16
@@ -16,7 +17,11 @@ import java.util.List;
 public class 二叉搜索树中第K小的元素 {
 
     public static void main(String[] args) {
-        kthSmallest(null, 1);
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(4);
+        root.left.right = new TreeNode(2);
+        kthSmallest(root, 1);
     }
 
     public static int kthSmallest(TreeNode root, int k) {
@@ -31,8 +36,8 @@ public class 二叉搜索树中第K小的元素 {
         }
 
         dfs(root.left,treeNodes);
-        treeNodes.add(root.val);
         dfs(root.right,treeNodes);
+        treeNodes.add(root.val);
     }
 
     public static class TreeNode {

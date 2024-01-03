@@ -32,6 +32,8 @@ import java.util.LinkedList;
  * 1. 用2个栈来维护即可：
  *      1.1 第一个栈： FILO.
  *      1.2 第二个栈： 维护最小值的栈：即为当前值和 栈顶元素比较， 放入较小的元素即可。 这样栈顶： 就是最小的。
+ *      1.3 注意：
+ *              a. 初始化时： 必须推入一个最大值， 不然peek为空，Math.min会报NPE
  *
  * @author shenxie
  * @date 2023/12/29
@@ -54,6 +56,7 @@ public class 最小栈 {
         public MinStack() {
             stack = new LinkedList<>();
             minStack = new LinkedList<Integer>();
+            // 必须推入一个最大值， 不然peek为空，Math.min会报NPE
             minStack.push(Integer.MAX_VALUE);
         }
 

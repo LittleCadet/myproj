@@ -25,6 +25,9 @@ import java.util.Map;
  *          1.2 hash表： 两个作用：
  *              a. 当复制到重复元素的时候， 直接返回。
  *              b. 用于返回答案： 即为：head节点，
+ *
+ *      2. 注意： 复制链表中的指针都不应指向原链表中的节点
+ *
  * @author shenxie
  * @date 2023/12/27
  */
@@ -46,6 +49,29 @@ public class 复制带随机指针的链表 {
             copy.random = copyRandomList(head.random);
         }
         return map.get(head);
+    }
+
+    /**
+     * 以下方法是错误的：
+     * 原因： 题目要求： 复制链表中的指针都不应指向原链表中的节点
+     */
+    public static Node copyRandomListV2(Node head) {
+        Node node = null;
+        while( head != null){
+            if(null == node){
+                node = new Node(head.val);
+                if(null != head.random){
+                    node.random = new Node(head.random.val);
+                }
+            }else{
+                node.next = new Node(head.val);
+                if(null != head.random){
+                    node.random = new Node(head.random.val);
+                }
+            }
+            head = head.next;
+        }
+        return node;
     }
 
     static class Node {

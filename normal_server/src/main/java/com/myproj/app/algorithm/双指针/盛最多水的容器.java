@@ -36,6 +36,7 @@ public class 盛最多水的容器 {
             int tmp = Math.min(height[l], height[r]) * (r - l);
             // 面积取大。
             sum = Math.max(tmp, sum);
+            // 哪边高度小， 移动哪边。 
             if(height[l] > height[r]) {
                 r --;
             }else{

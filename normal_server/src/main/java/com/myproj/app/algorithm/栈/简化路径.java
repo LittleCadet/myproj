@@ -44,7 +44,7 @@ public class 简化路径 {
         // 将非“.” 和 “..”的路径塞入栈中， 当遇到“..”时， 从栈顶取出。
         for (int i = 0; i < sts.length; i++) {
             if (!excludes.contains(sts[i]) && !sts[i].isEmpty()) {
-                // 塞到最后一个
+                // 塞到栈顶
                 stack.offerLast(sts[i]);
             } else if (sts[i].equals("..")) {
                 // 从栈顶poll出来

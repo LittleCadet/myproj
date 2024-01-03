@@ -11,6 +11,8 @@ package com.myproj.app.algorithm.数组;
  *  思路：
  *  1. 贪心算法： 以当前元素位置跳跃所能跳到的最大位置，之后再次尝试最远距离的跳跃。
  *      所以： 跳跃的次数增加的时机： 到了目前所能跳跃的最大位置才会继续跳跃。
+ *  2. 该题 与 《跳跃游戏》的区别： 该题保证一定能跳到，但是后者不一定。
+ *      所以：这题： 不需要 if(i <= tmp)的判定。
  *
  * @author shenxie
  * @date 2023/12/9
@@ -30,6 +32,8 @@ public class 跳跃游戏II {
         for(int i=0; i< nums.length -1 ; i++) {
             max = Math.max(max, i + nums[i]);
             // 到达指定的位置后， 再跳
+            // 这里不能使用if(i == max)来判定，  因为： max一直在更新， i一定比max小， 导致times不能更新。
+            // 所以： 在跳到一个位置以后， 要用tmp存储max， 表示： 当前所能跳到的最远距离， 之后再从最远距离 跳跃。
             if(i == tmp) {
                 tmp = max;
                 times ++;

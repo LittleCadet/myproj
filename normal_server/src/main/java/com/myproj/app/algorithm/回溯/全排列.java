@@ -27,6 +27,11 @@ import org.apache.commons.compress.utils.Lists;
  *          1.5 当前回溯完成的标志是什么 ？
  *              答案： 下标 = 给定数组的长度时， 当前回溯完成
  *
+ *         1.6  关于方法2【Collections.swap】：注意：
+ *              a. 要注意： 完成标志！！！
+ *              b. 要注意： 如何放入lists中！！！
+ *              c. 要注意： i的起始位置！！！
+ *
  * @author shenxie
  * @date 2023/12/7
  */
@@ -36,14 +41,18 @@ public class 全排列 {
      * 给定数组的元素，在数字不重复的情况下，  输出所有可能的排序。
      */
     public static void main(String[] args) {
+        // 方法1：
 //        System.out.println(permutationsI(new int[]{1,3,2}));
 //        List<Integer> list=  Lists.newArrayList();
 //        list.add(1);
 //        list.add(2);
 //        list.add(3);
-//        Collections.swap(list, 0, 1);
+//        list.add(4);
+//        list.add(5);
+//        Collections.swap(list, 0, 4);
 //        System.out.println(list);
 
+        // 方法2：
         System.out.println(permute(new int[]{1,2,3}));
     }
 
@@ -103,20 +112,33 @@ public class 全排列 {
     }
 
 
+    /**
+     *
+     * @param lists 输出的集合
+     * @param nums 输入的数组
+     * @param index 起始下标
+     * @param list 子集合
+     */
     public static void dfs(List<List<Integer>> lists, int[] nums, int index, List<Integer> list){
         // 一次组合完成的标志
+        // 要注意： 完成标志！！！
         if(index == nums.length) {
             // 需要new ArrayList(), 而不是直接使用list的原因： list在堆中一直都是同一个地址， 即为变更N次， 都是最后一次都数据。
+            System.out.println("结束："+ list);
+            // 要注意： 如何放入lists中！！！
             lists.add(new ArrayList<>(list));
         }else{
             // 如何控制给定数组元素的循环。
+            // 要注意： i的起始位置！！！
             for(int i = index; i< nums.length; i++) {
-                // 维护操作：
+                // 维护操作：将index 和 i的位置互换
                 Collections.swap(list, index, i);
+                System.out.println("swap前：index:" + index + ", i:" + i + ",list:"+ list);
                 // 回溯
                 dfs(lists, nums, index + 1, list);
-                // 撤销操作
+                // 撤销操作：将i 和 index的位置互换
                 Collections.swap(list, i, index);
+                System.out.println("swap后：index:" + index + ", i:" + i + ",list:"+ list);
             }
         }
     }

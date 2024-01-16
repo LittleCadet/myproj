@@ -55,7 +55,7 @@ public class 罗马数字转整数 {
         for(int i=0; i<strs.length; i++) {
             int value = map.get(strs[i]);
             // 左边字符 比 右边字符 大时， 累加， 反之累减
-            if(i < strs.length - 1 && value < map.get(strs[i + 1])) {
+            if(i + 1 <= strs.length - 1 && value < map.get(strs[i + 1])) {
                 sum -= value;
             }else{
                 sum += value;

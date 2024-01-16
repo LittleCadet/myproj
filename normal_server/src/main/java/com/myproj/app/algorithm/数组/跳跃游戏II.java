@@ -30,6 +30,7 @@ public class 跳跃游戏II {
 
         // i < nums.length - 1 而不是 nums.length的原因： 题干指出： 生成的测试用例可以到达 nums[n - 1]。
         for(int i=0; i< nums.length -1 ; i++) {
+            // 用于保存：在每一次跳跃范围内，跳跃的最大值。
             max = Math.max(max, i + nums[i]);
             // 到达指定的位置后， 再跳
             // 这里不能使用if(i == max)来判定，  因为： max一直在更新， i一定比max小， 导致times不能更新。

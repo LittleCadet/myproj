@@ -14,9 +14,9 @@ import java.util.Set;
  *
  * 思想：
  *      1. 方法1： 快慢指针： 即为双重for循环： 太慢。
- *      2. 方法2： hashMap。
+ *      2. 方法2【推荐】： hashMap。
  *                  涉及到2个元素， 所以一重for循环即可。
- *      3. 方法3： 滑动窗口 + set集合。
+ *      3. 方法3【推荐】： 滑动窗口 + set集合。
  *                  滑动窗口： 至少1个下标即可
  *      4. 元素是否相等的表达方式： 非常重要： 代表： 一道题目： 有几种做法：
  *          A == B
@@ -28,12 +28,13 @@ import java.util.Set;
 public class 存在重复元素II {
     public static void main(String[] args) {
         // 方法1： 快慢指针： 太慢
-        System.out.println(containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2));
-        // 方法2： hashMap
+//        System.out.println(containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2));
+//        // 方法2： hashMap
         System.out.println(containsNearbyDuplicateV2(new int[]{1,2,3,1,2,3}, 2));
-        // 方法3： 滑动窗口 + set集合
-        System.out.println(containsNearbyDuplicateV3(new int[]{1,2,3,1,2,3}, 2));
+//        // 方法3： 滑动窗口 + set集合
+//        System.out.println(containsNearbyDuplicateV3(new int[]{1,2,3,1,2,3}, 2));
     }
+
 
     /**
      * 方法3： 滑动窗口 + set集合：

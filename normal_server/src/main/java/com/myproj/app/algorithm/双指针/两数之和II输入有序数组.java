@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm.双指针;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 题目：
  * 给你一个下标从 1 开始的整数数组 numbers ，该数组已按 非递减顺序排列  ，请你从数组中找出满足相加之和等于目标数 target 的两个数。
@@ -18,6 +21,9 @@ package com.myproj.app.algorithm.双指针;
  *      核心思想： 类似于双重for循环。
  *  方法2： 首尾双指针：
  *      核心思想： 类似于二分法。
+ *  方法3【推荐】： hashMap:
+ *      该方法与《两数之和》一致。
+ *      核心思想： 将数和索引 放入map中，之后判定map.containesKey(target - numbers[i]);即可
  *
  * @author shenxie
  * @date 2023/12/26
@@ -25,7 +31,12 @@ package com.myproj.app.algorithm.双指针;
 public class 两数之和II输入有序数组 {
 
     public static void main(String[] args) {
+        // 方法一
         twoSum(new int[]{5,25,75}, 100);
+        // 方法二：
+        twoSumV2(new int[]{5,25,75}, 100);
+        // 方法三：
+        twoSumV3(new int[]{5,25,75}, 100);
     }
 
     /**
@@ -81,4 +92,16 @@ public class 两数之和II输入有序数组 {
         }
         return ans;
     }
+    public static int[] twoSumV3(int[] numbers, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i = 0 ; i<numbers.length; i++) {
+            if( map.containsKey(target - numbers[i])) {
+                return new int[]{map.get(target - numbers[i]), i+1};
+            }
+            map.put(numbers[i], i + 1);
+        }
+        return new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE};
+    }
+
+
 }

@@ -17,7 +17,7 @@ package com.myproj.app.algorithm.链表;
  * @author shenxie
  * @date 2023/12/28
  */
-public class 删除排序链表中的重复项II {
+public class 删除排序链表中的重复元素II {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
@@ -30,6 +30,8 @@ public class 删除排序链表中的重复项II {
 
     public static ListNode deleteDuplicates(ListNode head) {
         ListNode dummy = new ListNode(0, head);
+        // 核心点： cur使用dummy开始计算的， 而dummy的首节点为0. 所以cur.next才是真正的首节点。
+        // 所以删除重复节点： 依旧遵循： pre.next = cur.next;
         ListNode cur = dummy;
         while(cur != null) {
             if(cur.next != null && cur.next.next != null && cur.next.val == cur.next.next.val) {

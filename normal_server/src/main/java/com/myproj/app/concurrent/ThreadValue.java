@@ -29,11 +29,11 @@ public class ThreadValue {
 //        testTransmittableTHreadLocal();
 //        testReactor();
 //        while(true){
-//            testReactorEntity();
+            testReactorEntity();
 //        }
-        while(true){
-            testReactorEntity2();
-        }
+//        while(true){
+//            testReactorEntity2();
+//        }
 //        testForEach();
     }
 

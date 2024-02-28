@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationListener=\
+  com.log4j2.app.log.Log4j2ApplicationListener

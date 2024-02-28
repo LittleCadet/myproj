@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration status="info" monitorInterval="5">
+<configuration status="debug" monitorInterval="5">
     <properties>
         <property name="APPLICATION_NAME">${sys:spring.application.name:-log4j2_server}</property>
         <property name="LOG_HOME">${sys:application.log.folder:-/home/logs}</property>

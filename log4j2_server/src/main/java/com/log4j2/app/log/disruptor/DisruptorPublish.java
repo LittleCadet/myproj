@@ -17,6 +17,7 @@ public class DisruptorPublish {
     private Disruptor<DisruptorEvent> customDisruptor;
 
     public void publish(){
+
         customDisruptor.publishEvent(new EventTranslator<DisruptorEvent>() {
             @Override
             public void translateTo(DisruptorEvent event, long sequence) {

@@ -1,6 +1,7 @@
 package com.log4j2.app.log.disruptor;
 
 import com.lmax.disruptor.EventTranslator;
+import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,13 @@ public class DisruptorPublish {
                 event.setAnything("xxxx");
             }
         });
+    }
+
+    public void publishV2(){
+        RingBuffer<DisruptorEvent> ringBuffer = customDisruptor.getRingBuffer();
+        long sequence = ringBuffer.next();
+        DisruptorEvent disruptorEvent = ringBuffer.get(sequence);
+        disruptorEvent.setAnything("sequence");
+        ringBuffer.publish(sequence);
     }
 }

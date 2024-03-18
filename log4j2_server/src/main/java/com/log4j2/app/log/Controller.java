@@ -21,6 +21,7 @@ public class Controller {
     @GetMapping("disruptor")
     public String showInfo(){
         disruptorPublish.publish();
+        disruptorPublish.publishV2();
         return "disruptor事件发送成功了！！！";
     }
 }

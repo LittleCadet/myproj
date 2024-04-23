@@ -37,6 +37,7 @@
         <module>skywalking_server</module>
         <module>log4j2_no_spring_server</module>
         <module>proxy_server</module>
+        <module>flink_server</module>
         <!--        <module>error_server</module>-->
     </modules>
 

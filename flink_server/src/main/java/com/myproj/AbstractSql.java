@@ -100,7 +100,7 @@ public class AbstractSql implements Sql{
                         "   `version`       , \n" +
                         "   `end_time`      , \n" +
                         "   `start_time`    , \n" +
-                        "   TO_DATE(FROM_UNIX(start_time/1000)) AS `timestamp`    , \n" +
+                        "   TO_DATE(FROM_UNIX(start_time/1000)) AS `timestamp`    , \n" + // 将bigint转换为date, 用于sinkSql的indexName的后缀。
                         "   `segment_id`    , \n" +
                         "   `data_binary`   , \n" +
                         "   `endpoint_id`   , \n" +

@@ -1,10 +1,12 @@
-package com.myproj;
+package com.myproj.v2;
+
+import com.myproj.Sql;
 
 /**
  * @author shenxie
  * @date 2024/4/23
  */
-public class AbstractSql implements Sql{
+public class AbstractSql implements Sql {
 
     protected static final String KAFKA_BROKER_ADDR = "http://172.20.2.38:9092";
 
@@ -34,22 +36,7 @@ public class AbstractSql implements Sql{
     public String[] sourceSql() {
         return new String[]{
                 "CREATE TABLE trace_source(\n" +
-                        "   `id`            STRING, \n" +
-                        "   `trace_id`      STRING, \n" +
-                        "   `version`       BIGINT, \n" +
-                        "   `end_time`      BIGINT, \n" +
-                        "   `start_time`    BIGINT, \n" +
-                        "   `segment_id`    STRING, \n" +
-                        "   `data_binary`   STRING, \n" +
-                        "   `endpoint_id`   STRING, \n" +
-                        "   `statement`     STRING, \n" +
-                        "   `latency`       BIGINT, \n" +
-                        "   `time_bucket`   BIGINT, \n" +
-                        "   `service_instance_id`   STRING, \n" +
-                        "   `endpoint_name`         STRING, \n" +
-                        "   `is_error`              BIGINT, \n" +
-                        "   `tags`                  ARRAY<String>, \n" +
-                        "   `service_id`            STRING \n" +
+                        "   `message`            STRING \n" +
                         "   ) WITH ( \n" +
                         "       'connector' = 'kafka', \n" +
                         "       'topic' = 'apm-log-trace', \n" +
@@ -100,7 +87,7 @@ public class AbstractSql implements Sql{
                         "   `version`       , \n" +
                         "   `end_time`      , \n" +
                         "   `start_time`    , \n" +
-                        "   TO_DATE(FROM_UNIX(start_time/1000)) AS `timestamp`    , \n" + // 将bigint转换为date, 用于sinkSql的indexName的后缀。
+                        "   TO_DATE(FROM_UNIX(start_time/1000)) AS `timestamp`    , \n" +
                         "   `segment_id`    , \n" +
                         "   `data_binary`   , \n" +
                         "   `endpoint_id`   , \n" +
@@ -112,7 +99,8 @@ public class AbstractSql implements Sql{
                         "   `is_error`              , \n" +
                         "   `tags`                  , \n" +
                         "   `service_id`             \n" +
-                        "FROM trace_source",
+                        "FROM trace_source" +
+                        "LEFT JOIN LATERAL TABLE (toSegmentRecordFunction(message)) ON TRUE", // 使用udf函数解析json
                 "SELECT \n" +
                         "   `id`             , \n" +
                         "   `node_type`      , \n" +

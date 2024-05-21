@@ -1,10 +1,12 @@
-package com.myproj;
+package com.myproj.v1;
+
+import com.myproj.Sql;
 
 /**
  * @author shenxie
  * @date 2024/4/23
  */
-public class AbstractSql implements Sql{
+public class AbstractSql implements Sql {
 
     protected static final String KAFKA_BROKER_ADDR = "http://172.20.2.38:9092";
 

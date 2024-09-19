@@ -10,14 +10,14 @@ import java.util.*;
 
 public class MFei {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\sx255\\Desktop\\样表20240914 - 副本.xlsx";
-        String outputPath = "C:\\Users\\sx255\\Desktop\\样表20240914 - 输出.xlsx";
-//        if(args.length != 2) {
-//            System.out.println("参数不是2个, 请检查参数:" + Arrays.toString(args));
-//            return;
-//        }
-//        String filePath = args[0];
-//        String outputPath = args[1];
+//        String filePath = "C:\\Users\\sx255\\Desktop\\样表20240914 - 副本.xlsx";
+//        String outputPath = "C:\\Users\\sx255\\Desktop\\样表20240914 - 输出.xlsx";
+        if(args.length != 2) {
+            System.out.println("参数不是2个, 请检查参数:" + Arrays.toString(args));
+            return;
+        }
+        String filePath = args[0];
+        String outputPath = args[1];
         // sheet页 => sheet页中的所有行记录
         List<List<LinkedHashMap<Integer, String>>> totalDatas = Lists.newArrayList();
         // 所有的sheet页中的项目名

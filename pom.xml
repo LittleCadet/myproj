@@ -38,6 +38,8 @@
         <module>log4j2_no_spring_server</module>
         <module>proxy_server</module>
         <module>flink_server</module>
+        <module>metric_server</module>
+        <module>excel_server</module>
         <!--        <module>error_server</module>-->
     </modules>
 

@@ -27,6 +27,8 @@ import java.util.Set;
  *          核心思想：
  *              1.1 定一定二找三。
  *              1.2 为了让三在一次for循环中找到： 所以： 三必须放入set集合中。
+ *              1.3 set的元素依赖于快指针， 且set有重置动作 【如果没有重置动作， 会导致set的元素， 重复使用，哪怕该元素在原数组中 只出现一次！！！！！】
+ *                  - 详见：{@link  com.myproj.app.algorithm_二刷.数组.三数之和}
  *          去重问题：【题目要求】
  *              1.3 因为双重for循环， 所以： 相邻元素： 至少重复使用一次【起始位置就重复】，最多重复使用两次【非起始位置】
  *
@@ -36,7 +38,8 @@ import java.util.Set;
 public class 三数之和 {
 
     public static void main(String[] args) {
-        System.out.println(threeSum(new int[]{-1,0,1,2,-1,1,-4}));
+//        System.out.println(threeSum(new int[]{-1,0,1,2,-1,1,-4}));
+        System.out.println(threeSum(new int[]{1,2,-2,-1}));
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
@@ -55,7 +58,7 @@ public class 三数之和 {
             //老大想再往后占个位，多领一次奖，这可是不行滴。。。还是回家让妈妈再给生三个小弟弟吧^_^
             if(i > 0 && nums[i] == nums[i - 1]) continue;
 
-            //画个圈，让各家老二在里面呆着
+            //画个圈，让各家老二在里面呆着: set的元素依赖于快指针， 且set有重置动作
             Set<Integer> set = new HashSet<>();
             for(int j = i + 1; j < nums.length; j++) {
                 //老三出列，一会你和老大一块到圈里找老二

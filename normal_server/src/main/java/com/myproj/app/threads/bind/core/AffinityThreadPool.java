@@ -64,7 +64,8 @@ public class AffinityThreadPool {
         ExecutorService executor = newFixedThreadPool(4);
 
 //        test1(executor);
-        test2(executor);
+        test1V1(executor);
+//        test2(executor);
 
         executor.shutdown();
     }
@@ -98,6 +99,27 @@ public class AffinityThreadPool {
                     }
                 });
             }
+        }
+    }
+
+    /**
+     *  这个例子：通过指定cpuId的方式实现绑核， 如果该cpuId已经被其他的线程绑定了， 那么affinity会自动切换到其他可用的cpuId上。
+     * @param executor
+     */
+    public static void test1V1(ExecutorService executor) {
+
+        for (int i = 0; i < 10; i++) {
+            final int taskId = i;
+            executor.execute(() -> {
+                // 这个代表：当前线程绑定到CPU 1上，然后执行任务。
+                System.out.println("Task " + taskId + " running on " +
+                        Thread.currentThread().getName());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
         }
     }
 

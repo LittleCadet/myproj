@@ -1,6 +1,8 @@
 package com.myproj.app.controller;
 
 import java.util.concurrent.CompletableFuture;
+
+import com.myproj.app.threads.bind.core.AffinityThreadPool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,6 +31,17 @@ public class DemoController {
         redis();
 //        kafkaSend();
         return "完成";
+    }
+
+    @GetMapping("bind/core")
+    public String bindCore() {
+        AffinityThreadPool.test();
+        return "OK";
+    }
+    @GetMapping("unbind/core")
+    public String unbindCore() {
+        AffinityThreadPool.testV2();
+        return "OK";
     }
 
     private void redis(){

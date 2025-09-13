@@ -24,6 +24,16 @@ import java.util.List;
  *
  * 思路：
  *      1. 排序 + 比较大小。
+ *      2. 注意特殊写法：
+ *          - 二维数组的List表示方式： List<int[]> results = new ArrayList<>();
+ *          - 二维数组的排序：
+ *           Arrays.sort(intervals, new Comparator<int[]>(){
+ *            @Override
+ *            public int compare(int[] o1, int[] o2) {
+ *                return o1[0] - o2[0];
+ *            }
+ *         });
+ *         - list转换为数组： results.toArray(new int[results.size()][]);
  *
  * @author shenxie
  **/
@@ -31,26 +41,29 @@ public class 合并区间 {
 
     public static void main(String[] args) {
         int[][] intervals = new int[][]{{1,3}, {2,6}, {8,10}, {15,18}};
-        merge(intervals);
+        mergeCopy(intervals);
     }
 
-    public static int[][] merge(int[][] intervals) {
+    public static int[][] mergeCopy(int[][] intervals) {
         List<int[]> results = new ArrayList<>();
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
+        // 将二维数组 按照 左边的值 比较大小 并 排序
+        Arrays.sort(intervals, new Comparator<int[]>(){
+           @Override
+           public int compare(int[] o1, int[] o2) {
+               return o1[0] - o2[0];
+           }
         });
 
+        // 合并区间
         for(int i = 0 ; i < intervals.length; i++) {
-            int L = intervals[i][0], R = intervals[i][1];
-            if(results.size() == 0 || results.get(results.size() - 1)[1] < L) {
+            int L = intervals[i][0]; int R= intervals[i][1];
+            if(results.size() == 0  || results.get(results.size() - 1)[1] < L) {
                 results.add(new int[]{L,R});
             }else{
                 results.get(results.size() - 1)[1] = Math.max(results.get(results.size() - 1)[1], R);
             }
         }
+
 
         return results.toArray(new int[results.size()][]);
     }

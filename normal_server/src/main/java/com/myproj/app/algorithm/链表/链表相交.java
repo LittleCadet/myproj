@@ -38,12 +38,14 @@ public class 链表相交 {
         headA.next = new ListNode(1);
         headA.next.next = new ListNode(8);
         headA.next.next.next = new ListNode(4);
+        headA.next.next.next.next = new ListNode(5);
 
         ListNode headB = new ListNode(5);
         headB.next = new ListNode(0);
         headB.next.next = new ListNode(1);
         headB.next.next.next = new ListNode(8);
         headB.next.next.next.next = new ListNode(4);
+        headB.next.next.next.next.next = new ListNode(5);
 
         System.out.println(getIntersectionNodeV1(headA, headB));
         System.out.println(getIntersectionNodeV2(headA, headB));

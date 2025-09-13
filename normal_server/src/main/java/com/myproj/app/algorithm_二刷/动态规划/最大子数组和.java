@@ -36,7 +36,7 @@ public class 最大子数组和 {
 
     public static void main(String[] args) {
 //        System.out.println(maxSubArray(new int[]{1}));
-        System.out.println(maxSubArray2(new int[]{1}));
+        System.out.println(maxSubArray2Copy(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
     }
 
     /**
@@ -44,17 +44,16 @@ public class 最大子数组和 {
      * 大部分情况可以， 但是不行：原因： 对于超长数组： 会计算超时、
      *
      */
-    public static int maxSubArray(int[] nums) {
-        int max = nums[0];
-        for(int i = 0 ; i < nums.length ; i++) {
-            int sum = nums[i] ;
-            max = Math.max(max, sum);
-            for(int j = i +1 ; j < nums.length; j++) {
-                sum += nums[j];
-                max = Math.max(max, sum);
+    public static int maxSubArrayCopy(int[] nums) {
+        int result = 0 ;
+        for(int left = 0 ; left < nums.length; left ++) {
+            int sum = 0;
+            for(int right = left ; right < nums.length; right ++) {
+                sum +=nums[right];
+                result = Math.max(result, sum);
             }
         }
-        return max;
+        return result;
     }
 
     /**
@@ -69,13 +68,14 @@ public class 最大子数组和 {
      * @param nums
      * @return
      */
-    public static int maxSubArray2(int[] nums) {
-        int max = nums[0];
-        int pre = 0 ;
-        for(int i = 0 ; i < nums.length ; i++) {
-            pre = Math.max(pre + nums[i], nums[i]);
-            max = Math.max(max, pre);
+    public static int maxSubArray2Copy(int[] nums) {
+        // 需要用来比较大小， 所以整个最小值 也是可以的
+        int result = Integer.MIN_VALUE ;
+        int tmp = 0;
+        for(int i = 0 ; i<nums.length; i++) {
+            tmp = Math.max(tmp + nums[i], nums[i]);
+            result = Math.max(result, tmp);
         }
-        return max;
+        return result;
     }
 }

@@ -33,7 +33,8 @@ import java.util.*;
  *      - 注意： 要求：三个元素的指针：不能是两两相等的。 所以：
  *      - 假设：第一个元素的位置是k, 则left的位置是 k+ 1, 而right的位置是 right;
  *      - 且 双指针在移动时， 满足 left < right
- *      2). 数组元素中：可能包含重复的元素， 所以三个元素的指针， 在移动时， 都需要去除各自重复的元素， 来加速循环。
+ *
+ *      2). 题意要求: 不重复的三元组， 所以对于重复的元素需要直接跳过 ！！！  来加速循环。
  *      - 指针移动时， 去除各自重复的元素：
  *      while(left < right && nums[right] == nums[ -- right]);
  *      3). sum > 0时， right  --
@@ -51,40 +52,49 @@ import java.util.*;
 public class 三数之和 {
 
     public static void main(String[] args) {
-//        int[] nums = {-1, 0, 1, 2, -1, -4};
+        int[] nums = {-1, 0, 1, 2, -1, -4};
 //        int[] nums = {-1,0,1};
-        int[] nums = {1,2,-2,-1};
-        System.out.println(threeSum(nums));
+//        int[] nums = {1,2,-2,-1};
+        System.out.println(threeSumCopy(nums));
 //        System.out.println(threeSumV2(nums));
     }
 
-    public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
+
+
+    public static List<List<Integer>> threeSumCopy(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        for (int k = 0; k < nums.length; k++) {
-            if (nums[k] > 0) {
-                return result;
+
+        Arrays.sort(nums);
+        for(int i = 0; i<nums.length; i++) {
+            if(nums[i] > 0) {
+                break;
             }
-            if (k > 0 && nums[k] == nums[k - 1]) {
+            int left = i + 1;
+            int right = nums.length -1;
+            if(i > 0  && nums[i] == nums[i - 1]) {
                 continue;
             }
-            int left = k + 1;
-            int right = nums.length - 1;
-            while (left < right) {
-                int sum = nums[k] + nums[left] + nums[right];
-                if (sum > 0) {
-                    while (left < right && nums[right] == nums[--right]) ;
-                } else if (sum < 0) {
-                    while (left < right && nums[left] == nums[++left]) ;
-                } else {
-                    result.add(new ArrayList(Arrays.asList(nums[k], nums[left], nums[right])));
-                    while (left < right && nums[right] == nums[--right]) ;
-                    while (left < right && nums[left] == nums[++left]) ;
+            while(left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if(sum > 0) {
+                    // 相同的元素直接跳过
+                    // 只能是 -- right , 因为当 前后两个值相等时，则跳过
+                    while(left < right && nums[right] == nums[ -- right]);
+                }else if(sum < 0) {
+                    while(left < right && nums[left] == nums[ ++ left]);
+
+                }else{
+                    List<Integer> tmp = new ArrayList<>();
+                    tmp.add(nums[i]);
+                    tmp.add(nums[left]);
+                    tmp.add((nums[right]));
+                    result.add(tmp);
+                    while(left < right && nums[left] == nums[++ left]);
+                    while(left < right && nums[right] == nums[-- right]);
                 }
             }
         }
         return result;
-
 
     }
 

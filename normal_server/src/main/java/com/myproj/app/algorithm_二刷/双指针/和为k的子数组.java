@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm_二刷.双指针;
 
+import java.util.Arrays;
+
 /**
  * 给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
  *
@@ -27,19 +29,45 @@ package com.myproj.app.algorithm_二刷.双指针;
 public class 和为k的子数组 {
 
     public static void main(String[] args) {
-        System.out.println(subarraySum(new int[]{1, -1, 0}, 0));
+        System.out.println(subarraySumCopyV2(new int[]{1,2,1,2,1}, 3));
     }
 
-    public static int subarraySum(int[] nums, int k) {
+
+    public static int subarraySumCopy(int[] nums, int k) {
         int count = 0 ;
-        int length = nums.length;
-        for(int i = 0 ; i< length; i++) {
-            int sum = 0 ;
-            for(int j = i ; j < length; j++ ) {
-                sum += nums[j];
-                // 当和相等的时候， count +1
+        int sum = 0 ;
+        for(int left = 0 ; left < nums.length; left++) {
+            sum = 0;
+            for(int right = left; right < nums.length; right ++) {
+                // 累计求和
+                sum += nums[right];
                 if(sum == k) {
-                    count++;
+                    count ++;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 错误解法：不能因为累加和 > k 时， 就开始移动左指针。
+     *
+     * 因为 没有经过排序 [题目要求： 连续非空子数组， 所以不能排序]， 所以后续的元素累加时， 依旧可能等于 K;
+     */
+    public static int subarraySumCopyV2(int[] nums, int k) {
+        int count = 0 ;
+        int sum = 0 ;
+        for(int left = 0 ; left < nums.length; left++) {
+            sum = 0;
+            for(int right = left; right < nums.length; right ++) {
+                // 累计求和
+                sum += nums[right];
+                if(sum == k) {
+                    count ++;
+
+                // 错误： 因为 没有经过排序， 所以后续的元素累加时， 依旧可能等于 K;
+                }else if(sum > k ) {
+                    break;
                 }
             }
         }

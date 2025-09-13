@@ -28,25 +28,24 @@ public class 移动零 {
 
     public static void main(String[] args) {
         int[] nums = {0,1,0,3,12};
-        moveZeroes(nums);
+        moveZeroesCopy(nums);
         for (int num : nums) {
             System.out.println(num);
         }
     }
 
-    public static void moveZeroes(int[] nums) {
-        if(nums.length <= 1) {
-            return;
-        }
-        int j = 0;
-        for(int i = 0; i< nums.length; i++) {
-            if(nums[i] != 0) {
-                int tmp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = tmp;
-                j++;
-            }
+    public static void moveZeroesCopy(int[] nums) {
+        int left = 0 ;
+        for(int right = 0 ; right < nums.length; right ++) {
+            if(nums[right] != 0 ) {
+                // 把右边的非0值， 移动到左边
+                int tmp = nums[right];
+                nums[right] = nums[left];
+                nums[left] = tmp;
 
+                // 左指针 往右移动。
+                left ++;
+            }
         }
     }
 }

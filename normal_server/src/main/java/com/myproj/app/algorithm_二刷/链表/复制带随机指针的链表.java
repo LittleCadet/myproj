@@ -50,6 +50,8 @@ public class 复制带随机指针的链表 {
 
     /**
      * 错误方法： tmp的NPE过多。
+     *
+     *
      */
     public static Node copyRandomList(Node head) {
         Node dummy = new Node  (0);
@@ -66,9 +68,28 @@ public class 复制带随机指针的链表 {
     }
 
     /**
+     * 错误方法： 不能使用dummy节点， 最终必定使用原引用。
+     */
+    public Node copyRandomListV4(Node head) {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        while(null != head) {
+            if( ! map.containsKey(head)) {
+                map.put(head, new Node(head.val));
+                map.get(head).next = head.next;
+                map.get(head).random = head.random;
+                head = head.next;
+            }
+        }
+
+        return map.get(dummy.next);
+    }
+
+    /**
      * 方法1： map + 遍历
      */
     public Node copyRandomListV2(Node head) {
+        // k-v: 原节点 - 新建节点
         Map<Node, Node> map = new HashMap<>();
         Node tmp = head;
         // 填充map
@@ -78,6 +99,7 @@ public class 复制带随机指针的链表 {
         }
 
         tmp = head;
+        // 构建新建节点的引用即可
         while(tmp != null) {
             // map的入参是tmp.next, 出参赋值给映射节点的next
             map.get(tmp).next = map.get(tmp.next);
@@ -95,15 +117,15 @@ public class 复制带随机指针的链表 {
     /**
      * 方法2： map + 递归： 更容易懂。
      */
-    public Node copyRandomListV3(Node head) {
+    public Node copyRandomListV3Copy(Node head) {
         if(null == head) {
             return null;
         }
         if( ! map.containsKey(head)) {
             Node node = new Node(head.val);
             map.put(head, node);
-            node.next = copyRandomList(head.next);
-            node.random = copyRandomList(head.random);
+            node.next = copyRandomListV3Copy(head.next);
+            node.random = copyRandomListV3Copy(head.random);
         }
 
         // 返回映射的链表

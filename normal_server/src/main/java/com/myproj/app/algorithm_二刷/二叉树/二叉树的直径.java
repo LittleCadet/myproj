@@ -15,7 +15,7 @@ package com.myproj.app.algorithm_二刷.二叉树;
  * 输出：1
  *
  *      思路：
- *          - 本题题意： 求的是 直径， 不包含节点本身的长度
+ *          - 后续遍历：本题题意： 求的是 直径， 不包含节点本身的长度
  *
  * 这题很容易 与 《二叉树的最大深度》混淆， 这里说明一下：
  * 先看这题的解法：
@@ -63,6 +63,8 @@ package com.myproj.app.algorithm_二刷.二叉树;
  * 《二叉树的最大深度》在题意上已经标明：节点本身算深度， 所以返回值没有-1 或者 -2的这种骚操作 ！！！
  * 而本题在题意上也标明： 算的是边的长度， 而不是节点 与 节点的深度，而返回值由于左子树 和 右子树的深度都+1了， 所以最终要 -2 ！！！！！
  *
+ *
+ *
  * @author shenxie
  **/
 public class 二叉树的直径 {
@@ -78,18 +80,18 @@ public class 二叉树的直径 {
     static int max = 0;
 
     public static int diameterOfBinaryTree(TreeNode root) {
-        depth(root);
+        depthCopy(root);
         // 因为节点本身不算深度，但由于左子树 和 右子树的深度都+1了， 所以要-2
         return max - 2;
     }
 
-    public static int depth(TreeNode node) {
+    public static int depthCopy(TreeNode node) {
         if (null == node) {
             return 0;
         }
 
-        int left = depth(node.left) + 1;
-        int right = depth(node.right) + 1;
+        int left = depthCopy(node.left) + 1;
+        int right = depthCopy(node.right) + 1;
         // 更新最大深度
         max = Math.max(left + right, max);
         // 返回当前节点的最大深度

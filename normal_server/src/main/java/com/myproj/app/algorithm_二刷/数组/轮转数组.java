@@ -33,14 +33,15 @@ public class 轮转数组 {
 
     public static void main(String[] args) {
         int[] nums = {1,2,3,4,5,6,7};
-        rotate(nums, 3 );
+        rotateCopy(nums, 3 );
         for (int num :nums) {
             System.out.println(num);
         }
     }
 
-    public static void rotate(int[] nums, int k) {
+    public static void rotateCopy(int[] nums, int k) {
         int length = nums.length;
+        // 新建数组
         int[] results = new int[length];
         for(int i = 0 ; i< length; i++) {
             // 该解法错误：原因： 让数组逆时针转动。
@@ -48,6 +49,7 @@ public class 轮转数组 {
             // 让数组顺时针转动
             results[(i + k) % length] = nums[i];
         }
+        // 数组复制
         System.arraycopy(results, 0, nums, 0, length);
 
     }

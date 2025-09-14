@@ -28,15 +28,15 @@ public class 二叉树的最大深度 {
     }
 
     public static int maxDepth(TreeNode root) {
-        return depth(root);
+        return depthCopy(root);
     }
 
-    public static int depth(TreeNode root) {
+    public static int depthCopy(TreeNode root) {
         if(null == root) {
             return 0;
         }
-        int leftHight = depth(root.left) + 1;
-        int rightHight = depth(root.right) + 1;
+        int leftHight = depthCopy(root.left) + 1;
+        int rightHight = depthCopy(root.right) + 1;
         return Math.max(leftHight, rightHight);
     }
 

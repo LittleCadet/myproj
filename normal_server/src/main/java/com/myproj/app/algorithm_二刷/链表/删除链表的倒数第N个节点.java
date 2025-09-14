@@ -26,7 +26,7 @@ public class 删除链表的倒数第N个节点 {
         ListNode list1 = new ListNode(1);
         list1.next = new ListNode(2);
         list1.next.next = new ListNode(3);
-        removeNthFromEndV2(list1, 1);
+        removeNthFromEndV2Copy(list1, 1);
     }
 
     /**
@@ -52,7 +52,7 @@ public class 删除链表的倒数第N个节点 {
         return pre1;
     }
 
-    public static ListNode removeNthFromEndV2(ListNode head, int n) {
+    public static ListNode removeNthFromEndV2Copy(ListNode head, int n) {
         ListNode dummy = new ListNode(0, head);
         ListNode cur = dummy;
         int count = 0;
@@ -61,6 +61,7 @@ public class 删除链表的倒数第N个节点 {
             head = head.next;
         }
         int rest = count - n + 1;
+        // 从 1 开始计数， 因为这是链表， 而不是数组。
         for(int i = 1; i < rest ; i++) {
             cur = cur.next;
         }

@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm_二刷.数组;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
  *
@@ -38,31 +41,29 @@ package com.myproj.app.algorithm_二刷.数组;
 public class 除自身以外数组的乘积 {
     public static void main(String[] args) {
         int[] nums = new int[] {1,2,3,4};
-        productExceptSelf(nums);
+        productExceptSelfCopy(nums);
     }
 
-    public static int[] productExceptSelf(int[] nums) {
-        int length = nums.length;
-        int[] results = new int[length];
-        int[] L = new int[length];
-        int[] R = new int[length];
-        L[0] = 1;
-        R[length - 1] = 1;
-        // 前缀积
-        for(int i  = 1; i< length; i++) {
-            L[i] = L[i - 1] * nums[i - 1];
+    public static int[] productExceptSelfCopy(int[] nums) {
+        int[] left = new int[nums.length];
+        int[] right = new int[nums.length];
+        int[] result = new int[nums.length];
+        left[0] = 1;
+        right[nums.length - 1] = 1;
+        // 前缀积: 注意：始点
+        for(int i = 1; i< nums.length; i++) {
+            left[i] = left[i-1] * nums[i-1];
         }
 
-        // 后缀积
-        for(int i = length - 2; i >=0 ; i -- ){
-            R[i] = R[i +1] * nums[i +1];
+        // 前缀积：注意：始点
+        for(int i = nums.length - 2 ; i >= 0; i--) {
+            right[i] = right[i+ 1] * nums[i+1];
         }
 
         // 除自身以外的数组的积 = 前缀积 * 后缀积
-        for(int i = 0 ; i< length; i++) {
-            results[i] = L[i] * R[i];
+        for(int i = 0; i< nums.length; i++) {
+            result[i] = left[i] * right[i];
         }
-
-        return results;
+        return result;
     }
 }

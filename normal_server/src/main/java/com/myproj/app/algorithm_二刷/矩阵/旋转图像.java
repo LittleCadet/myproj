@@ -54,24 +54,28 @@ public class 旋转图像 {
 
     public static void main(String[] args) {
         int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
-        rotate(matrix);
+        rotateCopy(matrix);
     }
 
-    public static void rotate(int[][] matrix) {
+    /**
+     * 借助辅助数组 + 规律 ：
+     *   tmp[j][n-i-1] = matrix[i][j];
+     */
+    public static void rotateCopy(int[][] matrix) {
         int n = matrix.length;
         int[][] tmp = new int[n][n];
 
-        // 借助辅助数组，完成clone
-        for(int i = 0 ; i< n; i++) {
-            tmp[i] = matrix[i].clone();
+        // 旋转
+        for(int i = 0 ; i < n ; i++) {
+            for(int j = 0 ; j < n ; j++) {
+                tmp[j][n-i-1] = matrix[i][j];
+            }
         }
 
-        // 旋转90°， 即为：
-        // 第i行的数据， 变为第n-1-i列
-        // 第j列的数据， 变为j行。
-        for(int i = 0 ; i< n; i++) {
+        // 赋值原数组
+        for(int i = 0 ; i < n ; i++) {
             for(int j = 0 ; j < n; j++) {
-                matrix[j][n -1 -i] = tmp[i][j];
+                matrix[i][j] = tmp[i][j];
             }
         }
     }

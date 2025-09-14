@@ -35,7 +35,7 @@ public class 回文链表 {
         head.next.next = new ListNode(2);
         head.next.next.next = new ListNode(1);
         System.out.println(isPalindromeV1(head));
-        System.out.println(isPalindromeV2(head));
+        System.out.println(isPalindromeV2Copy(head));
         System.out.println(isPalindromeV3(head));
     }
 
@@ -67,7 +67,7 @@ public class 回文链表 {
     /**
      * 方法2： Collections.reverse()
      */
-    public static boolean isPalindromeV2(ListNode head) {
+    public static boolean isPalindromeV2Copy(ListNode head) {
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
         while(head != null) {
@@ -81,15 +81,15 @@ public class 回文链表 {
 
     public static boolean isPalindromeV3(ListNode head) {
         front = head;
-        return check(head);
+        return checkCopy(head);
     }
 
     /**
      * 方法3： 递归
      */
-    public static boolean check(ListNode last) {
+    public static boolean checkCopy(ListNode last) {
         if(last != null) {
-            if( ! check(last.next)) {
+            if( ! checkCopy(last.next)) {
                 return false;
             }
             // 能够进入这一行， 代表：此时的入参是最后一个节点。

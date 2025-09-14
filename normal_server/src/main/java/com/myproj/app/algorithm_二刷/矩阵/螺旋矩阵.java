@@ -29,44 +29,56 @@ public class 螺旋矩阵 {
 
     public static void main(String[] args) {
         int[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
-        spiralOrder(matrix);
+        spiralOrderCopy(matrix);
     }
 
-    public static List<Integer> spiralOrder(int[][] matrix) {
 
-        int l = 0, r = matrix[0].length - 1, u = 0, d = matrix.length - 1;
+    public static List<Integer> spiralOrderCopy(int[][] matrix) {
+        int l = 0 , r = matrix[0].length -1 , u = 0 , d = matrix.length -1 ;
         List<Integer> results = new ArrayList<>();
+
         while(true) {
-            // 从左到右
-            for(int i = l ; i<=r; i ++){
+            // 从左到右:
+            // 明确从 哪到哪， 用变量表示
+            // 明确边界： r 已经是 matrix[0].length -1 , 所以 i <= r;
+            for(int i = l ; i <= r; i++) {
                 results.add(matrix[u][i]);
             }
-            if( ++ u > d) {
+
+            if(++ u > d) {
                 break;
             }
 
             // 从上到下
-            for(int i = u; i<=d; i++) {
+            // 明确从 哪到哪， 用变量表示
+            // 明确边界： d 已经是 matrix.length -1 , 所以 i <= d;
+            for(int i = u ; i<=d; i++) {
                 results.add(matrix[i][r]);
             }
-            if( --r < l  ) {
+
+            if(-- r < l ) {
                 break;
             }
+
             // 从右到左
-            for(int i = r; i>=l ; i--) {
+            for(int i = r; i >=l ; i--) {
                 results.add(matrix[d][i]);
             }
-            if(--d < u ) {
+
+            if(-- d < u) {
                 break;
             }
+
             // 从下到上
-            for(int i = d; i>= u; i--) {
+            for(int i = d; i >=u ;i--) {
                 results.add(matrix[i][l]);
             }
-            if( ++ l > r) {
+
+            if(++ l > r) {
                 break;
             }
         }
+
         return results;
     }
 }

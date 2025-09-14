@@ -28,6 +28,7 @@ public class 将有序数组转换为二叉搜索树 extends TreeNode{
     }
 
     private static TreeNode process(int[] nums, int left, int right) {
+        // 注意： 跳出条件： left > right时， 跳出
         if(left > right) {
             return null;
         }

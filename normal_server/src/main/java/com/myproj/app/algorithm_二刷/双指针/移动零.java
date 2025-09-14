@@ -35,6 +35,7 @@ public class 移动零 {
     }
 
     public static void moveZeroesCopy(int[] nums) {
+        // left指针： 指向数组中现在元素的最初的0的位置；这样就可以吧：非0数字 移动到现在元素的最初0的位置了。
         int left = 0 ;
         for(int right = 0 ; right < nums.length; right ++) {
             if(nums[right] != 0 ) {
@@ -45,6 +46,16 @@ public class 移动零 {
 
                 // 左指针 往右移动。
                 left ++;
+            }
+        }
+    }
+
+    public static void moveZeroesCopyV2(int[] nums) {
+        for(int i = 1 ; i< nums.length; i++) {
+            if(nums[i] == 0) {
+                int tmp = nums[i];
+                nums[i] = nums[i-1];
+                nums[i-1] = tmp;
             }
         }
     }

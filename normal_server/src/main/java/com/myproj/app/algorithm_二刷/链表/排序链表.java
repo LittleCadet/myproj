@@ -34,10 +34,10 @@ public class 排序链表 {
         list1.next.next = new ListNode(3);
         list1.next.next.next = new ListNode(4);
 
-        sortList(list1);
+        sortListCopy(list1);
     }
 
-    public static ListNode sortList(ListNode head) {
+    public static ListNode sortListCopy(ListNode head) {
         List<Integer> nums = new ArrayList<>();
         ListNode dummy = new ListNode(0);
         ListNode tmp = dummy;

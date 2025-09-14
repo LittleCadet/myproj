@@ -30,29 +30,32 @@ public class 矩阵置零 {
 
     public static void main(String[] args) {
         int[][] matrix = new int[][]{{1,1,1},{1,0,1},{1,1,1}};
-        setZeroes(matrix);
+        setZeroesCopy(matrix);
     }
 
-    public static void setZeroes(int[][] matrix) {
-        int l1 = matrix.length;
-        int l2 = matrix[0].length;
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
-        for(int i = 0 ; i < l1 ; i++) {
-            for(int j = 0 ; j<l2; j++) {
-                if(matrix[i][j] == 0) {
-                    set1.add(i);
-                    set2.add(j);
+    public static void setZeroesCopy(int[][] matrix) {
+        int x = matrix.length;
+        int y = matrix[0].length;
+        Set<Integer> xSet = new HashSet<>();
+        Set<Integer> ySet = new HashSet<>();
+
+        // 找到所有0的x和y轴
+        for(int i = 0 ; i < x; i++) {
+            for(int j = 0 ; j < y; j++) {
+                if(matrix[i][j] == 0 ) {
+                    xSet.add(i);
+                    ySet.add(j);
                 }
             }
         }
 
-        for(int i = 0 ; i<l1; i++) {
-
-            for(int j = 0 ; j<l2; j++) {
-                if(set1.contains(i) || set2.contains(j)){
+        // 替换 0 的x和y轴
+        for(int i = 0 ; i<x; i++) {
+            for(int j = 0 ; j < y; j++) {
+                if(xSet.contains(i) || ySet.contains(j)) {
                     matrix[i][j] = 0;
                 }
+
             }
         }
     }

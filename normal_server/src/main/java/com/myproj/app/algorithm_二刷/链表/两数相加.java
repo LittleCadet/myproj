@@ -41,10 +41,10 @@ public class 两数相加 {
         ListNode list2 = new ListNode(4);
         list2.next = new ListNode(5);
         list2.next.next = new ListNode(6);
-        
-        addTwoNumbers(list1, list2);
+
+        addTwoNumbersCopy(list1, list2);
     }
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbersCopy(ListNode l1, ListNode l2) {
         ListNode pre = new ListNode(0);
         ListNode cur = pre;
         int carry = 0;
@@ -57,7 +57,7 @@ public class 两数相加 {
             sum = sum % 10;
             // 创建cur的next节点
             cur.next = new ListNode(sum);
-            // 更新cur节点： 将next节点与cur关联
+            // 更新cur节点： 用于下次的while循环使用。
             // 此处相当于 head 与 tail指针中： head = tail
             cur = cur.next;
 

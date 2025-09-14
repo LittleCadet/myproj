@@ -31,13 +31,14 @@ public class 翻转二叉树 {
         TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(3);
         treeNode.right = new TreeNode(4);
-        invertTree(treeNode);
+        invertTreeCopy(treeNode);
     }
 
     /**
-     * 方法1：前序遍历
+     * 方法1：前序遍历：
+     * 先交换， 再遍历
      */
-    public static TreeNode invertTree(TreeNode root) {
+    public static TreeNode invertTreeCopy(TreeNode root) {
         if(null == root) {
             return null;
         }
@@ -47,23 +48,38 @@ public class 翻转二叉树 {
         root.left = root.right;
         root.right = tmp;
         // 交换当前节点的左子树
-        invertTree(root.left);
+        invertTreeCopy(root.left);
         // 交换当前节点的右子树
-        invertTree(root.right);
+        invertTreeCopy(root.right);
         return root;
     }
 
     /**
      * 方法2： 后序遍历。
+     * 先遍历， 再交换
      */
-    public static TreeNode invertTreeV2(TreeNode root) {
+    public static TreeNode invertTreeV2Copy(TreeNode root) {
         if(null == root) {
             return null;
         }
-        TreeNode left = invertTreeV2(root.left);
-        TreeNode right = invertTreeV2(root.right);
+        TreeNode left = invertTreeV2Copy(root.left);
+        TreeNode right = invertTreeV2Copy(root.right);
         root.left = right;
         root.right = left;
+        return root;
+    }
+
+    /**
+     * 此方法是错误的
+     */
+    public static TreeNode invertTreeV3(TreeNode root) {
+        if(null == root) {
+            return null;
+        }
+        // 错误原因：如果此时：将root.right 赋值了， 那么原来的root.right就被变更了， 所以下一行的代码的入参： 就是变更之后的了。
+        // 所以这里需要暂存 left 和 right节点。
+        root.right = invertTreeV3(root.left);
+        root.left  = invertTreeV3(root.right);
         return root;
     }
 

@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class 和为k的子数组 {
 
     public static void main(String[] args) {
-        System.out.println(subarraySumCopyV2(new int[]{1,2,1,2,1}, 3));
+        System.out.println(subarraySumCopy(new int[]{1,1,1}, 2));
     }
 
 
@@ -37,6 +37,7 @@ public class 和为k的子数组 {
         int count = 0 ;
         int sum = 0 ;
         for(int left = 0 ; left < nums.length; left++) {
+            // 题意要求：连续非空序列的和， 所以在此处置为0
             sum = 0;
             for(int right = left; right < nums.length; right ++) {
                 // 累计求和

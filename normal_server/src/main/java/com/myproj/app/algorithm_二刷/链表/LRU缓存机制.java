@@ -46,30 +46,32 @@ import java.util.Map;
 public class LRU缓存机制 {
 
     public static void main(String[] args) {
-        LRUCache lruCache = new LRUCache(10);
+        LRUCacheCopy lruCache = new LRUCacheCopy(10);
         lruCache.put(1,2);
         System.out.println(lruCache.get(1));;
     }
 
-    static class LRUCache extends LinkedHashMap<Integer, Integer> {
+    static class LRUCacheCopy extends LinkedHashMap<Integer, Integer> {
         int capacity;
 
-        public LRUCache(int capacity) {
+        public LRUCacheCopy(int capacity) {
             super(capacity, 0.75f, true);
             this.capacity = capacity;
         }
 
-        public int get(int key) {
-            return super.getOrDefault(key, -1);
-        }
-
-        public void put(int key, int value) {
+        public void put (int key, int value) {
             super.put(key, value);
         }
 
+        public Integer get(int key) {
+            return super.getOrDefault(key, -1);
+        }
+
         @Override
-        public boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        public boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest){
             return super.size() > capacity;
         }
+
+
     }
 }

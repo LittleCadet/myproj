@@ -18,7 +18,7 @@ package com.myproj.app.algorithm_二刷.链表;
  *      思路：
  *          - 方式1：递归：
  *              -- 核心： 递归的顺序：需要按照1-3-5...的顺序递归
- *                  -- 新节点是当前节点的next节点
+ *                  -- 新节点是当前节点的next节点：
  *                  -- 递归：入参：是当前节点的next.next节点，出参赋值给 原节点的next节点。
  *                  -- 新节点的next节点是当前节点。
  *          - 方式2：遍历：
@@ -36,46 +36,55 @@ package com.myproj.app.algorithm_二刷.链表;
  *
  * @author shenxie
  **/
-public class 两两交换链表的节点 {
+public class 两两交换链表中的节点 {
 
     public static void main(String[] args) {
         ListNode list1 = new ListNode(1);
         list1.next = new ListNode(2);
-        list1.next.next = new ListNode(3);
-        list1.next.next.next = new ListNode(4);
+//        list1.next.next = new ListNode(3);
+//        list1.next.next.next = new ListNode(4);
 
-//        swapPairs(list1);
-        swapPairsV2(list1);
+        swapPairsCopy(list1);
+//        swapPairsV2(list1);
     }
+
+//    public static void main(String[] args) {
+//        int x = 1, y = 2;
+//        int tmp = y;
+//        y = x;
+//        x = tmp;
+//        System.out.println(x + ":" + y);
+//    }
 
     /**
      * 方式1： 递归
+     *
+     * 理解方式：
      * @param head
      * @return
      */
-    public static ListNode swapPairs(ListNode head) {
+    public static ListNode swapPairsCopy(ListNode node1) {
         // 要完成交换， 至少需要2个节点， 所以需要 head != null && head.next != null
-        if(null == head || head.next == null) {
-            return head;
+        if(null == node1 || node1.next == null) {
+            return node1;
         }
-        // 将当前节点的next节点 给 新节点  [其中包含原节点的next引用]
-        ListNode node = head.next;
-        // 递归 完成节点交换
-        // - 入参是node.next的原因： 递归需要按照1-3-5-7-9 ...的规律执行，才能完成两两替换
-        // -- 所以递归的入参需要是head.next.next： 即为node包含原节点的next引用，所以node.next实质上是head.next.next
-        // - 出参是head.next的原因：head最终需要赋值给新节点的next引用，如果出参是head， 则新节点最终是2，4， 其中1,3因为缺少head的next的引用， 所以在新节点上也体现不出来。
-        head.next = swapPairs(node.next);
-        // 将当前节点给新节点的next节点。
-        node.next = head;
-        return node;
+        // 因为需要节点的两两交换， 所以占存node2节点 ： 即将当前节点的next节点 给 新节点  [其中包含原节点的next引用]
+        ListNode node2 = node1.next;
+        // 递归 完成节点交换： 把 node1.next 更新为 node2.next： 因为是递归： 所以 node1.next = swapPairsCopy(node2.next)
+        node1.next = swapPairsCopy(node2.next);
+        // 把node2.next更新为node1
+        node2.next = node1;
+        return node2;
 
     }
+
+
 
 
     /**
      * 方式2： 遍历的方式实现
      */
-    public static ListNode swapPairsV2(ListNode head) {
+    public static ListNode swapPairsV2Copy(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode tmp = dummy;
@@ -89,6 +98,7 @@ public class 两两交换链表的节点 {
             tmp.next = node2;
             node1.next = node2.next;
             node2.next = node1;
+            // 因为是while循环， 后续的节点依旧需要两两交换， 所以此时tmp 需要更换为下一个节点：即为node1 【node1已经被替换为node2】
             tmp = node1;
         }
         return dummy.next;

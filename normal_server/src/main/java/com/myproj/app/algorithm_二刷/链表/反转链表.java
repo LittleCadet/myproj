@@ -49,19 +49,21 @@ public class 反转链表 {
     }
 
     /**
-     * 方法1： 迭代： 即为双指针
+     * 方法1： 迭代： 即为快慢双指针， 只不过 快慢双指针 只相差一个节点。
      */
     public static ListNode reverseListCopy(ListNode head) {
         // 此处只能为null, 如果设置为 new ListNode(0); 则 原本为1-2-3-4-5， 反转后 ，会变为：5-4-3-2-1-0
         ListNode pre = null;
         while(null != head) {
-            // 暂存head.next
+            // 1.1 暂存head.next
             ListNode tmp = head.next;
-            // head.next的引用指向 上一个节点pre
+            // 1.2 head.next的引用指向 上一个节点pre
             head.next = pre;
-            // pre指向head
+            // 1.3 pre指向head
             pre = head;
-            // head访问下一个节点
+
+
+            // 2. head访问下一个节点
             head = tmp;
 
         }
@@ -69,7 +71,7 @@ public class 反转链表 {
     }
 
     /**
-     * 方法2： 递归调用
+     * 方法2： 递归调用： 后序遍历： 因为需要知道所有元素后， 才能反转
      *  使用：后续查找的原因：先将 1-> 2 -> 3 -> 4 -> 5 , 变成 5，,4，,3，,2，,1 ， 之后修改当前节点的next指针 指向 前一个节点 即可。
      */
     private static ListNode recurCopy(ListNode cur, ListNode pre) {

@@ -22,11 +22,14 @@ public class 寻找峰值 {
 
     public static void main(String[] args) {
 //        System.out.println(findPeakElement(new int[]{1,2,3,1}));
-//        System.out.println(findPeakElement(new int[]{-2147483648}));
-        System.out.println(findPeakElement(new int[]{-2147483648,-2147483647}));
+        System.out.println(findPeakElementV2Copy(new int[]{-2147483648}));
+//        System.out.println(findPeakElementV2Copy(new int[]{-2147483648,-2147483647}));
     }
 
-    public static int findPeakElement(int[] nums) {
+    /**
+     * 方法1： 逐个比较
+     */
+    public static int findPeakElementCopy(int[] nums) {
         // 此题不能用一个临时变量来比较大小： eg: int tmp = -Integer.MAX_VALUE; 因为：如果有值比tmp更小的时候， 难以处理。
         // 应该用数组中原有的值 来比较大小。
         int index = 0;
@@ -36,5 +39,24 @@ public class 寻找峰值 {
             }
         }
         return index;
+    }
+
+    /**
+     * 方法2： 二分法：
+     */
+    public static int findPeakElementV2Copy(int[] nums) {
+        int l = 0 , r= nums.length-1, mid = 0 ;
+        // 如果 l <= r时， 在数组只有一个元素时， 会出现数组下标越界：nums[mid + 1]
+        while(l < r) {
+            mid = l + (r-l) / 2;
+            // 使用 nums[mid] > nums[mid + 1] 的原因： 不知道 波峰在mid的左边还是右边， 所以当做 爬山【不恰当的比喻：贪心算法】。
+            if(nums[mid] > nums[mid + 1]) {
+                r = mid;
+            }else{
+                l = mid + 1;
+            }
+        }
+        // 返回 l , r 都行
+        return r;
     }
 }

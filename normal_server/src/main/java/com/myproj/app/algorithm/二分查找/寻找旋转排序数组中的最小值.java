@@ -23,7 +23,7 @@ public class 寻找旋转排序数组中的最小值 {
 
     public static void main(String[] args) {
         System.out.println(findMin(new int[]{3,4,5,1,2}));
-        System.out.println(findMinV2(new int[]{3,4,5,1,2}));
+        System.out.println(findMinV2Copy(new int[]{3,4,5,1,2}));
     }
 
     public static int findMin(int[] nums) {
@@ -42,7 +42,7 @@ public class 寻找旋转排序数组中的最小值 {
      *  二分法： 至少三个元素： l + r + mid + target: 如果target没有， 就用mid替换target.
      *          三个元素 与 四个元素 的二分法： 有些许不同： 画图就好。
      */
-    public static int findMinV2(int[] nums) {
+    public static int findMinV2Copy(int[] nums) {
         int l = 0, r = nums.length -1, mid = 0;
         while(l < r) {
             mid = l + (r - l) / 2;
@@ -52,6 +52,7 @@ public class 寻找旋转排序数组中的最小值 {
                 l = mid + 1;
             }
         }
+        // 返回 num[l] 或者 nums[r] 都行。 但是nums[mid]不行。
         return nums[l];
     }
 }

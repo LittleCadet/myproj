@@ -27,8 +27,8 @@ package com.myproj.app.algorithm.二分查找;
 public class 搜索二维矩阵 {
 
     public static void main(String[] args) {
-//        System.out.println(searchMatrixV1(new int[][]{{1,3,5,7},{10,11,16,20}, {23,30,34,60}}, 3));
-        System.out.println(searchMatrixV2(new int[][]{{1,3,5,7},{10,11,16,20}, {23,30,34,60}}, 3));
+        System.out.println(searchMatrixV1Copy(new int[][]{{1,3,5,7},{10,11,16,20}, {23,30,34,60}}, 13));
+//        System.out.println(searchMatrixV2(new int[][]{{1,3,5,7},{10,11,16,20}, {23,30,34,60}}, 3));
 //        System.out.println(searchMatrixV2(new int[][]{{1,1}},2));
 
     }
@@ -36,19 +36,18 @@ public class 搜索二维矩阵 {
     /**
      * n次二分查找： n=matrix.length;
      */
-    public static boolean searchMatrixV1(int[][] matrix, int target) {
-        for(int i = 0; i< matrix.length; i++) {
+    public static boolean searchMatrixV1Copy(int[][] matrix, int target) {
+        for(int i = 0 ; i<matrix.length; i++) {
             int[] nums = matrix[i];
-            int left = 0;
-            int right = nums.length -1 ;
+            int left = 0 , right = nums.length -1;
             while(left <= right) {
-                int mid = (left + right) / 2;
-                if(target > nums[mid]) {
+                int mid = left + (right - left) / 2;
+                if(nums[mid] < target) {
                     left = mid + 1;
-                }else if (target == nums[mid]){
-                    return true;
-                }else{
+                }else if(nums[mid] > target) {
                     right = mid - 1;
+                }else{
+                    return true;
                 }
             }
         }
@@ -58,7 +57,7 @@ public class 搜索二维矩阵 {
     /**
      * 一次二分查找。
      */
-    public static boolean searchMatrixV2(int[][] matrix, int target) {
+    public static boolean searchMatrixV2Copy(int[][] matrix, int target) {
         int high = matrix.length;
         int width = matrix[0].length;
         int right = high * width - 1;
@@ -67,9 +66,11 @@ public class 搜索二维矩阵 {
             // + left的原因： 避免出现： right = left = 1, 导致mid = 0, 且属于target > matrix[mid / width][mid % width]的情况， 则left = 1,
             // 最终导致： 死循环。
             int mid = (right - left) / 2 + left;
-            if(target > matrix[mid / width][mid % width]){
+            // 根据mid找出 哪一行: mid / width , 哪一列：mid % width;
+            int tmp = matrix[mid / width][mid % width];
+            if(target > tmp){
                 left = mid + 1;
-            }else if(target == matrix[mid / width][mid % width]){
+            }else if(target == tmp){
                 return true;
             }else {
                 right = mid -1;

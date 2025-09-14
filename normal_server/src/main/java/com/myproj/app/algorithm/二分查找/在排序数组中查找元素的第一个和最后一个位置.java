@@ -17,22 +17,24 @@ package com.myproj.app.algorithm.二分查找;
  */
 public class 在排序数组中查找元素的第一个和最后一个位置 {
     public static void main(String[] args) {
-        searchRange(new int[]{1,4}, 4);
+        searchRangeCopy(new int[]{1,4}, 4);
     }
 
     /**
      * 两次二分查找的原因： 当nums[mid] == target时， 不确定下一个相同的元素 在mid的左边 / 右边。
      * 所以： 当nums[mid] == target时， r = mid - 1 || l = mid + 1;
      */
-    public static int[] searchRange(int[] nums, int target) {
+    public static int[] searchRangeCopy(int[] nums, int target) {
         int l = 0, r = nums.length - 1, mid = 0, index1 = -1, index2 = -1;
         // 第一次二分查找： 设置index1;
+        // 必须是 l <= r, 因为 nums 中可能只有一个元素 ， 此时需要让他进入循环体中， 为index1赋值。
         while(l <= r) {
             mid = l + (r - l) / 2;
             if(nums[mid] < target) {
                 l = mid + 1;
             }else if (nums[mid] == target) {
                 index1 = mid;
+                // 不能是 r = mid + 1: 以为r只能变小， l只能变大， 不然会导致while(true)的死循环
                 r = mid -1;
             }else{
                 r = mid - 1;
@@ -40,6 +42,7 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
         }
 
         // 第二次二分查找： 设置index2;
+        // 必须是 l <= r, 因为 nums 中可能只有一个元素 ， 此时需要让他进入循环体中， 为index2赋值。
         l =0; r = nums.length - 1;
         while(l <= r) {
             mid = l + (r - l) / 2;
@@ -47,6 +50,7 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
                 l = mid + 1;
             }else if (nums[mid] == target) {
                 index2 = mid;
+                // 不能是 l = mid - 1: 以为r只能变小， l只能变大， 不然会导致while(true)的死循环
                 l = mid + 1;
             }else{
                 r = mid - 1;

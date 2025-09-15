@@ -21,23 +21,23 @@ public class 二叉搜索树中第K小的元素 {
         root.left = new TreeNode(1);
         root.right = new TreeNode(4);
         root.left.right = new TreeNode(2);
-        kthSmallest(root, 1);
+        kthSmallestCopy(root, 1);
     }
 
-    public static int kthSmallest(TreeNode root, int k) {
+    public static int kthSmallestCopy(TreeNode root, int k) {
         List<Integer> treeNodes = new ArrayList<>();
-        dfs(root, treeNodes);
+        dfsCopy(root, treeNodes);
         return treeNodes.get(k-1);
     }
 
-    public static void dfs(TreeNode root, List<Integer> treeNodes) {
+    public static void dfsCopy(TreeNode root, List<Integer> treeNodes) {
         if(null == root) {
             return ;
         }
 
-        dfs(root.left,treeNodes);
-        dfs(root.right,treeNodes);
+        dfsCopy(root.left,treeNodes);
         treeNodes.add(root.val);
+        dfsCopy(root.right,treeNodes);
     }
 
     public static class TreeNode {

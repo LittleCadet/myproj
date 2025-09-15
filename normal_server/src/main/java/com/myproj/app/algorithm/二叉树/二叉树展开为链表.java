@@ -19,10 +19,10 @@ import java.util.List;
 public class 二叉树展开为链表 {
 
     public static void main(String[] args) {
-        flatten(null);
+        flattenCopy(null);
     }
 
-    public static void flatten(TreeNode root) {
+    public static void flattenCopy(TreeNode root) {
         List<TreeNode> treeNodes = new ArrayList<>();
         test(root, treeNodes);
         for(int i = 1; i<treeNodes.size(); i++) {

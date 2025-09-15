@@ -26,12 +26,14 @@ import java.util.Map;
 public class 从前序与中序遍历序列构造二叉树 {
 
     public static void main(String[] args) {
-        TreeNode treeNode = buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
+        TreeNode treeNode = buildTreeCopy(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
         System.out.println(treeNode);
     }
 
     static Map<Integer, Integer> map = new HashMap<>();
-    public static TreeNode buildTree(int[] preorder, int[] inorder) {
+    public static TreeNode buildTreeCopy(int[] preorder, int[] inorder) {
+        // 一定要使用中序遍历的数组来形成map: 因为中序遍历：先左子树， 再root节点， 最后右子树。
+        // 所以根据前序 / 后序遍历， 可知道 root节点的值的情况下： 可以推测出 左右子树的剩余元素个数
         for(int i =0; i< inorder.length; i++) {
             // 用于快速找到当前节点的位置，从而定位到左子树的元素个数
             map.put(inorder[i], i);
@@ -55,10 +57,12 @@ public class 从前序与中序遍历序列构造二叉树 {
         }
         // 构建根节点。
         int val = preorder[preorder_left];
+        // 给中序遍历使用
         int root_number = map.get(val);
-        TreeNode root = new TreeNode(val);
-        // 找到剩余的左子树的元素个数=============重要
+        // 给前序遍历使用：找到剩余的左子树的元素个数=============重要
         int size_left_subtree = root_number - inorder_left;
+
+        TreeNode root = new TreeNode(val);
 
         // 构建左子树
         // 先序遍历中「从 左边界+1 开始的 size_left_subtree」个元素就对应了中序遍历中「从 左边界 开始到 根节点定位-1」的元素

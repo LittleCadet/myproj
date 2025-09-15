@@ -24,6 +24,9 @@ public class 二叉树的最近公共祖先 {
         lowestCommonAncestor(null, null , null);
     }
 
+    /**
+     * 方法1：前序遍历 + 后续遍历
+     */
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null ) {
             return null;
@@ -46,6 +49,35 @@ public class 二叉树的最近公共祖先 {
         }
         // 如果right = null, 代表: p / q节点都在左子树。
         return left;
+    }
+
+    /**
+     * 方法2： 本质与 方法1 一致， 只是为了便于理解， 换种写法。
+     */
+    public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null ) {
+            return null;
+        }
+        if(p == root || q == root) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestorV2(root.left, p, q);
+        TreeNode right = lowestCommonAncestorV2(root.right, p, q);
+        if(left != null && right != null) {
+            return root;
+        }
+
+        if(left != null && right == null) {
+            return left;
+        }
+
+        if(left == null && right != null) {
+            return right;
+        }
+
+        return null;
+
     }
 
     public static class TreeNode {

@@ -34,10 +34,10 @@ public class 删除中间节点 {
         node.next.next.next = new ListNode(9);
 
         node = node.next;
-        deleteNode(node);
+        deleteNodeCopy(node);
     }
 
-    public static void deleteNode(ListNode node) {
+    public static void deleteNodeCopy(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
     }

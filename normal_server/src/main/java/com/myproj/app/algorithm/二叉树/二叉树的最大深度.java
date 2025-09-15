@@ -19,17 +19,17 @@ public class 二叉树的最大深度 {
         TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(3);
         treeNode.right = new TreeNode(4);
-        System.out.println(maxDepth(treeNode));
+        System.out.println(maxDepthCopy(treeNode));
     }
 
-    public static int maxDepth(TreeNode root) {
+    public static int maxDepthCopy(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
         // 之所以能实现计数： 是因为：每递归一次maxDepth(), 在最后一步：Math.max(left, right) + 1
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
+        int left = maxDepthCopy(root.left);
+        int right = maxDepthCopy(root.right);
         return Math.max(left, right) + 1;
 
     }

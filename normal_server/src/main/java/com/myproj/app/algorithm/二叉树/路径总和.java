@@ -2,7 +2,8 @@ package com.myproj.app.algorithm.二叉树;
 
 /**
  * 题目：
- * 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。
+ * 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。
+ * 如果存在，返回 true ；否则，返回 false 。
  * 思路：
  * 1. 深度优先算法：
  *      1.1 方法1：累减法：
@@ -45,6 +46,7 @@ public class 路径总和 {
             return false;
         }
         sum += root.val;
+        // 叶子节点：必定 root.left 和 root.right 都是null
         if(root.left == null && root.right == null) {
             return sum == targetSum;
         }

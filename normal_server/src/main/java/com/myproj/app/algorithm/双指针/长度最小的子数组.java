@@ -34,6 +34,8 @@ public class 长度最小的子数组 {
         int ans = Integer.MAX_VALUE;
         while(right < nums.length) {
             sum += nums[right];
+            // 这里必须是 while循环， 因为后面可能会有好几个元素 相加 >= target, 需要均 从sum中减掉。
+            // 这样 哪怕 最后一个元素 都比 target大时，也能统计到。
             while(sum >= target) {
                 // 最小的连续子数组 的理解： 移动右指针 且 当sum >= target时， 需要继续移动左指针，并累减左指针的值， 当不满足条件的时候， 重新移动右指针。
                 // 为了达到此要求： 右指针只能在外层， 左指针只能在内层。

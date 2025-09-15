@@ -1,6 +1,8 @@
 package com.myproj.app.algorithm.双指针;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,6 +29,7 @@ import java.util.Set;
 public class 无重复字符的最长子串 {
 
     public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(lengthOfLongestSubstringV2("pwwkew"));
     }
 
@@ -62,5 +65,20 @@ public class 无重复字符的最长子串 {
         }
 
         return max;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        int result = 0 ;
+        int left = -1;
+        Map<Character, Integer> map = new HashMap<>();
+        for(int right = 0 ; right < s.length(); right++) {
+            if(map.containsKey(s.charAt(right))) {
+                left = Math.max(left, map.get(s.charAt(right)));
+            }
+            map.put(s.charAt(right), right);
+            // 更新result, 取result最大值
+            result = Math.max(result, right - left);
+        }
+        return result;
     }
 }

@@ -38,7 +38,7 @@ public class 寻找旋转排序数组中的最小值 {
     }
 
     /**
-     * 二分法：
+     *  只有一个波峰 波谷的情况 也可以用二分法。
      *  二分法： 至少三个元素： l + r + mid + target: 如果target没有， 就用mid替换target.
      *          三个元素 与 四个元素 的二分法： 有些许不同： 画图就好。
      */
@@ -46,9 +46,12 @@ public class 寻找旋转排序数组中的最小值 {
         int l = 0, r = nums.length -1, mid = 0;
         while(l < r) {
             mid = l + (r - l) / 2;
+            // 如果nums[mid] < nums[r]时， 则说明在[l,mid]的区间内，存在最小值， 所以 r = mid
             if(nums[mid] < nums[r]){
                 r = mid ;
             }else{
+                // 如果nums[mid] > nums[r]时，则说明在[mid , r]的区间内， 存在最小值。所以 l = mid + 1;
+                // 因为是旋转排序数组， 只有一个波峰和一个波谷
                 l = mid + 1;
             }
         }

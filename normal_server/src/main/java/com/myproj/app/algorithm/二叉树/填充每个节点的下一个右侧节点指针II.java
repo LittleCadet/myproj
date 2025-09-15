@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.二叉树;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -40,37 +41,35 @@ public class 填充每个节点的下一个右侧节点指针II {
         connect(node);
     }
 
+
     public static Node connect(Node root) {
-        if(root == null) {
-            return root;
+        if(null == root) {
+            return null;
         }
-        Queue<Node> queue = new LinkedList<>();
+
+        Deque<Node> queue = new LinkedList<>();
         queue.offer(root);
         while( ! queue.isEmpty()) {
             int size = queue.size();
-            Node last = null;
-            boolean firstTime = true;
-            while(size != 0 ){
+            Node pre = null;
+            for(int i = 0 ; i<size; i++) {
                 Node node = queue.poll();
-
-                if(node.left != null) {
+                if(null != node.left) {
                     queue.offer(node.left);
                 }
-                if(node.right != null) {
+                if(null != node.right) {
                     queue.offer(node.right);
                 }
-                // 上一个节点的next指针 指向当前节点。
-                // 层序遍历的本质： 是当前层：逐个节点的遍历。
-                // 所以： 不能让node.left.next = node.right; 【不符合层序遍历的本质】
-                if( ! firstTime) {
-                    last.next = node;
+                // pre = null, 意味着： 当前node是当前层的第一个节点， 需要有前后两个节点时， 才能形成连接关系。
+                if(pre != null) {
+                    pre.next = node;
                 }
-                size --;
-                firstTime = false;
-                last = node;
+                pre = node;
             }
         }
+
         return root;
+
     }
 
     static class Node {

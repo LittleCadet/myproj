@@ -7,7 +7,7 @@ import java.util.List;
  * 题目：
  * 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
  * 思路：
- * 1. 深度优先算法。
+ * 1. 先序遍历。
  *      1. 因为是右视图： 代表： 每一层只取最右边节点的值
  *      2. 在当前高度 > 最大高度时， 才塞值。
  *      3. 所以先递归遍历右子节点， 之后再递归遍历左子节点
@@ -34,6 +34,7 @@ public class 二叉树的右视图 {
             res.add(root.val);
             maxHigh = high;
         }
+        // 这里不能使用 high ++ ,因为在一层中， 左右树的高度相同， 而high++ 会赋值给high。 一旦赋值， 则root.left的high 值也会变更。
         dfs(root.right,high+1);
         dfs(root.left,high+1);
     }

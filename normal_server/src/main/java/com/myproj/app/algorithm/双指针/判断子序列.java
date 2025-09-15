@@ -14,13 +14,13 @@ package com.myproj.app.algorithm.双指针;
  * @author shenxie
  * @date 2023/12/26
  */
-public class 判定子序列 {
+public class 判断子序列 {
 
     public static void main(String[] args) {
-        System.out.println(isSubsequence("axc", "ahbgdc"));
+        System.out.println(isSubsequenceCopy("axc", "ahbgdc"));
     }
 
-    public static boolean isSubsequence(String s, String t) {
+    public static boolean isSubsequenceCopy(String s, String t) {
         int sl = s.length();
         int tl = t.length();
         if(sl > tl) {

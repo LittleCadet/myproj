@@ -2,6 +2,7 @@ package com.myproj.app.algorithm.区间;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import org.apache.commons.compress.utils.Lists;
@@ -62,6 +63,7 @@ public class 合并区间 {
                 merge.get(merge.size() - 1)[1] = Math.max(R, merge.get(merge.size() - 1)[1]);
             }
         }
+
         return merge.toArray(new int[merge.size()][]);
     }
 

@@ -26,6 +26,8 @@ import java.util.List;
  *          2.2 未到最后一个元素时， 连续的场景。
  *          2.3 到最后一个元素时， 一个都不连续的场景。
  *          2.4 到最后一个元素时， 连续的场景。
+ *      3. 起点： 在 连续 、 断续的时候， 指定。
+ *
  * @author shenxie
  * @date 2023/12/29
  */
@@ -37,36 +39,41 @@ public class 汇总区间 {
     }
 
     public static List<String> summaryRanges(int[] nums) {
-        List<String> sts = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        int start = Integer.MAX_VALUE;
+
         if(nums.length == 1) {
-            sts.add(nums[0] + "");
-            return sts;
+            result.add(nums[0] + "");
+            return result;
         }
-        int start = Integer.MAX_VALUE ;
+
         for(int i = 1; i< nums.length; i++) {
-            if(nums[i] == nums[i-1] + 1) {
+            if(nums[i-1] + 1 == nums[i]) {
                 if(start == Integer.MAX_VALUE) {
-                    start = i-1;
+                    start = i - 1;
                 }
-                // 要考虑到：最后一个元素连续时的场景。
-                if(i == nums.length -1) {
-                    sts.add(nums[start] + "->" + nums[i]);
+                // 最后一个元素，连续
+                if( i == nums.length - 1){
+                    result.add(nums[start] + "->" + nums[i]);
                 }
             }else{
-                // 未到最后一个元素时： 一个都不连续的场景：
+                // 非最后一个元素，但是不连续，逐个逐个区间, 则处理 之前的元素
                 if(start == Integer.MAX_VALUE) {
-                    sts.add(nums[i-1] + "");
+                    result.add(nums[i - 1] + "");
                 }else{
-                    // 未到最后一个元素时， 连续的场景。
-                    sts.add(nums[start] + "->" + nums[i-1]);
+                    // 非最后一个元素，但之前的连续， 则处理 之前的元素
+                    result.add(nums[start] + "->" + nums[i - 1]);
                 }
-                // 要考虑到： 最后一个元素不连续时的场景
-                if(i == nums.length - 1){
-                    sts.add(nums[i]+ "");
+
+                // 最后一个元素了， 但是不连续， 则处理当前元素。
+                if( i == nums.length - 1) {
+                    result.add(nums[i] + "");
                 }
+
+
                 start = Integer.MAX_VALUE;
             }
         }
-        return sts;
+        return result;
     }
 }

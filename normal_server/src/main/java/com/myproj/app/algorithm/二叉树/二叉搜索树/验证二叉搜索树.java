@@ -12,26 +12,30 @@ package com.myproj.app.algorithm.二叉树.二叉搜索树;
  * @author shenxie
  * @date 2023/12/16
  */
-public class 判定是否是有效的二叉搜索树 {
+public class 验证二叉搜索树 {
+
+    /**
+     * 注意： 是 Long 而不是 Integer的最小值， 因为测试用例中包含Integer.MIN_VALUE的测试。
+     */
     static long pre = Long.MIN_VALUE;
 
     public static void main(String[] args) {
         System.out.println(isValidBST(null));
     }
     public static boolean isValidBST(TreeNode root) {
-        return dfs(root);
+        return dfsCopy(root);
     }
 
-    public static boolean dfs(TreeNode root){
+    public static boolean dfsCopy(TreeNode root){
         if(null == root) {
             return true;
         }
-        boolean left = dfs(root.left);
+        boolean left = dfsCopy(root.left);
         if(root.val <= pre) {
             return false;
         }
         pre = root.val;
-        boolean right = dfs(root.right);
+        boolean right = dfsCopy(root.right);
 
         return left && right;
     }

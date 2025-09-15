@@ -19,11 +19,11 @@ package com.myproj.app.algorithm.双指针;
  * @author shenxie
  * @date 2023/12/26
  */
-public class 找到字符串的第一个匹配项的下标 {
+public class 找出字符串的第一个匹配项的下标 {
 
     public static void main(String[] args) {
 //        System.out.println(strStr("sadbutsad", "sad"));
-//        System.out.println(strStr("leetcode", "leeto"));
+//        System.out.println(strStrCopy("leetcode", "leeto"));
         System.out.println(strStrV2("leetcode", "leeto"));
     }
 
@@ -41,7 +41,7 @@ public class 找到字符串的第一个匹配项的下标 {
      *      2. p2如果移动过, 需要将p1回退： 即为 p1-p2 + 1, 防止漏掉字符,
      *      这个特殊处理可以对照测试用例haystack="mississippi", needle="issip" 来看
      */
-    public static int strStr(String haystack, String needle) {
+    public static int strStrCopy(String haystack, String needle) {
         int len1 = haystack.length();
         int len2 = needle.length();
         if (len2 > len1) {

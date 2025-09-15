@@ -24,6 +24,7 @@ public class 盛最多水的容器 {
 
     public static void main(String[] args) {
         System.out.println(maxArea(new int[]{1,8,6,2,5,4,8,3,7}));
+        System.out.println(maxAreaV2(new int[]{1,8,6,2,5,4,8,3,7}));
     }
 
     public static int maxArea(int[] height) {
@@ -45,6 +46,22 @@ public class 盛最多水的容器 {
         }
 
         return sum;
+    }
+
+    public static int maxAreaV2(int[] height) {
+        int result = 0;
+
+        int left = 0;
+        int right = height.length - 1;
+
+        while (left < right) {
+            int tmp = height[left] > height[right] ?
+                    (right - left) * height[right--] :
+                    (right - left) * height[left++];
+            result = Math.max(tmp, result);
+        }
+
+        return result;
     }
 
 }

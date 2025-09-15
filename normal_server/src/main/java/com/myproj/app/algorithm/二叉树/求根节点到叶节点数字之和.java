@@ -16,7 +16,7 @@ package com.myproj.app.algorithm.二叉树;
  * 因此，数字总和 = 12 + 13 = 25
  *
  * 思路：
- *      1. 深度优先算法：
+ *      1. 先序遍历：
  *          难点：如何将根节点到叶子节点的数字拼接起来
  *          解法： preSum * 10 + root.val
  * @author shenxie
@@ -42,7 +42,7 @@ public class 求根节点到叶节点数字之和 {
         // 难点： 如何将根节点到叶子节点的数字拼接起来
         // 解法： preSum * 10 + root.val
         int sum = preSum * 10 + root.val;
-        // 这个判定很重要，代表： 当前dfs循环的正确返回值：即为根节点到叶子节点的数字拼接以后的结果。
+        // 这个判定很重要，代表： 当前叶子节点的计算结果， 因为叶子节点一定满足：left 和 right都是 null
         // 如果没有这个判定， 那么代表dfs循环的返回值为0；【即为该方法的最初的返回值。 】
         if(null == root.left && null == root.right) {
             return sum;

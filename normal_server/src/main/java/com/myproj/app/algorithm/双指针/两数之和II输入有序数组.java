@@ -32,9 +32,9 @@ public class 两数之和II输入有序数组 {
 
     public static void main(String[] args) {
         // 方法一
-        twoSum(new int[]{5,25,75}, 100);
-        // 方法二：
-        twoSumV2(new int[]{5,25,75}, 100);
+//        twoSum(new int[]{5,25,75}, 100);
+//        // 方法二：
+//        twoSumV2(new int[]{5,25,75}, 100);
         // 方法三：
         twoSumV3(new int[]{5,25,75}, 100);
     }

@@ -6,6 +6,20 @@ import java.util.List;
 import java.util.Queue;
 
 /**
+ * 给你二叉树的根节点 root ，返回其节点值的 锯齿形层序遍历 。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。
+ *
+ * 示例 1：
+ * 输入：root = [3,9,20,null,null,15,7]
+ * 输出：[[3],[20,9],[15,7]]
+ *
+ * 示例 2：
+ * 输入：root = [1]
+ * 输出：[[1]]
+ *
+ * 示例 3：
+ * 输入：root = []
+ * 输出：[]
+ *
  * 思路：
  *      1. 层序遍历：
  *          注意：
@@ -32,21 +46,27 @@ public class 二叉树的锯齿形层序遍历 {
     }
 
 //    public static void main(String[] args) {
-//        Deque<Integer> nums = new LinkedList<>();
-//        nums.offer(1);
-//        nums.offer(2);
-//        nums.offer(3);
-//        System.out.println(nums);
-//        Deque<Integer> nums2 = new LinkedList<>();
-//        nums2.offerFirst(1);
-//        nums2.offerFirst(2);
-//        nums2.offerFirst(3);
-//        System.out.println(nums2);
-//        Deque<Integer> nums3 = new LinkedList<>();
-//        nums3.offerLast(1);
-//        nums3.offerLast(2);
-//        nums3.offerLast(3);
-//        System.out.println(nums3);
+////        Deque<Integer> nums = new LinkedList<>();
+////        nums.offer(1);
+////        nums.offer(2);
+////        nums.offer(3);
+////        System.out.println(nums);
+////        System.out.println("=============");
+////        int size = nums.size();
+////        for(int i = 0 ; i<size; i++) {
+////            System.out.println(nums.poll());
+////        }
+//
+////        Deque<Integer> nums2 = new LinkedList<>();
+////        nums2.offerFirst(1);
+////        nums2.offerFirst(2);
+////        nums2.offerFirst(3);
+////        System.out.println(nums2);
+////        Deque<Integer> nums3 = new LinkedList<>();
+////        nums3.offerLast(1);
+////        nums3.offerLast(2);
+////        nums3.offerLast(3);
+////        System.out.println(nums3);
 //    }
 
     /**
@@ -63,24 +83,28 @@ public class 二叉树的锯齿形层序遍历 {
         // 必须要为true ， 因为根节点必定在列表的第一个元素的位置。
         boolean reverse = true;
         while( ! queue.isEmpty()){
+            // 注意： 一定要吧 queue.size 单独拿出来写。
+            // 如果换成 for(int i = 0 ; i<queue.size ; i++) {},  就是错误的， 因为queue在循环体内，在offer元素。
             int size = queue.size();
             Deque<Integer> nums = new LinkedList<>();
             while(size != 0){
                 TreeNode node = queue.poll();
 
-                if(reverse){
+                if( ! reverse){
+                    // 栈模型：先进后出
                     // 从栈底插入， 其余元素向后移动。
                     nums.offerFirst(node.val);
                 }else{
+                    // 队列模型：先进先出
                     // 从栈顶插入， 其余元素向前移动。
                     // 与add的结果相同。
                     nums.offerLast(node.val);
                 }
-                if(node.right != null) {
-                    queue.offer(node.right);
-                }
                 if(node.left != null) {
                     queue.offer(node.left);
+                }
+                if(node.right != null) {
+                    queue.offer(node.right);
                 }
                 size --;
             }

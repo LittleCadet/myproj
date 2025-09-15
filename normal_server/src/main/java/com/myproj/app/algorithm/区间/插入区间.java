@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class 插入区间 {
     public static void main(String[] args) {
-        insert(null, null);
+        insertCopy(null, null);
     }
 
-    public static int[][] insert(int[][] intervals, int[] newInterval) {
+    public static int[][] insertCopy(int[][] intervals, int[] newInterval) {
         // 将newInterval合并到intervals中。
         int[][] ints = new int[intervals.length + 1][2];
         for(int i = 0; i<intervals.length; i++) {

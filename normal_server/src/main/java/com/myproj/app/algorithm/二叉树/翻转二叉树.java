@@ -4,7 +4,10 @@ package com.myproj.app.algorithm.二叉树;
  * 题目：
  * 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。 即为： 镜像这个二叉树。
  * 思路：
- * 深度优先算法： 递归算法的本质： 一定要看递归后面的步骤。
+ *      方法1：后序遍历：
+ *          - 即为先遍历， 最后交换。
+ *      方法2：先序遍历：
+ *          - 即为先交换，再遍历
  *
  *
  * @author shenxie
@@ -16,6 +19,9 @@ public class 翻转二叉树 {
         invertTree(null);
     }
 
+    /**
+     * 方法1： 后续遍历
+     */
     public static TreeNode invertTree(TreeNode root) {
         if(null == root) {
             return null;
@@ -24,6 +30,24 @@ public class 翻转二叉树 {
         TreeNode right = invertTree(root.right);
         root.left = right;
         root.right = left;
+        return root;
+    }
+
+
+    /**
+     * 方法2： 先序遍历
+     */
+    public TreeNode invertTreeV2(TreeNode root) {
+        if( null == root) {
+            return root;
+        }
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        invertTreeV2(root.left);
+        invertTreeV2(root.right);
+
         return root;
     }
 

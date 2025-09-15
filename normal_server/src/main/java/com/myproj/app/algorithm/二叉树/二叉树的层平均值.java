@@ -11,7 +11,7 @@ import java.util.Queue;
  * 思路：
  * 层序遍历：
  *      1. 对每一层的值相加， 之后求avg即可。
- *      2. 层序遍历的核心： for循环queue.size次， 逐个放入LinkedList中即可。
+ *      2. 层序遍历的核心【是队列模型， 而不是栈模型】： for循环queue.size次， 逐个放入LinkedList中即可。
  *
  * @author shenxie
  * @date 2023/12/13
@@ -21,12 +21,15 @@ public class 二叉树的层平均值 {
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> res = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
+        // 注意： 必须是队列模型：offer - poll,  而不是栈模型： push - pop.
         queue.offer(root);
         while( ! queue.isEmpty()) {
+            // 这里只能用double修饰， 不能使用int, 不然res的元素放不进去。
             double sum = 0;
             int size = queue.size();
             for(int i = 0; i< size; i++){
                 TreeNode node = queue.poll();
+                // 累加要在这里做， 这才是这一层的元素， 如果是 sum += node.left.val 或者 sum += node.left.val 这是下一层的元素了。
                 sum += node.val;
                 if(null != node.left){
                     queue.offer(node.left);

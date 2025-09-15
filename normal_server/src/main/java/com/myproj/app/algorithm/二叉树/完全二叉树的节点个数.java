@@ -14,6 +14,7 @@ public class 完全二叉树的节点个数 {
 
     public static void main(String[] args) {
         countNodes(null);
+        countNodesV2(null);
     }
 
     public static int countNodes(TreeNode root) {
@@ -21,6 +22,16 @@ public class 完全二叉树的节点个数 {
             return 0;
         }
         return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    public static int countNodesV2(TreeNode root) {
+        if(null == root) {
+            return 0 ;
+        }
+        int left = countNodes(root.left) + 1;
+        int right = countNodes(root.right) + 1;
+        // 当前节点计算了两次， 所以 -1
+        return left + right - 1;
     }
 
     public static class TreeNode {

@@ -24,15 +24,17 @@ import java.util.Map;
  * @author shenxie
  * @date 2023/12/26
  */
-public class 从中序和后序遍历序列构造二叉树 {
+public class 从中序与后序遍历序列构造二叉树 {
 
     public static void main(String[] args) {
-        TreeNode treeNode = buildTree(new int[]{9,3,15,20,7}, new int[]{9,15,7,20,3});
+        TreeNode treeNode = buildTreeCopy(new int[]{9,3,15,20,7}, new int[]{9,15,7,20,3});
         System.out.println(treeNode);
     }
 
     static Map<Integer, Integer> map = new HashMap<>();
-    public static TreeNode buildTree(int[] inorder, int[] postorder) {
+    public static TreeNode buildTreeCopy(int[] inorder, int[] postorder) {
+        // 一定要使用中序遍历的数组来形成map: 因为中序遍历：先左子树， 再root节点， 最后右子树。
+        // 所以根据前序 / 后序遍历， 可知道 root节点的值的情况下： 可以推测出 左右子树的剩余元素个数
         int n = inorder.length;
         for(int i = 0; i<n; i++) {
             map.put(inorder[i], i );
@@ -47,8 +49,9 @@ public class 从中序和后序遍历序列构造二叉树 {
 
 
         int val = postorder[postorder_right];
+        // 给中序遍历的左右子树使用
         int root_number = map.get(val);
-        // 剩余左子树的个数
+        // 给后序遍历的左右子树使用：剩余左子树的个数
         int size_left_subtree = root_number - inorder_left ;
 
         // 确定根节点。
@@ -56,6 +59,7 @@ public class 从中序和后序遍历序列构造二叉树 {
 
         // 确定左子树。
         // 后序遍历的【左子树的起点 到 左子树的起点 + size_left_subtree -1】 对应中序遍历的【左子树起点 到 root_number - 1】
+        // 后序遍历的左子树区间是【左子树的起点 到 左子树的起点 + size_left_subtree -1】的原因： 后序遍历： 是先遍历左子树， 再遍历右子树， 最后遍历root节点。
         root.left = process(inorder, postorder, inorder_left, root_number - 1, postorder_left ,
                 postorder_left + size_left_subtree -1);
 
@@ -67,6 +71,8 @@ public class 从中序和后序遍历序列构造二叉树 {
 
         return root;
     }
+
+
 
     public static class TreeNode {
         int val;

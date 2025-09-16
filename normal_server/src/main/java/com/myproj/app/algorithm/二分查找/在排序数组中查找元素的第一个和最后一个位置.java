@@ -34,6 +34,7 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
                 l = mid + 1;
             }else if (nums[mid] == target) {
                 index1 = mid;
+                // 假设： 在左边， 即为 r = mid -1
                 // 不能是 r = mid + 1: 以为r只能变小， l只能变大， 不然会导致while(true)的死循环
                 r = mid -1;
             }else{
@@ -50,6 +51,7 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
                 l = mid + 1;
             }else if (nums[mid] == target) {
                 index2 = mid;
+                // 假设： 在右边： 即为 l = mid + 1
                 // 不能是 l = mid - 1: 以为r只能变小， l只能变大， 不然会导致while(true)的死循环
                 l = mid + 1;
             }else{

@@ -20,8 +20,12 @@ public class 二叉树的最大深度 {
         treeNode.left = new TreeNode(3);
         treeNode.right = new TreeNode(4);
         System.out.println(maxDepthCopy(treeNode));
+        System.out.println(maxDepthCopyV2(treeNode));
     }
 
+    /**
+     * 方法1
+     */
     public static int maxDepthCopy(TreeNode root) {
         if (root == null) {
             return 0;
@@ -32,6 +36,18 @@ public class 二叉树的最大深度 {
         int right = maxDepthCopy(root.right);
         return Math.max(left, right) + 1;
 
+    }
+
+    /**
+     * 方法2
+     */
+    private static int maxDepthCopyV2 (TreeNode root) {
+        if(null == root) {
+            return 0;
+        }
+        int leftDepth = maxDepthCopyV2(root.left) + 1;
+        int rightDepth = maxDepthCopyV2(root.right) + 1;
+        return Math.max(leftDepth, rightDepth);
     }
 
     public static class TreeNode {

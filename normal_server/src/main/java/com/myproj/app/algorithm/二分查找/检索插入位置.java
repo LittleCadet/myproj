@@ -16,7 +16,7 @@ public class 检索插入位置 {
 
     public static void main(String[] args) {
 //        System.out.println(searchInsertV1Copy(new int[]{1,3,5,6}, 4));
-        System.out.println(searchInsertV2Copy(new int[]{1,3,5,6}, 2));
+        System.out.println(searchInsertV2Copy(new int[]{1,3,5,6}, 3));
     }
 
     /**
@@ -45,10 +45,11 @@ public class 检索插入位置 {
             }else if(target < nums[mid]){
                 right = mid - 1;
             }else{
+                // 找到了， 直接return
                 return mid;
             }
         }
-        // 返回left的原因：
+        // 未找到，就返回left, 原因：插入的位置要靠左。
         // 1. left = mid + 1,  在mid前面。  而 right = mid - 1, 在mid后面。
         return left;
     }

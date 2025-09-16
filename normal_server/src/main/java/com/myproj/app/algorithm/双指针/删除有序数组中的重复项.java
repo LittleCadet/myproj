@@ -24,8 +24,7 @@ public class 删除有序数组中的重复项 {
     }
 
     public static int removeDuplicatesCopy(int[] nums) {
-        // 快指针从1开始的原因： 与慢指针从0开始刚好可以完成对比。
-        int fast = 1;
+        int fast = 0;
         int slow = 0;
         int length = nums.length;
         while(fast < length ) {

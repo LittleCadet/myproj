@@ -35,6 +35,7 @@ public class 二叉树的右视图 {
             maxHigh = high;
         }
         // 这里不能使用 high ++ ,因为在一层中， 左右树的高度相同， 而high++ 会赋值给high。 一旦赋值， 则root.left的high 值也会变更。
+        // 先遍历右子树， 再左子树：因为是右视图： 代表： 每一层只取最右边节点的值
         dfs(root.right,high+1);
         dfs(root.left,high+1);
     }

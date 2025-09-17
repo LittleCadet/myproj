@@ -14,13 +14,20 @@ import java.util.Set;
  * 解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
  *
  * 思路：
- *      1. 连续的元素： 翻译下：就是nums[i-1] + 1 = nums[i]
+ *      1. 方法1： 排序 + 遍历： 但排序的时间复杂度： 至少 0 log(N)。  不符合题意：
+ *          连续的元素： 翻译下：就是nums[i-1] + 1 = nums[i]
+ *      2. 方法2：set容器：
+ *          核心： 每个数都判断一次： 这个数是不是连续序列的开头那个数
+ *
  * @author shenxie
  * @date 2023/12/28
  */
 public class 最长连续序列 {
 
-    public int longestConsecutive(int[] nums) {
+    /**
+     * 方法1： 排序 + 遍历
+     */
+    public int longestConsecutiveCopy(int[] nums) {
         if(nums.length == 0) {
             return 0;
         }
@@ -46,4 +53,33 @@ public class 最长连续序列 {
         }
         return maxLength;
     }
+
+
+    /**
+     * 方法2： set容器
+     */
+    public static int longestConsecutiveV2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for(int num : nums) {
+            set.add(num);
+        }
+
+        int result = 0 ;
+        for(int num : set) {
+            // 如果set中包含 num - 1, 则代表：当前num 一定不是连续的数中的最小值。
+            // 所以 这里是 if( ! set.contains(num - 1)); 代表： 该数 可能是连续的数中的最小值。
+            if( ! set.contains(num - 1)) {
+                int tmp = num;
+                int tmpResult = 1 ;
+                // while循环， 当存在连续的数时，  tmpResult ++;
+                while(set.contains( ++ tmp)) {
+                    tmpResult ++;
+                }
+                result = Math.max(result, tmpResult);
+            }
+        }
+        return result;
+    }
+
+
 }

@@ -29,7 +29,7 @@ import java.util.Map;
  * 输出: 1994
  * 解释: M = 1000, CM = 900, XC = 90, IV = 4.
  *
- * 思路：
+ * 思路：与{@link 整数转罗马数字}类似。
  * 1. map ： 录入所有罗马数组对应的值。
  * 2. 罗马数字中小的数字在大的数字的右边， 代表： 累加。
  * 3. 罗马数字中小的数字在大的数字的左边， 代表： 累减。
@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public class 罗马数字转整数 {
 
-    public int romanToInt(String s) {
+    public int romanToIntCopy(String s) {
         int sum = 0;
         Map<Character, Integer> map = new HashMap<>();
         map.put('I', 1);

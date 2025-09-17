@@ -42,14 +42,13 @@ import java.util.Set;
 public class 快乐数 {
 
     public static void main(String[] args) {
-        System.out.println(isHappy(19));
+        System.out.println(isHappyCopy(19));
     }
 
-    public static boolean isHappy(int n) {
+    public static boolean isHappyCopy(int n) {
         // 难点1： 如何将一个数字拆分为一个个数字 。
         Set<Integer> set = new HashSet<>();
-        while( n != 1 && ! set.contains(n)){
-            set.add(n);
+        while( n != 1 && set.add(n)){
             n = processNums(n);
         }
         return n == 1;

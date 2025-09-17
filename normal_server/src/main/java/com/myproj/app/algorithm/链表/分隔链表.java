@@ -26,10 +26,10 @@ public class 分隔链表 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(2);
         head.next.next.next.next = new ListNode(5);
-        System.out.println(partition(head, 3));
+        System.out.println(partitionCopy(head, 3));
     }
 
-    public static ListNode partition(ListNode head, int x) {
+    public static ListNode partitionCopy(ListNode head, int x) {
         // 用2个哑巴节点 模拟2个链表
         ListNode small = new ListNode(0);
         ListNode large = new ListNode(0);
@@ -47,8 +47,6 @@ public class 分隔链表 {
             }
             head = head.next;
         }
-        // 需要置空的原因： 防止放入large链表的节点 含有 next的引用。 所以这里要断开。
-        largeMove.next = null;
         // small节点的next 给到 large的首节点即可。
         smallMove.next = large.next;
         return small.next;

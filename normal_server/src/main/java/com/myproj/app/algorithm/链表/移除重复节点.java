@@ -11,6 +11,9 @@ import java.util.Set;
  *  输出：[1, 2, 3]
  *
  * 思路：
+ *       与{@link 删除排序链表中的重复元素II}相似：依旧遵循： pre.next = cur.next; 只是站的角度不同：
+ *         // 该题：是站在当前节点 来执行删除操作。所以直接从原链表的头节点开始。
+ *         // 后者：是站在重复节点的上一个节点来执行删除操作。 所以要从dummy的头节点开始。
  *      1. 方法1： dummy节点 + hashSet：
  *          1.1 核心点： 链表去重： 当前节点： 必须用dummy.next来表示， 而不是dummy.
  *                      因为： 去重必定需要： dummy.next = dummy.next.next
@@ -32,7 +35,7 @@ public class 移除重复节点 {
         head.next.next.next.next = new ListNode(2);
         head.next.next.next.next.next = new ListNode(1);
 //        removeDuplicateNodes(head);
-        removeDuplicateNodesV2(head);
+        removeDuplicateNodesV2Copy(head);
 //        removeDuplicateNodesV3(head);
     }
 
@@ -62,7 +65,7 @@ public class 移除重复节点 {
     /**
      * 方法1： 当前节点用dummy.next来表示。
      */
-    public static ListNode removeDuplicateNodesV2(ListNode head) {
+    public static ListNode removeDuplicateNodesV2Copy(ListNode head) {
         if (head == null) {
             return head;
         }

@@ -15,7 +15,7 @@ import java.util.Map;
  * 输入：s = "foo", t = "bar"
  * 输出：false
  *
- * 思路：
+ * 思路：与 {@link 单词规律} 是同一类型的。
  *      1. 双map判定： 因为： 根据题意： s与t是双射关系。
  *
  * @author shenxie
@@ -24,10 +24,10 @@ import java.util.Map;
 public class 同构字符串 {
 
     public static void main(String[] args) {
-        System.out.println(isIsomorphic("egg", "add"));
+        System.out.println(isIsomorphicCopy("egg", "add"));
     }
 
-    public static boolean isIsomorphic(String s, String t) {
+    public static boolean isIsomorphicCopy(String s, String t) {
         Map<Character, Character> s2t = new HashMap<>();
         Map<Character, Character> t2s = new HashMap<>();
         for(int i = 0; i< s.length(); i++) {

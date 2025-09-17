@@ -26,7 +26,7 @@ package com.myproj.app.algorithm.数组;
  */
 public class 最长公共前缀 {
 
-    public String longestCommonPrefix(String[] strs) {
+    public String longestCommonPrefixCopy(String[] strs) {
         String str = strs[0];
         char[] chars = str.toCharArray();
         String tmp = "";
@@ -37,6 +37,7 @@ public class 最长公共前缀 {
                 String element = strs[j];
                 // 逐个元素匹配 拼接后的字符。 当不满足时， 返回即可
                 if( ! element.startsWith(tmp)) {
+                    // 只能用tmp做截取。
                     return tmp.substring(0, tmp.length() -1);
                 }
             }

@@ -30,41 +30,33 @@ import java.util.List;
  */
 public class 简化路径 {
     public static void main(String[] args) {
-        System.out.println(simplifyPath("/home//foo/"));
+        System.out.println(simplifyPathCopy("/home/user/Documents/../Pictures"));
     }
 
-    public static String simplifyPath(String path) {
+    public static String simplifyPathCopy(String path) {
+        String[] names = path.split("/");
         Deque<String> stack = new LinkedList<>();
-        List<String> excludes = new ArrayList<>();
-        StringBuffer buffer = new StringBuffer();
-        boolean flag = false;
-        excludes.add(".");
-        excludes.add("..");
-        String[] sts = path.split("/");
-        // 将非“.” 和 “..”的路径塞入栈中， 当遇到“..”时， 从栈顶取出。
-        for (int i = 0; i < sts.length; i++) {
-            if (!excludes.contains(sts[i]) && !sts[i].isEmpty()) {
-                // 塞到栈顶
-                stack.offerLast(sts[i]);
-            } else if (sts[i].equals("..")) {
-                // 从栈顶poll出来
-                stack.pollLast();
+        for (String name : names) {
+            if ("..".equals(name)) {
+                if (!stack.isEmpty()) {
+                    stack.pollLast();
+                }
+            } else if (name.length() > 0 && !".".equals(name)) {
+                // 不要想 offerLast 是栈 还是 offerFirst是栈，
+                // 而是 当前用last 放入， 又用last取出， 就是栈，
+                // 当前first放入， 又first取出， 就是栈
+                stack.offerLast(name);
             }
         }
-        buffer.append("/");
-        // 将剩余stack中的路径， 从栈底 poll出来。
-        while (!stack.isEmpty()) {
-            // 从栈底poll出来。
-            String string = stack.pollFirst();
-            if (string.isEmpty()) {
-                continue;
+        StringBuffer ans = new StringBuffer();
+        if (stack.isEmpty()) {
+            ans.append('/');
+        } else {
+            while (!stack.isEmpty()) {
+                ans.append('/');
+                ans.append(stack.pollFirst());
             }
-            if (flag) {
-                buffer.append("/");
-            }
-            buffer.append(string);
-            flag = true;
         }
-        return buffer.toString();
+        return ans.toString();
     }
 }

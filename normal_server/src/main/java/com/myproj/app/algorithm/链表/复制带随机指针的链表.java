@@ -34,19 +34,19 @@ import java.util.Map;
 public class 复制带随机指针的链表 {
 
     public static void main(String[] args) {
-        copyRandomList(null);
+        copyRandomListCopy(null);
     }
 
     static Map<Node, Node> map = new HashMap<>();
-    public static Node copyRandomList(Node head) {
+    public static Node copyRandomListCopy(Node head) {
         if(head == null) {
             return null;
         }
         if(! map.containsKey(head)){
             Node copy = new Node(head.val);
             map.put(head, copy);
-            copy.next = copyRandomList(head.next);
-            copy.random = copyRandomList(head.random);
+            copy.next = copyRandomListCopy(head.next);
+            copy.random = copyRandomListCopy(head.random);
         }
         return map.get(head);
     }

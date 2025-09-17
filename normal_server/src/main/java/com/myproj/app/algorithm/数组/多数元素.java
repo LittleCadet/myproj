@@ -22,7 +22,7 @@ import java.util.Map;
 public class 多数元素 {
 
     public static void main(String[] args) {
-        System.out.println(majorityElementV1(new int[]{3,2,3}));
+        System.out.println(majorityElementV2Copy(new int[]{3,2,3}));
     }
 
     /**
@@ -48,7 +48,7 @@ public class 多数元素 {
      *      因为必定存在解： 即为超过nums.length/2 次数的元素必定存在。
      *      所以：nums[nums.length / 2]必定是解。
      */
-    public static int majorityElementV2(int[] nums) {
+    public static int majorityElementV2Copy(int[] nums) {
         Arrays.sort(nums);
         return nums[nums.length / 2];
     }

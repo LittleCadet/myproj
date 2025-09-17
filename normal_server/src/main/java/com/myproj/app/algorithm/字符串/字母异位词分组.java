@@ -2,6 +2,7 @@ package com.myproj.app.algorithm.字符串;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class 字母异位词分组 {
         Map<String, List<String>> map = new HashMap<String, List<String>>();
         for (String str : strs) {
             char[] array = str.toCharArray();
+            // 排序的api: Arrays.sort(array) , Collections.sort(list),  list.sort(new Comparator<>(){});
             Arrays.sort(array);
             String key = new String(array);
             // 有则返回， 没有则用default；

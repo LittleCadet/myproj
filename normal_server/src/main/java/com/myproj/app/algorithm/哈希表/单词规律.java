@@ -11,7 +11,7 @@ import java.util.Map;
  * 输入: pattern = "abba", s = "dog cat cat dog"
  * 输出: true
  *
- * 思路：
+ * 思路：与 {@link 同构字符串} 是同一类型的。
  *      1. 双map：
  *          核心思想： 与同构字符串相同： pattern 与 s的关系：是双射关系。
  *                  即为：pattern的每个字符都要与 s中的每个词 一一对应。
@@ -21,12 +21,14 @@ import java.util.Map;
  */
 public class 单词规律 {
     public static void main(String[] args) {
-        System.out.println(wordPattern("abba", "dog cat cat dog"));
+        System.out.println(wordPatternCopy("abba", "dog cat cat dog"));
     }
 
-    public static boolean wordPattern(String pattern, String s) {
+    public static boolean wordPatternCopy(String pattern, String s) {
 
+        // k-v: pattern的Character - s的每个单词
         Map<Character, String> p2s = new HashMap<>();
+        // k-v: s的每个单词 - pattern的Character, 避免出现 “abba , dog dog dog dog” 为true的场景。 所以需要双重校验
         Map<String, Character> s2t = new HashMap<>();
         String[] strs = s.split("\\s+");
         if(pattern.length() != strs.length) {

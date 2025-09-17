@@ -3,6 +3,8 @@ package com.myproj.app.algorithm.字符串;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -29,13 +31,44 @@ import java.util.List;
 public class 反转字符串中的单词 {
 
     public static void main(String[] args) {
-        System.out.println(reverseWords("  hello world  "));
+//        System.out.println(reverseWordsCopy("  hello world  "));
+        System.out.println(reverseWordsCopyV2("a good   example"));
     }
 
-    public static String reverseWords(String s) {
+    /**
+     * 方法1： api
+     */
+    public static String reverseWordsCopy(String s) {
         s = s.trim();
         List<String> strs = Arrays.asList(s.split("\\s+"));
         Collections.reverse(strs);
+        // 注意api的写法
         return String.join(" ", strs);
+    }
+
+    /**
+     * 方法2：queue
+     */
+    public static String reverseWordsCopyV2(String s) {
+        String result = "";
+
+        Deque<String> queue = new LinkedList<>();
+        String[] sts = s.trim().split(" ");
+        for(int i = 0 ; i<sts.length; i++) {
+            if( ! sts[i].isEmpty() && ! sts[i].equals("")) {
+                queue.addFirst(sts[i]);
+            }
+
+        }
+        int size = queue.size();;
+        for(int i = 0 ; i<size; i++) {
+            if(i == 0) {
+                result = queue.poll();
+            }else{
+                result = result + " " + queue.poll();
+            }
+
+        }
+        return result;
     }
 }

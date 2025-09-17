@@ -24,10 +24,10 @@ public class 返回倒数第k个节点 {
         node.next.next.next = new ListNode(4);
         node.next.next.next.next = new ListNode(5);
 
-        System.out.println(kthToLast(node, 2));
+        System.out.println(kthToLastCopy(node, 2));
     }
 
-    public static int kthToLast(ListNode head, int k) {
+    public static int kthToLastCopy(ListNode head, int k) {
         ListNode dummy = head;
         int count = 0;
         // 对链表计数。

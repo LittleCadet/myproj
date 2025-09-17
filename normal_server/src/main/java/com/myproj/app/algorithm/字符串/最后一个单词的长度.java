@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.字符串;
 
+import com.myproj.app.algorithm.哈希表.单词规律;
+
 /**
  * 题目：
  * 给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中 最后一个 单词的长度。
@@ -12,7 +14,7 @@ package com.myproj.app.algorithm.字符串;
  *
  * 思路：
  *      1. 难点： 在于如何将字符串按照N个空格分割为数组。
- *              表达方式： s.split("\\s+");
+ *              表达方式： s.split("\\s+");   与之类似的：{@link 反转字符串中的单词} 和 {@link 单词规律}
  *
  * @author shenxie
  * @date 2023/12/26
@@ -20,10 +22,10 @@ package com.myproj.app.algorithm.字符串;
 public class 最后一个单词的长度 {
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLastWord("   fly me   to   the moon  "));
+        System.out.println(lengthOfLastWordCopy("   fly me   to   the moon  "));
     }
 
-    public static int lengthOfLastWord(String s) {
+    public static int lengthOfLastWordCopy(String s) {
         s = s.trim();
         String[] strs = s.split("\\s+");
         return strs[strs.length-1].length();

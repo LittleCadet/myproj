@@ -22,13 +22,13 @@ package com.myproj.app.algorithm.字符串;
  * @author shenxie
  * @date 2023/12/26
  */
-public class 验证回文字符串 {
+public class 验证回文串 {
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome("race a car"));
+        System.out.println(isPalindromeCopy("race a car"));
     }
 
-    public static boolean isPalindrome(String s) {
+    public static boolean isPalindromeCopy(String s) {
         // 难点： 如何移除非字母数字的字符。
         s = s.trim().toLowerCase();
         StringBuffer buffer = new StringBuffer();

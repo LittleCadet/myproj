@@ -34,6 +34,10 @@ import java.util.LinkedList;
  *      1.2 第二个栈： 维护最小值的栈：即为当前值和 栈顶元素比较， 放入较小的元素即可。 这样栈顶： 就是最小的。
  *      1.3 注意：
  *              a. 初始化时： 必须推入一个最大值， 不然peek为空，Math.min会报NPE
+ *      1.4 push-pop: 是栈模型: 先入后出 ，        offer-poll: 是先入先出： 二叉树的层序遍历多用这个
+ *           // 不要想 offerLast 是栈 还是 offerFirst是栈，
+ *                 // 而是 当前用last 放入， 又用last取出， 就是栈，
+ *                 // 当前first放入， 又first取出， 就是栈
  *
  * @author shenxie
  * @date 2023/12/29
@@ -42,11 +46,18 @@ public class 最小栈 {
     public static void main(String[] args) {
         Deque<Integer> minStack = new LinkedList<>();
         minStack.push(Integer.MAX_VALUE);
-        minStack.push(Math.min(minStack.peek(), 5));
-        minStack.push(Math.min(minStack.peek(), 3));
-        minStack.push(Math.min(minStack.peek(), 6));
-        minStack.push(Math.min(minStack.peek(), 7));
+//        minStack.push(Math.min(minStack.peek(), 5));
+//        minStack.push(Math.min(minStack.peek(), 3));
+//        minStack.push(Math.min(minStack.peek(), 6));
+//        minStack.push(Math.min(minStack.peek(), 7));
+        minStack.push(5);
+        minStack.push(3);
+        minStack.push(6);
+        minStack.push(7);
         System.out.println(minStack);
+        System.out.println(minStack.pop());
+        System.out.println(minStack.pop());
+        System.out.println(minStack.pop());
     }
 
     class MinStack {
@@ -62,6 +73,7 @@ public class 最小栈 {
 
         public void push(int val) {
             stack.push(val);
+            // 最小栈的意思是：塞入当前的最小值。
             minStack.push(Math.min(minStack.peek(), val));
         }
 

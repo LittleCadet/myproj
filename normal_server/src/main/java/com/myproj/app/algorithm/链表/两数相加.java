@@ -23,6 +23,8 @@ package com.myproj.app.algorithm.链表;
  *      第二个节点：tail = tail.next = new ListNode();
  *      使用的时候， 从head开始。
  *
+ * 3. 更友好的解法：{@link com.myproj.app.algorithm_二刷.链表.两数相加}
+ *
  *
  *
  * @author shenxie

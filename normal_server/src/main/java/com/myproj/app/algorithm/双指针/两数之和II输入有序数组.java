@@ -22,7 +22,7 @@ import java.util.Map;
  *  方法2： 首尾双指针：
  *      核心思想： 类似于二分法。
  *  方法3【推荐】： hashMap:
- *      该方法与《两数之和》一致。
+ *      该方法与 {@link com.myproj.app.algorithm.哈希表.两数之和}一致。
  *      核心思想： 将数和索引 放入map中，之后判定map.containesKey(target - numbers[i]);即可
  *
  * @author shenxie
@@ -67,30 +67,25 @@ public class 两数之和II输入有序数组 {
     }
 
     /**
-     * 方法二： 首尾双指针： 类似于： 二分法：
+     * 方法二： 首尾双指针： 类似于： 二分法：但与二分法不一样的是：
+     * 二分法每次都是检索范围 缩小一半。
+     * 首尾双指针 多数情况下， 是每次缩进一个元素。
      *
      */
     public static int[] twoSumV2(int[] numbers, int target) {
-        int n = numbers.length;
-        int l = 0, r = n - 1;
-        int sum = 0;
-        int[] ans = new int[2];
-
-        while(l < r ) {
-            sum = numbers[l] + numbers[r];
-            if(target == sum){
-                ans[0] = l + 1;
-                ans[1] = r + 1;
+        int left = 0 ;
+        int right = numbers.length - 1;
+        while(left < right) {
+            int sum = numbers[left] + numbers[right];
+            if(sum > target) {
+                right --;
+            }else if (sum < target) {
+                left ++;
+            }else{
                 break;
             }
-
-            if(target > sum) {
-                l++;
-            }else{
-                r--;
-            }
         }
-        return ans;
+        return new int[]{left +1, right + 1};
     }
     public static int[] twoSumV3(int[] numbers, int target) {
         Map<Integer, Integer> map = new HashMap<>();

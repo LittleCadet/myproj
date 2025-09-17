@@ -34,17 +34,17 @@ public class 删除链表的倒数第N个节点 {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
         // 方法一：
-//        ListNode listNode = removeNthFromEnd(head, 2);
+//        ListNode listNode = removeNthFromEndCopy(head, 2);
         // 方法2：
-        ListNode listNode = removeNthFromEndV2(head, 2);
+        ListNode listNode = removeNthFromEndV2Copy(head, 2);
         // 方法3
-//        ListNode listNode = removeNthFromEndV3(head, 2);
+//        ListNode listNode = removeNthFromEndV3Copy(head, 2);
     }
 
     /**
      * dummy节点 + 计算链表长度
      */
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
+    public static ListNode removeNthFromEndCopy(ListNode head, int n) {
         // 难点： 不知道链表：共有多少个节点。
         // 不能声明数组： 因为不知道数组的大小。
         int count = 1;
@@ -73,7 +73,7 @@ public class 删除链表的倒数第N个节点 {
      *  push() + pop() + peek();
      *
      */
-    public static ListNode removeNthFromEndV2(ListNode head, int n) {
+    public static ListNode removeNthFromEndV2Copy(ListNode head, int n) {
         ListNode dummy = new ListNode(0, head);
         Deque<ListNode> stack = new LinkedList<ListNode>();
         ListNode cur = dummy;
@@ -100,10 +100,10 @@ public class 删除链表的倒数第N个节点 {
      * 双指针原理： 让first指针领先second指针n个位置， 这样first指到null时【即为链表最后一个节点的下一个节点】，
      *              second刚好在倒数n个节点的前一个节点。 再通过删除第n个节点即可。 second.next = second.next.next;
      */
-    public static ListNode removeNthFromEndV3(ListNode head, int n) {
+    public static ListNode removeNthFromEndV3Copy(ListNode head, int n) {
         ListNode dummy = new ListNode(0, head);
         ListNode first = head;
-        // 原因： first指针：需要从第1个节点， 移动到第null个节点【链表最后一个节点的下一个节点】。
+        // first是head , 而second是dummy的原因： first指针：需要从第1个节点， 移动到第null个节点【链表最后一个节点的下一个节点】。
         // 所以second指针： 需要从第0个节点， 移动到 链表的最后一个节点。
         ListNode second = dummy;
         // 让first领先second指针n个位置。

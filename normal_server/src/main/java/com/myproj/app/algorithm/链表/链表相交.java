@@ -47,14 +47,14 @@ public class 链表相交 {
         headB.next.next.next.next = new ListNode(4);
         headB.next.next.next.next.next = new ListNode(5);
 
-        System.out.println(getIntersectionNodeV1(headA, headB));
+        System.out.println(getIntersectionNodeV1Copy(headA, headB));
         System.out.println(getIntersectionNodeV2(headA, headB));
     }
 
     /**
      * 方法1： HashSet
      */
-    public static ListNode getIntersectionNodeV1(ListNode headA, ListNode headB) {
+    public static ListNode getIntersectionNodeV1Copy(ListNode headA, ListNode headB) {
         HashSet<ListNode> set = new HashSet<>();
         while(headA != null) {
             set.add(headA);

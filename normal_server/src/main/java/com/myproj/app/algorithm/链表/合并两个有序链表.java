@@ -18,6 +18,8 @@ package com.myproj.app.algorithm.链表;
  *      跳出递归的条件： 两个链表任意一个链表为null 则返回。
  *      递归： 两个链表的值 比较大小的时候， 递归， 并在递归完成时， 赋值即可。
  *
+ * 2. 更多解法： 详见： {@link com.myproj.app.algorithm_二刷.链表.合并两个有序链表}
+ *
  *
  * @author shenxie
  * @date 2023/12/10

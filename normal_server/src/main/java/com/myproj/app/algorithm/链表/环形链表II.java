@@ -17,6 +17,7 @@ import java.util.Set;
  *
  * 思路：
  *      1. 方法1： hashSet。
+ *          与{@link 环形链表}类似： 不同的是： 该题是找出环形链表：入环的第一个节点， 而 后者是判定是否有环
  *      2. 方法2： 快慢指针：
  *          2.1 slow = fast: 代表有环。
  *          2.2 入环节点：在head = slow时， 返回head即可
@@ -32,14 +33,14 @@ public class 环形链表II {
         node.next.next = new ListNode(0);
         node.next.next.next = new ListNode(-4, node.next);
 
-//        System.out.println(detectCycle(node));
+//        System.out.println(detectCycleCopy(node));
         System.out.println(detectCycleV2(node));
     }
 
     /**
      * 方法1：hashSet
      */
-    public static ListNode detectCycle(ListNode head) {
+    public static ListNode detectCycleCopy(ListNode head) {
         Set<ListNode> set = new HashSet<>();
         while(head != null) {
             if( ! set.add(head)) {

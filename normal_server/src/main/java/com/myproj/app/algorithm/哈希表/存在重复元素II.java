@@ -7,7 +7,8 @@ import java.util.Set;
 
 /**
  * 题目：
- * 给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) <= k 。如果存在，返回 true ；否则，返回 false 。
+ * 给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] == nums[j] 且 abs(i - j) <= k 。
+ * 如果存在，返回 true ；否则，返回 false 。
  * 示例 1：
  * 输入：nums = [1,2,3,1], k = 3
  * 输出：true
@@ -30,9 +31,9 @@ public class 存在重复元素II {
         // 方法1： 快慢指针： 太慢
 //        System.out.println(containsNearbyDuplicate(new int[]{1,2,3,1,2,3}, 2));
 //        // 方法2： hashMap
-        System.out.println(containsNearbyDuplicateV2(new int[]{1,2,3,1,2,3}, 2));
+//        System.out.println(containsNearbyDuplicateV2Copy(new int[]{1,2,3,1,2,3}, 2));
 //        // 方法3： 滑动窗口 + set集合
-//        System.out.println(containsNearbyDuplicateV3(new int[]{1,2,3,1,2,3}, 2));
+        System.out.println(containsNearbyDuplicateV3Copy(new int[]{1,1,3,1,2,3}, 2));
     }
 
 
@@ -56,12 +57,13 @@ public class 存在重复元素II {
              *           }
      *
      */
-    public static boolean containsNearbyDuplicateV3(int[] nums, int k) {
+    public static boolean containsNearbyDuplicateV3Copy(int[] nums, int k) {
         // 用于保存当前索引 i-k【从0开始】 至 i之间的滑动窗口的值。
         // i > k时， 移除最初的元素即可。
         Set<Integer> set = new HashSet<>();
         for(int i = 0; i< nums.length; i++){
             if(i > k) {
+                // 必定是 i- k - 1: 因为：要清除set的第一个元素， 而set 是从 0 开始。
                 set.remove(nums[i - k -1]);
             }
             // 加入set失败时， 代表元素已存在， 即为两个不相等的索引下标的值 相等。 且 在滑动窗口内。
@@ -76,7 +78,7 @@ public class 存在重复元素II {
      * 方法2： hashMap：
      *      核心思想： 因为涉及到2个元素， 所以一次for循环即可。
      */
-    public static boolean containsNearbyDuplicateV2(int[] nums, int k) {
+    public static boolean containsNearbyDuplicateV2Copy(int[] nums, int k) {
         Map<Integer,Integer> map = new HashMap<>();
         for(int i =0; i< nums.length; i++) {
             // 判定条件： 两个元素相等，且 索引之差 <= k， 则返回true;

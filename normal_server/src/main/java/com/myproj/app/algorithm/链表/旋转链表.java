@@ -39,6 +39,9 @@ public class 旋转链表 {
         int total = 1;
         ListNode node = head;
         // 计算链表的元素个数
+        // 为了保证链表成环， 所以：
+        // 此处的判定条件是 node.next != null , 从而在链表成环时， 不至于 NPE.
+        // total 从1 开始 而不是0, 因为 最后一个node 没有计数。
         while(node.next != null) {
             total ++;
             node = node.next;

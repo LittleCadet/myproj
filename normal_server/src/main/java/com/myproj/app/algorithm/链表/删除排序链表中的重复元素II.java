@@ -25,13 +25,15 @@ public class 删除排序链表中的重复元素II {
         head.next.next = new ListNode(1);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-        deleteDuplicates(head);
+        deleteDuplicatesCopy(head);
     }
 
-    public static ListNode deleteDuplicates(ListNode head) {
+    public static ListNode deleteDuplicatesCopy(ListNode head) {
         ListNode dummy = new ListNode(0, head);
         // 核心点： cur使用dummy开始计算的， 而dummy的首节点为0. 所以cur.next才是真正的首节点。
-        // 所以删除重复节点： 依旧遵循： pre.next = cur.next;
+        // 所以删除重复节点： 依旧遵循： pre.next = cur.next; 只是站的角度不同：
+        // 该题：是站在重复节点的上一个节点来执行删除操作。 所以要从dummy的头节点开始
+        // 而删除重复节点：是站在当前节点 来执行删除操作。所以直接从原链表的头节点开始。
         ListNode cur = dummy;
         while(cur != null) {
             if(cur.next != null && cur.next.next != null && cur.next.val == cur.next.next.val) {

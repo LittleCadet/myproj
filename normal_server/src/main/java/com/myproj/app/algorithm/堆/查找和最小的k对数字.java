@@ -32,9 +32,20 @@ import java.util.PriorityQueue;
 public class 查找和最小的k对数字 {
 
     public static void main(String[] args) {
-        System.out.println(kSmallestPairs(new int[]{1,1,2}, new int[]{1,2,3}, 2));
+        System.out.println(kSmallestPairsCopy(new int[]{1,1,2}, new int[]{1,2,3}, 2));
     }
-    public static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+
+//    public static void main(String[] args) {
+//        PriorityQueue<Integer> queue = new PriorityQueue<>(1);
+//        queue.offer(1);
+//        queue.offer(2);
+//        queue.offer(3);
+//        System.out.println(queue);
+//    }
+
+
+
+    public static List<List<Integer>> kSmallestPairsCopy(int[] nums1, int[] nums2, int k) {
         List<List<Integer>> numsLists = new ArrayList<>();
         List<Integer> nums= null;
         // 大顶堆

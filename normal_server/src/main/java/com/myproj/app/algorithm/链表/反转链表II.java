@@ -8,7 +8,7 @@ package com.myproj.app.algorithm.链表;
  * 输出：[1,4,3,2,5]
  *
  * 思路：
- *      1. 穿针引线：
+ *      1.方法1： 穿针引线：
  *          1.1 链表元素的调换： 涉及到三个元素：pre + cur + next.
  *          1.2 pre节点：永远是left的前一个元素。
  *          1.3 cur节点：是left的第一个元素。
@@ -17,6 +17,8 @@ package com.myproj.app.algorithm.链表;
  *              a. 执行操作 ①：把 curr 的下一个节点指向 next 的下一个节点；
  *              b. 执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；
  *              c. 执行操作 ③：把 pre 的下一个节点指向 next。
+ *
+ *      2. 方法3： 反转链表子区间 + 恢复原链表
  *
  * @author shenxie
  * @date 2023/12/27
@@ -29,7 +31,8 @@ public class 反转链表II {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-        reverseBetween(head, 2,4);
+//        reverseBetween(head, 2,4);
+        reverseBetweenV3(head, 2,4);
     }
 
     public static ListNode reverseBetween(ListNode head, int left, int right) {
@@ -54,6 +57,90 @@ public class 反转链表II {
             pre.next = next;
         }
         return dummyNode.next;
+    }
+
+
+    /**
+     * 错误解法： 想法： 希望直接将两个节点的值替换完成， 就行了。
+     *
+     * 错误原因： 该题：替换的是值和引用， 而不只是 值。
+     */
+    public ListNode reverseBetweenV2(ListNode head, int left, int right) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode curLeft = dummy;
+        ListNode curRight = dummy;
+        int leftv = 0 ;
+        int rightv = 0;
+        for(int i = 0 ; i<left; i++) {
+            curLeft = curLeft.next;
+        }
+        leftv = curLeft.val;
+
+        for(int i = 0 ; i<right; i++) {
+            curRight = curRight.next;
+        }
+        rightv = curRight.val;
+
+        curLeft.val = rightv;
+        curRight.val = leftv;
+
+        return dummy.next;
+
+    }
+
+
+    /**
+     * 方法3： 通俗易懂。
+     */
+    public static ListNode reverseBetweenV3(ListNode head, int left, int right) {
+        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = head;
+
+        ListNode pre = dummyNode;
+        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点
+        // 建议写在 for 循环里，语义清晰
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
+        }
+
+        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点
+        ListNode rightNode = pre;
+        for (int i = 0; i < right - left + 1; i++) {
+            rightNode = rightNode.next;
+        }
+
+        // 第 3 步：切断出一个子链表（截取链表）
+        ListNode leftNode = pre.next;
+        ListNode last = rightNode.next;
+
+        // 注意：切断链接
+        pre.next = null;
+        rightNode.next = null;
+
+        // 第 4 步：同第 206 题，反转链表的子区间
+        reverseLinkedList(leftNode);
+
+        // 第 5 步：接回到原来的链表中
+        pre.next = rightNode;
+        leftNode.next = last;
+        return dummyNode.next;
+    }
+
+    /**
+     * 反转链表的子区间： 通用做法。
+     */
+    private static void reverseLinkedList(ListNode head) {
+        // 也可以使用递归反转一个链表
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
     }
 
     public static class ListNode {

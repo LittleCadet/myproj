@@ -50,11 +50,9 @@ public class 有效的括号 {
             if (map.containsKey(s.charAt(i))) {
                 // 当前元素 与 栈顶元素不同时， 返回false.
                 // stack.peek(): 只查看栈顶元素， 但不会取出！！！！！
-                if (stack.isEmpty() || map.get(s.charAt(i)).equals( stack.peek())) {
+                if (stack.isEmpty() || ! map.get(s.charAt(i)).equals( stack.pop())) {
                     return false;
                 }
-                // 出栈。
-                stack.pop();
             } else {
                 // 将([{ 推入栈中。
                 stack.push(s.charAt(i));

@@ -18,6 +18,12 @@ import java.util.Arrays;
  *                          即为： 被引用的次数 > 论文的篇数时， 那么H指数 + 1；
  *                          题意描述不准确：不是 “有 h 篇论文被引用次数大于等于 h”， 而是“有 h 篇论文被引用次数大于 论文篇数”！！！
  *
+ *          思路：
+ *              方法1：排序；
+ *                  论文数量从0 开始， 倒序遍历：当引用次数 > 论文数量时， 论文数量++ ;
+ *              方法2：排序：
+ *                  论文数量从满配开始， 正序遍历：当引用次数 > 论文数量时， 论文数量--
+ *
  *
  * @author shenxie
  * @date 2023/12/9
@@ -26,10 +32,15 @@ public class H指数 {
 
     public static void main(String[] args) {
 //        System.out.println(hIndex(new int[]{3,0,6,1,5}));
-        System.out.println(hIndex(new int[]{3,0,6,1,5}));
+        System.out.println(hIndexCopy(new int[]{3,0,6,1,5}));
+        System.out.println(hIndexV3Copy(new int[]{3,0,6,1,5}));
     }
 
-    public static int hIndex(int[] citations) {
+    /**
+     * 方法1：排序：
+     * 论文数量从0 开始， 倒序遍历：当引用次数 > 论文数量时， 论文数量++ ;
+     */
+    public static int hIndexCopy(int[] citations) {
         Arrays.sort(citations);
         int h = 0;
         // 必须倒序： 因为：被引用0次的论文一定在最后，而最一开始执行的元素的论文的引用次数一定>0，
@@ -42,6 +53,23 @@ public class H指数 {
             }
         }
         return h;
+    }
+
+    /**
+     * 方法2： 排序：  【推荐：正序遍历： 符合大众场景。】
+     * 论文数量从满配开始， 正序遍历：当引用次数 < 论文数量时， 论文数量--
+     */
+    public static int hIndexV3Copy(int[] citations) {
+        int h = 0 ;
+        Arrays.sort(citations);
+        int n = citations.length;
+        int ans = n; // 初始H值为n
+        for (int i = 0; i < n; i++) {
+            if (citations[i] < ans) {
+                ans--; // 当前H值过大，减1
+            }
+        }
+        return ans;
     }
 
     /**

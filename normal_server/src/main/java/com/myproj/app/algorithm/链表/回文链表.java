@@ -23,6 +23,7 @@ public class 回文链表 {
         ListNode head = new ListNode(-129);
         head.next = new ListNode(-129);
         System.out.println(isPalindrome(head));
+        System.out.println(isPalindromeV2Copy(head));
     }
 
     /**
@@ -44,7 +45,7 @@ public class 回文链表 {
     /**
      * 方法1： Collections.reverse()
      */
-    public static boolean isPalindromeV2(ListNode head) {
+    public static boolean isPalindromeV2Copy(ListNode head) {
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
         while(head != null) {

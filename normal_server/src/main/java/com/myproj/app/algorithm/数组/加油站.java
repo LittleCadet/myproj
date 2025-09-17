@@ -25,18 +25,24 @@ package com.myproj.app.algorithm.数组;
 public class 加油站 {
 
     public static void main(String[] args) {
-        System.out.println(canCompleteCircuit(new int[]{1, 2,3,4,5}, new int[]{3,4,5,1,2}));
+        System.out.println(canCompleteCircuitCopy(new int[]{5,1,2,3,4}, new int[]{4,4,1,5,1}));
 //        System.out.println(canCompleteCircuit(new int[]{2,3,4}, new int[]{3,4,3}));
     }
 
-    public static int canCompleteCircuit(int[] gas, int[] cost) {
+    public static int canCompleteCircuitCopy(int[] gas, int[] cost) {
+        // 当前的总油量
         int sum = 0;
+        // 出发的时候， 借的油量
         int min = 0;
+        // 起始点的索引：假设从一开始跑， 所以index = 0 ;
         int index = 0;
         for(int i=0; i< gas.length; i++) {
             sum += gas[i] - cost[i];
+            // 当前总油量创新低的时候， 记一次
             if(sum < min) {
+                // 更新借的油量
                 min = sum;
+                // 这里不能是 index++ , 因为：不是为了计算亏了几次， 而是找到起始点的索引。
                 index = i + 1;
             }
         }

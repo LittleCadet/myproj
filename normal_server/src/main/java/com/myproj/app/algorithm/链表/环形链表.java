@@ -16,6 +16,7 @@ import java.util.Set;
  *
  * 思路：
  * 1. 哈希表： HashSet：
+ *       与{@link 环形链表II}类似： 不同的是：该题判定是否有环， 后者是找出环形链表：入环的第一个节点
  * 2. 是否存在环的关键： 通过ListNode.next 判定该元素是否再次通过，如果通过， 则含有环， 否则 不包含环。
  *
  *
@@ -25,10 +26,10 @@ import java.util.Set;
 public class 环形链表 {
 
     public static void main(String[] args) {
-        hasCycle(null);
+        hasCycleCopy(null);
     }
 
-    public static boolean hasCycle(ListNode head) {
+    public static boolean hasCycleCopy(ListNode head) {
         Set<ListNode> set = new HashSet<>();
         while (null != head) {
             if (!set.add(head)) {

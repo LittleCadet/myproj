@@ -21,7 +21,7 @@ import java.util.Map;
  *     C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
  * 给你一个整数，将其转为罗马数字。
  *
- * 思路：
+ * 思路：与{@link 罗马数字转整数}类似。
  * 1. 2个数组: 原因： 与《罗马数字转整数》不同的是： 该题不能用map, 因为map在循环的时候是无序的， 即为： 不能保证一定按照从大到小的顺序来。
  *      能保证顺序的简单数据结构： 数组 + list + 双向链表。
  * 2. 2个数组中：需要录入所有的情况，且两个数组的元素一一对应。
@@ -33,15 +33,16 @@ import java.util.Map;
 public class 整数转罗马数字 {
 
     public static void main(String[] args) {
-        System.out.println(intToRoman(999));
+        System.out.println(intToRomanCopy(999));
     }
 
-    public static String intToRoman(int num) {
+    public static String intToRomanCopy(int num) {
         int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
         StringBuffer buffer = new StringBuffer();
         for(int i=0; i< values.length; i++) {
+            // 贪心算法： 这题没用hashMap来处理， 主要是因为希望使用贪心算法， 主要编码简单。
             // 为了确保：num 远大于 value的情况， 所以需要while循环。
             while(num >= values[i]) {
                 // 每循环一次， num累减一次， buffer拼接一次。

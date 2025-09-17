@@ -17,21 +17,21 @@ import java.util.Arrays;
  *                  nums[i] = L[i] * R[i];
  *          2. 前缀积：
  *              2.1 第一个元素的左边没有元素， 所以L[0] = 1;
- *              2.2 左边所有数的乘积 = 该元素的前一个数 * 前一个前缀积
+ *              2.2 左边所有数的乘积 =  前一个前缀积 * 该元素的前一个数
  *                  L[i] = L[i - 1] * nums[i - 1];
  *          3. 后缀积：
  *              3.1 最后一个元素的右边没有元素， 所以R[nums.length - 1] = 1;
- *              3.2 右边所有数的乘积 = 该元素的后一个数 * 后一个后缀积。
+ *              3.2 右边所有数的乘积 =  后一个后缀积 * 该元素的后一个数 。
  *                  R[i] = R[i + 1] * nums[i + 1];
  *
  * @author shenxie
  * @date 2023/12/26
  */
-public class 除自己以外的数组的乘积 {
+public class 除自身以外数组的乘积 {
 
     public static void main(String[] args) {
 //        productExceptSelf(new int[]{1,2,3,4});
-        productExceptSelfV2(new int[]{1,2,3,4});
+        productExceptSelfV2Copy(new int[]{1,2,3,4});
     }
 
     /**
@@ -54,9 +54,9 @@ public class 除自己以外的数组的乘积 {
     }
 
     /**
-     * 前缀和 后缀和 的思想。
+     * 前缀积 后缀积 的思想。
      */
-    public static int[] productExceptSelfV2(int[] nums) {
+    public static int[] productExceptSelfV2Copy(int[] nums) {
         int n = nums.length;
         int[] L = new int[nums.length];
         int[] R = new int[nums.length];

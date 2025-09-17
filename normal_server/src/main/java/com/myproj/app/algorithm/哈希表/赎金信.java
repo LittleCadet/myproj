@@ -21,23 +21,25 @@ import java.util.Map;
 public class 赎金信 {
 
     public static void main(String[] args) {
-        System.out.println(canConstruct("aab", "baa"));
+        System.out.println(canConstructCopy("aab", "baa"));
     }
 
-    public static boolean canConstruct(String ransomNote, String magazine) {
+    public static boolean canConstructCopy(String ransomNote, String magazine) {
         // k-v: magazine的字符 - 每个字符出现的次数
         Map<Character, Integer> map = new HashMap<>();
-        for(int i = 0; i<magazine.length(); i++) {
-            int times = map.getOrDefault(magazine.charAt(i), 0);
-            map.put(magazine.charAt(i), ++times);
+        for(int i = 0 ; i<magazine.length() ; i++) {
+            int count = map.getOrDefault(magazine.charAt(i), 0);
+            map.put(magazine.charAt(i), ++ count);
         }
-        for(int i = 0; i<ransomNote.length(); i++) {
-            if(null == map.get(ransomNote.charAt(i)) || 0 == map.get(ransomNote.charAt(i))) {
+
+        for(int i = 0 ; i<ransomNote.length(); i++) {
+            Character tmp = ransomNote.charAt(i);
+            if( null == map.get(tmp) || 0 == map.get(tmp)) {
                 return false;
             }
-            int times = map.get(ransomNote.charAt(i));
-            map.put(ransomNote.charAt(i), --times);
+            map.put(tmp, map.get(tmp) - 1);
         }
+
         return true;
     }
 }

@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.动态规划;
 
+import com.myproj.app.algorithm.数组.买卖股票的最佳时机II;
+
 /**
  * 题目：
  * 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
@@ -9,7 +11,7 @@ package com.myproj.app.algorithm.动态规划;
  * 分析：
  * 1. 一次交易 产生的最大利润。
  *
- * 思路：
+ * 思路：相似题目：{@link 买卖股票的最佳时机II}， 不同的是：本题是：一次交易的最大利润。 后者是：多次交易的最大利润
  * 1. 动态规划： 用以前问题的解 来解答当前的问题。特殊API: Integer.MAX_VALUE.
  * 2. 最优子结构的确立：
  *         int profit = Math.max(profit, prices[i] - cost);

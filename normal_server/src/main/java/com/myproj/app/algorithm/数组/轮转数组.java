@@ -21,16 +21,16 @@ package com.myproj.app.algorithm.数组;
  * @author shenxie
  * @date 2023/12/26
  */
-public class 旋转数组 {
+public class 轮转数组 {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1,2,3,4,5,6,7};
         int k = 3;
-        rotate(nums, k);
+        rotateCopy(nums, k);
         System.out.println(nums);
     }
 
-    public static void rotate(int[] nums, int k) {
+    public static void rotateCopy(int[] nums, int k) {
         int n = nums.length;
         int[] newArr = new int[n];
         for (int i = 0; i < n; ++i) {

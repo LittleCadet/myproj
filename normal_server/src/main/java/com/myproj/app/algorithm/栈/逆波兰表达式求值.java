@@ -40,6 +40,7 @@ public class 逆波兰表达式求值 {
             if(isNumber(tokens[i])){
                 stack.push(Integer.parseInt(tokens[i]));
             }else{
+                // push-pop是栈模型:  所以先出来的数字， 是num2
                 int num2 = stack.pop();
                 int num1 = stack.pop();
                 switch(tokens[i]){

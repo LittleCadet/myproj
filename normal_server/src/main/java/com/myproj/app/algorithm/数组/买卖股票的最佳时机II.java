@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.数组;
 
+import com.myproj.app.algorithm.动态规划.买卖股票的最佳时机;
+
 /**
  * 题目：
  * 给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。
@@ -9,7 +11,7 @@ package com.myproj.app.algorithm.数组;
  * 分析：
  * 1. 可以多次买卖。 获取多次买卖的利益最大值。
  *
- * 思路：
+ * 思路：相似题目：{@link 买卖股票的最佳时机}，不同的是：本题是：多次交易的最大利润。 后者是：一次交易的最大利润
  * 1. 贪心算法：本质： 只考虑现在， 不考虑过去。
  *      方法1：
  *          1. 当前价格 和 上一次价格 之差 和 0 比， 取大；
@@ -24,11 +26,11 @@ package com.myproj.app.algorithm.数组;
 public class 买卖股票的最佳时机II {
 
     public static void main(String[] args) {
-        System.out.println(maxProfit(new int[]{7,1,5,3,6,4}));;
-        System.out.println(maxProfitV2(new int[]{7,1,5,3,6,4}));;
+        System.out.println(maxProfitCopy(new int[]{7,1,5,3,6,4}));;
+        System.out.println(maxProfitV2Copy(new int[]{7,1,5,3,6,4}));;
     }
 
-    public static int maxProfit(int[] prices) {
+    public static int maxProfitCopy(int[] prices) {
 
         // 贪心：
         int profit = 0;
@@ -38,18 +40,16 @@ public class 买卖股票的最佳时机II {
         }
         return profit;
     }
-    public static int maxProfitV2(int[] prices) {
+    public static int maxProfitV2Copy(int[] prices) {
 
         // 贪心：
-        int profit = 0;
-        for(int i = 1; i< prices.length; i++) {
-            int tmp = 0;
-            if(prices[i] > prices[i-1]){
-                tmp = prices[i] - prices[i-1];
+        int profile = 0;
+        for(int i = 1; i<prices.length; i++) {
+            if(prices[i-1] < prices[i]) {
+                profile += prices[i] - prices[i-1];
             }
-            profit += tmp;
         }
-        return profit;
+        return profile;
     }
 
 }

@@ -15,6 +15,7 @@ package com.myproj.app.algorithm.数组;
  *      1. 用额外数组来求解：
  *          1.1 核心思想：取余：
  *              将第i个元素 赋值给 (i+k) % n 。
+ *              与 {@link com.myproj.app.algorithm.链表.旋转链表}类似： 找到要断开的元素位置， 并移动。int move = total - k % total;
  *          1.2 最后将新数组的值给到原数组即可。
  *              System.arraycopy(newArr, 0 , num, 0, n);
  *

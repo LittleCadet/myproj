@@ -26,6 +26,10 @@ package com.myproj.app.algorithm.数组;
  */
 public class 最长公共前缀 {
 
+    /**
+     * 不是双指针， 只是普通的api运算：
+     * 因为： 涉及到3个元素， 所以没法双指针
+     */
     public String longestCommonPrefixCopy(String[] strs) {
         String str = strs[0];
         char[] chars = str.toCharArray();

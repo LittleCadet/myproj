@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.链表;
 
+import com.myproj.app.algorithm.双指针.移除元素;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,9 @@ import java.util.Set;
  *  输出：[1, 2, 3]
  *
  * 思路：
+ *       与{@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项} 和 {@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项II} 和  {@link 移除元素} 相似：
+ *          只是数组的重复项：是在不重复的时候， num[slow] = num[fast]完成替换。
+ *          而链表的重复项： 是在重复的时候， 完成next指针的变换。
  *       与{@link 删除排序链表中的重复元素II}相似：依旧遵循： pre.next = cur.next; 只是站的角度不同：
  *         // 该题：是站在当前节点 来执行删除操作。所以直接从原链表的头节点开始。
  *         // 后者：是站在重复节点的上一个节点来执行删除操作。 所以要从dummy的头节点开始。

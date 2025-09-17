@@ -12,6 +12,10 @@ package com.myproj.app.algorithm.双指针;
  * 解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。
  *
  * 思路：与 {@link 删除有序数组中的重复项} 和 {@link 移除元素}  非常类似
+ * 与{@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项} 和 {@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项II}相似：
+ *    只是数组的重复项：是在不重复的时候， num[slow] = num[fast]完成替换。
+ *    而链表的重复项： 是在重复的时候， 完成next指针的变换。
+ *
  * 1. 快慢指针。
  *
  * @author shenxie

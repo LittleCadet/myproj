@@ -24,7 +24,7 @@ public class 跳跃游戏 {
         int max = 0;
         for(int i = 0 ; i < nums.length; i++) {
             // 这个判定必须要有： 要避免： 在每个位置都执行跳跃的动作
-            // 一定要表达出： 最远只能调到max, 超过max就不能跳跃了。
+            // 一定要表达出： 最远只能跳到max, 超过max就不能跳跃了。
             if(i <= max) {
                 // Math.max绝对不能少， 因为要表达出：在max的范围内， 每一步都可以跳跃，并更新跳跃的最远距离。
                 max = Math.max(max, i + nums[i]);

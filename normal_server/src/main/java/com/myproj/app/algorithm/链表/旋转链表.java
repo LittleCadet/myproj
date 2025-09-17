@@ -14,6 +14,8 @@ package com.myproj.app.algorithm.链表;
  *              1.2 闭合成环。
  *              1.3 找到要断开的元素位置， 并移动。
  *                  int move = total - k % total;
+ *
+ *                  与{@link com.myproj.app.algorithm.数组.轮转数组}类似：后者：nums[（i + k) % nums.length] = nums[i];
  *              1.4 将node的下一个元素 赋值给新链表。
  *              1.5 断开环。
  *              1.6 返回新链表。
@@ -50,7 +52,7 @@ public class 旋转链表 {
         node.next = head;
         // 找到要断开的位置。
         // 题目虽然是旋转链表， 但是跟旋转数组一样的是： 载体本身没有旋转：
-        // 旋转数组： 是直接赋值： nums[k % nums.length] = nums[i];
+        // 轮转数组： 是直接赋值： nums[（i + k) % nums.length] = nums[i];
         // 旋转链表： 是移动next指针到要断开前的位置！！！而此时node在最后一个元素的位置， 所以需要移动next指针的次数为total - k % total。
         int move = total - k % total;
         // 移动链表move次，且从当前链表的最后一个元素开始移动。

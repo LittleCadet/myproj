@@ -37,6 +37,7 @@ public class 复制带随机指针的链表 {
         copyRandomListCopy(null);
     }
 
+    // k-v: 原节点 - 新节点。
     static Map<Node, Node> map = new HashMap<>();
     public static Node copyRandomListCopy(Node head) {
         if(head == null) {

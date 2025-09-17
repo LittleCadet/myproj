@@ -18,7 +18,7 @@ package com.myproj.app.algorithm.链表;
  *              b. 执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；
  *              c. 执行操作 ③：把 pre 的下一个节点指向 next。
  *
- *      2. 方法3： 反转链表子区间 + 恢复原链表
+ *      2. 方法3： 反转链表子区间 + 恢复原链表  【推荐】
  *
  * @author shenxie
  * @date 2023/12/27

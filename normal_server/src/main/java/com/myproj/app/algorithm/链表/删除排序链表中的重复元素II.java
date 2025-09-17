@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.链表;
 
+import com.myproj.app.algorithm.双指针.移除元素;
+
 /**
  * 题目：
  * 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
@@ -14,6 +16,10 @@ package com.myproj.app.algorithm.链表;
  *              1. 记录当前重复项的值val， 如果下一个节点的依旧是val, 则将cur.next = cur.next.next; 即可
  *              2. 如何删除第一个重复项：
  *                  直接从dummy开始遍历即可，  这样就可以从第一个重复项开始了【即为从cur.next开始了】。 cur.next = cur.next.next;
+ *
+ *      2. 与{@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项} 和 {@link com.myproj.app.algorithm.双指针.删除有序数组中的重复项II} 和 {@link 移除元素} 相似：
+     *    只是数组的重复项：是在不重复的时候， num[slow] = num[fast]完成替换。
+     *    而链表的重复项： 是在重复的时候， 完成next指针的变换。
  * @author shenxie
  * @date 2023/12/28
  */

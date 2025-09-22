@@ -22,9 +22,9 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  */
 public class 最小路径和 {
     public static void main(String[] args) {
-        System.out.println(minPathSum(new int[][]{{1,3,1},{1,5,1},{4,2,1}}));
+        System.out.println(minPathSumCopy(new int[][]{{1,3,1},{1,5,1},{4,2,1}}));
     }
-    public static int minPathSum(int[][] grid) {
+    public static int minPathSumCopy(int[][] grid) {
         int[][] ans = new int[grid.length][grid[0].length];
         ans[0][0] = grid[0][0];
         // 第一行： 各个元素累加值

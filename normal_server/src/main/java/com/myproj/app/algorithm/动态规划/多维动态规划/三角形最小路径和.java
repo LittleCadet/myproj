@@ -20,7 +20,8 @@ import java.util.List;
  *
  * 思路：
  *      1. 方法1： 递归【自底向上】+ 记忆数组。
- *      2. 方法2： 动态规划【自底向上】
+ *      2. 方法2： 动态规划【自底向上】 + 记忆数组: 通俗易懂 【推荐】
+ *      3. 方法3： 是对方法2的空间优化：
  *      3. 2个方法核心思想：
  *              当前节点的最小路径和 = 当前节点值 + 下一行的相邻2个节点的最小值。
  *              该三角形： 是长宽都相等的三角形！！！
@@ -51,6 +52,7 @@ public class 三角形最小路径和 {
         triangle.add(ints4);
 //        System.out.println(minimumTotal(triangle));
         System.out.println(minimumTotalV2(triangle));
+        System.out.println(minimumTotalV3(triangle));
     }
 
     static Integer[][] nums ;
@@ -75,9 +77,28 @@ public class 三角形最小路径和 {
     }
 
     /**
-     * 方法2： 动态规划: 自底向上求解。
+     * 方法2：动态规划： 自底向上求解：
      */
     public static int minimumTotalV2(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        // 记忆数组
+        // dp[i][j] 表示从点 (i, j) 到底边的最小路径和。
+        int[][] dp = new int[n + 1][n + 1];
+        // 从三角形的最后一行开始递推。
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
+            }
+        }
+        return dp[0][0];
+    }
+
+    /**
+     * 方法3： 对方法2的空间优化。
+     * 因为：在实际递推中我们发现，计算 dp[i][j] 时，只用到了下一行的 dp[i+1][j] 和 dp[i+1][j+1]。
+     * 所以：dp 数组不需要定义 N 行，只要定义 1 行就阔以啦。
+     */
+    public static int minimumTotalV3(List<List<Integer>> triangle) {
         int size = triangle.size();
         // 数组大小为 size + 1的原因： nums[j + 1]中j的最大值为size - 1.  所以j + 1: 最大值为size - 1 + 1 = size.
         // 而nums[size] 会数组下标越界。

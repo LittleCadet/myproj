@@ -23,10 +23,10 @@ public class 矩阵置零 {
 
     public static void main(String[] args) {
         int[][] matrix = new int[][]{{1,1,1},{1,0,1},{1,1,1}};
-        setZeroes(matrix);
+        setZeroesCopy(matrix);
     }
 
-    public static void setZeroes(int[][] matrix) {
+    public static void setZeroesCopy(int[][] matrix) {
         Set<Integer> rows = new HashSet<>();
         Set<Integer> cols = new HashSet<>();
         int rowNums = matrix.length;

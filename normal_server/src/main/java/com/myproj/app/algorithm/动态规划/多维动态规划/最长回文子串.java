@@ -20,11 +20,11 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  */
 public class 最长回文子串 {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("babad"));
+        System.out.println(longestPalindromeCopy("babad"));
 //        System.out.println(longestPalindromeV2("cbbd"));
     }
 
-    public static String longestPalindrome(String s) {
+    public static String longestPalindromeCopy(String s) {
         boolean[][] dp = new boolean[s.length()][s.length()];
         int res = 1;
         String resStr = s.charAt(0) + "";

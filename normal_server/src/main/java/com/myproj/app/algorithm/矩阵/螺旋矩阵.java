@@ -21,10 +21,10 @@ import java.util.List;
  */
 public class 螺旋矩阵 {
     public static void main(String[] args) {
-        System.out.println(spiralOrder(new int[][]{{1,2,3},{4,5,6},{7,8,9}}));
+        System.out.println(spiralOrderCopy(new int[][]{{1,2,3},{4,5,6},{7,8,9}}));
     }
 
-    public  static List<Integer> spiralOrder(int[][] matrix) {
+    public  static List<Integer> spiralOrderCopy(int[][] matrix) {
         List<Integer> nums = new ArrayList<>();
         int u = 0, d = matrix.length-1 ;
         int l = 0, r = matrix[0].length-1 ;

@@ -24,30 +24,28 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  */
 public class 不同路径II {
 
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+    public int uniquePathsWithObstaclesCopy(int[][] obstacleGrid) {
         if (obstacleGrid[0][0] == 1) {
             return 0;
         }
-        boolean flag = false;
         int[][] ans = new int[obstacleGrid.length][obstacleGrid[0].length];
         // 第一行：动态规划：数据准备
+        // 假设：只有一行路径， 则只能往前走， 所以ans[0][i] = 1;
         for (int i = 0; i < obstacleGrid[0].length; i++) {
             // 碰到障碍物时， 当前节点和剩余节点： 都没路走了。
-            if (flag || obstacleGrid[0][i] == 1) {
-                flag = true;
-                ans[0][i] = 0;
+            if (obstacleGrid[0][i] == 1) {
+                break;
             } else {
                 ans[0][i] = 1;
             }
         }
 
         // 第一列：动态规划； 数据准备
-        flag = false;
+        // 假设: 只有一列路径， 则只能往下走， 所以ans[i][0] = 1;
         for (int i = 0; i < obstacleGrid.length; i++) {
             // 碰到障碍物时， 当前节点和剩余节点： 都没路走了。
-            if (flag || obstacleGrid[i][0] == 1) {
-                flag = true;
-                ans[i][0] = 0;
+            if (obstacleGrid[i][0] == 1) {
+                break;
             } else {
                 ans[i][0] = 1;
             }

@@ -2,7 +2,8 @@ package com.myproj.app.algorithm.动态规划;
 
 /**
  * 题目：
- * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
+ * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，
+ * 如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
  * 给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
  * 思路：
  *      动态规划：
@@ -19,10 +20,10 @@ package com.myproj.app.algorithm.动态规划;
 public class 打家劫舍 {
 
     public static void main(String[] args) {
-        System.out.println(rob(new int[]{2,7,9,3,1}));
+        System.out.println(robCopy(new int[]{2,7,9,3,1}));
     }
 
-    public static int rob(int[] nums) {
+    public static int robCopy(int[] nums) {
         int sum = 0;
         if(nums.length == 1){
             return nums[0];

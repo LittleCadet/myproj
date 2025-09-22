@@ -29,7 +29,7 @@ public class 爬楼梯 {
 
 //        System.out.println("共有:" + climbingStairsBacktrackV2(10) + "种爬楼梯的方法。");
 
-        System.out.println(climbStairs(5));
+        System.out.println(climbStairsCopy(5));
     }
 
 
@@ -70,7 +70,7 @@ public class 爬楼梯 {
      * 1. nums[n] = nums[n-1] + nums[n-2]的空间复杂度： 为0(n)
      * 2. num = a + b的空间复杂度: 0(1)
      */
-    public static int climbStairs(int n) {
+    public static int climbStairsCopy(int n) {
         // 动态规划。
         if(n == 1 || n == 2) {
             return n;

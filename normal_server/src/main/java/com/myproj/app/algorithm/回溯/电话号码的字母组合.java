@@ -34,10 +34,10 @@ import java.util.Map;
 public class 电话号码的字母组合 {
 
     public static void main(String[] args) {
-        System.out.println(letterCombinations("23"));
+        System.out.println(letterCombinationsCopy("23"));
     }
 
-    public static List<String> letterCombinations(String digits) {
+    public static List<String> letterCombinationsCopy(String digits) {
         List<String> combinations = new ArrayList<String>();
         if (digits.length() == 0) {
             return combinations;

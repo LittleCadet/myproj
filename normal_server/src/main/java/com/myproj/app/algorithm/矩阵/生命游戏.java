@@ -3,7 +3,8 @@ package com.myproj.app.algorithm.矩阵;
 /**
  * 题目：
  * 根据 百度百科 ， 生命游戏 ，简称为 生命 ，是英国数学家约翰·何顿·康威在 1970 年发明的细胞自动机。
- * 给定一个包含 m × n 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： 1 即为 活细胞 （live），或 0 即为 死细胞 （dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：
+ * 给定一个包含 m × n 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： 1 即为 活细胞 （live），或 0 即为 死细胞 （dead）。
+ * 每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：
  *     如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；
  *     如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；
  *     如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；
@@ -17,6 +18,8 @@ package com.myproj.app.algorithm.矩阵;
  * 思路：
  *      1. 先影响， 再计算：
  *          1.1 影响： 指的是： 以当前的活细胞为核心， 看看周边有多少活细胞。
+ *                  标记方法： 将周边活细胞的数值 累加 10；【因为 原来的状态不能改变：即为 活细胞：1， 死细胞：0】
+ *                  整体遍历完成后， 代表：知道了每个细胞周围到底有多少活细胞了： 通过 board[i][j] / 10 得知。
  *          1.2 计算：
  *                   a. 原来是活的，周围有2-3个活的，成为活的
  *                   b. 原来是死的，周围有3个活的，成为活的
@@ -29,10 +32,10 @@ public class 生命游戏 {
 
     public static void main(String[] args) {
         int[][] board = new int[][]{{0,1,0}, {0,0,1}, {1,1,1},{0,0,0}};
-        gameOfLife(board);
+        gameOfLifeCopy(board);
     }
 
-    public static void gameOfLife(int[][] board) {
+    public static void gameOfLifeCopy(int[][] board) {
         int rows = board.length;
         int cols = board[0].length;
         int[][] directions = new int[][]{{-1,-1},{-1, 0},{-1, 1},{0,-1},{0,1}, {1,-1},{1,0},{1,1}};
@@ -40,7 +43,7 @@ public class 生命游戏 {
         for(int i = 0; i<rows; i++) {
             for(int j = 0; j<cols;j++) {
                 // 以(i,j)为核心， 向外扩散， 用于计算：周边有多少个活细胞。
-                // 原理： 周边每出现1个活细胞， 那么核心+10, 所以 liveNums = 核心数 / 10
+                // 原理： 周边每出现1个活细胞， 那么核心+10, 所以 liveNums = 核心数 / 10: 从而表示： 当前细胞周围有多少个活细胞。
                 // 用于后面的计算。
                 if(board[i][j] % 10 == 1) {
                     affect(directions, i,j, board, rows, cols);
@@ -65,6 +68,7 @@ public class 生命游戏 {
             boolean validRow = newI >=0 && newI < rows;
             boolean validCol = newJ >= 0 && newJ < cols;
             if( validRow && validCol){
+                // 当前的活细胞为核心， 为每个周边的细胞 + 10；
                 board[newI][newJ] += 10;
             }
         }

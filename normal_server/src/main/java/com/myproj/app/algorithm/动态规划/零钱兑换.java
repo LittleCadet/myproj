@@ -33,11 +33,11 @@ public class 零钱兑换 {
     public static void main(String[] args) {
         // 贪心算法： 是解决不了的。
 //        System.out.println(coinChangeV2(new int[]{5,3,2}, 6));
-        System.out.println(coinChangeV3(new int[]{5,3,2}, 6));
+        System.out.println(coinChangeV3Copy(new int[]{5,3,2}, 6));
     }
 
 
-    public static int coinChangeV3(int[] coins, int amount) {
+    public static int coinChangeV3Copy(int[] coins, int amount) {
         // 初始条件检查
         if (amount < 1) return 0;
         // 动态规划入口

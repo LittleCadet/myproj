@@ -42,7 +42,7 @@ import java.util.Set;
 public class 有效的数独 {
 
     public static void main(String[] args) {
-        System.out.println(isValidSudoku(new char[][]{{'5','3','.','.','7','.','.','.','.'},
+        System.out.println(isValidSudokuCopy(new char[][]{{'5','3','.','.','7','.','.','.','.'},
                 {'6','.','.','1','9','5','.','.','.'},
                 {'.','9','8','.','.','.','.','6','.'},
                 {'8','.','.','.','6','.','.','.','3'},
@@ -53,7 +53,7 @@ public class 有效的数独 {
                 {'.','.','.','.','8','.','.','7','9'}}));
     }
 
-    public static boolean isValidSudoku(char[][] board) {
+    public static boolean isValidSudokuCopy(char[][] board) {
         Set<Character> set = null;
         // 验证在每一行只出现一次。
         // 行

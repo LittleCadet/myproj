@@ -14,7 +14,8 @@ import org.apache.commons.compress.utils.Lists;
  * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  *
  * 思路：
- * 1. 回溯算法：
+ * 1. 回溯算法：对回溯的理解： 回溯 与 深度优先算法： 有异曲同工之妙， 都属于 穷尽所有场景， 尽可能的找出答案。
+ *                  其中回溯： 在形成一遍检索以后， 需要恢复之前的状态，之后再执行第二遍检索。
  *      核心问题：
  *          1.1 如何控制给定数组元素的循环
  *              答案： for循环数组元素， 但是起始下标为 i=index.
@@ -32,6 +33,9 @@ import org.apache.commons.compress.utils.Lists;
  *              b. 要注意： 如何放入lists中！！！
  *              c. 要注意： i的起始位置！！！
  *
+ *         解法1： 回溯 + 剪枝：用list完成： list.add() + list.remove();
+ *         解法2： 回溯： 用list完成：Collections.swap(list, index, i) +  Collections.swap(list, i, index);
+ *
  * @author shenxie
  * @date 2023/12/7
  */
@@ -42,7 +46,7 @@ public class 全排列 {
      */
     public static void main(String[] args) {
         // 方法1：
-//        System.out.println(permutationsI(new int[]{1,3,2}));
+//        System.out.println(permutationsICopy(new int[]{1,3,2}));
 //        List<Integer> list=  Lists.newArrayList();
 //        list.add(1);
 //        list.add(2);
@@ -53,24 +57,24 @@ public class 全排列 {
 //        System.out.println(list);
 
         // 方法2：
-        System.out.println(permute(new int[]{1,2,3}));
+        System.out.println(permuteCopy(new int[]{1,2,3}));
     }
 
 
     /**
-     * 解法一：
+     * 解法一：回溯 + 剪枝： 用list完成： list.add() + list.remove();
      *
      */
-    public static List<List<Integer>> permutationsI(int[] nums) {
+    public static List<List<Integer>> permutationsICopy(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         backtrack(new ArrayList<Integer>(), nums, new boolean[nums.length], res);
         return res;
     }
 
     /**
-     * 解法二：
+     * 解法二：回溯： 用list完成：Collections.swap(list, index, i) +  Collections.swap(list, i, index)
      */
-    public static List<List<Integer>> permute(int[] nums) {
+    public static List<List<Integer>> permuteCopy(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
         List<Integer> output = new ArrayList<Integer>();
         for (int num : nums) {

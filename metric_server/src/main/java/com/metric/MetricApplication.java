@@ -10,5 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MetricApplication {
     public static void main(String[] args) {
         SpringApplication.run(MetricApplication.class);
+        new HTTPServer().Start();
     }
 }

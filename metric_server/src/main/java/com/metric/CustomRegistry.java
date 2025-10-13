@@ -9,6 +9,7 @@ import io.micrometer.prometheusmetrics.PrometheusConfig;
 import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
 import io.prometheus.metrics.model.registry.PrometheusRegistry;
 import io.prometheus.metrics.tracer.common.SpanContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -19,6 +20,12 @@ import org.springframework.util.CollectionUtils;
  **/
 public class CustomRegistry extends PrometheusMeterRegistry {
     AtomicInteger counter = new AtomicInteger(0);
+
+    List<Tag> tags = new ArrayList<>();
+    {
+        tags.add(Tag.of("normal-tag1", "1"));
+        tags.add(Tag.of("normal-tag2", "2"));
+    }
 
     public CustomRegistry(PrometheusConfig config) {
         super(config);
@@ -47,7 +54,10 @@ public class CustomRegistry extends PrometheusMeterRegistry {
                         }
                         return MeterFilterReply.ACCEPT;
                     }
-                });
+                })
+//                .meterFilter(MeterFilter.denyNameStartsWith("test_timer"))
+                .meterFilter(MeterFilter.commonTags(tags))
+                .meterFilter(MeterFilter.maximumAllowableMetrics(1));
     }
 
 

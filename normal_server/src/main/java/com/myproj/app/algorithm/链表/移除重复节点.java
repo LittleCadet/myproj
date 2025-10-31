@@ -2,6 +2,7 @@ package com.myproj.app.algorithm.链表;
 
 import com.myproj.app.algorithm.双指针.移除元素;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -26,6 +27,8 @@ import java.util.Set;
  *          2.1 实则： 双指针： 慢指针： 在外， 快指针： 在内， 且： 让快指针的每个值 都与 慢指针比较 即可。
  *          2.2 启发： 如何控制链表：多次从头循环。 用双重for循环来解决 即可！！！
  *
+ *      3. 方法3：dummy节点 + linkedHashSet
+ *
  * @author shenxie
  * @date 2024/1/24
  */
@@ -41,6 +44,7 @@ public class 移除重复节点 {
 //        removeDuplicateNodes(head);
         removeDuplicateNodesV2Copy(head);
 //        removeDuplicateNodesV3(head);
+        removeDuplicateNodesV4(head);
     }
 
     /**
@@ -118,6 +122,29 @@ public class 移除重复节点 {
             aa = aa.next;
         }
         return head;
+    }
+
+    /**
+     * 方法3： LinkedHashSet
+     */
+    public static ListNode removeDuplicateNodesV4(ListNode head) {
+        Set<Integer> set = new LinkedHashSet<>();
+        ListNode cur = new ListNode();
+        ListNode dummy = cur;
+        // 去重
+        while(null != head) {
+            set.add(head.val);
+            head = head.next;
+        }
+
+        // 重建ListNode
+        for(Integer num : set) {
+            cur.next = new ListNode(num);
+            cur = cur.next;
+        }
+        return dummy.next;
+
+
     }
 
     public static class ListNode {

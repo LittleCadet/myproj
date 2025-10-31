@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm.链表;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 题目：
  * 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
@@ -32,7 +35,8 @@ public class 反转链表II {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 //        reverseBetween(head, 2,4);
-        reverseBetweenV3(head, 2,4);
+//        reverseBetweenV3(head, 2,4);
+        reverseBetweenV4(head, 2,4);
     }
 
     public static ListNode reverseBetween(ListNode head, int left, int right) {
@@ -86,6 +90,35 @@ public class 反转链表II {
 
         return dummy.next;
 
+    }
+
+    /**
+     * 错误解法： 想法： 希望直接将两个节点的值替换完成， 就行了。
+     * 错误原因： 该题：替换的是值和引用， 而不只是 值。
+     */
+    public static ListNode reverseBetweenV4(ListNode head, int left, int right) {
+        ListNode cur = new ListNode(0);
+        ListNode dummy = cur;
+        List<Integer> nums = new ArrayList<>();
+        while(null != head) {
+            nums.add(head.val);
+            head = head.next;
+        }
+
+        int leftVal = nums.get(left -1);
+        int rightVal = nums.get(right -1);
+        for(int i = 0 ; i<nums.size(); i++) {
+            if(i + 1 == left) {
+                nums.set(i, rightVal);
+            }
+            if(i + 1 == right) {
+                nums.set(i, leftVal);
+            }
+            cur.next = new ListNode(nums.get(i));
+            cur = cur.next;
+        }
+
+        return dummy.next;
     }
 
 
@@ -142,6 +175,8 @@ public class 反转链表II {
             cur = next;
         }
     }
+
+
 
     public static class ListNode {
         int val;

@@ -18,9 +18,9 @@ import java.util.List;
 public class 二叉搜索树的最小绝对差 {
 
     public static void main(String[] args) {
-        TreeNode node = new TreeNode(1);
-        node.left = new TreeNode(2);
-        node.right = new TreeNode(3);
+        TreeNode node = new TreeNode(100000);
+        node.left = new TreeNode(0);
+//        node.right = new TreeNode(3);
         System.out.println(getMinimumDifference(node));
     }
 

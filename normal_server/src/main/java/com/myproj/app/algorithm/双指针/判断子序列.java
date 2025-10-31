@@ -21,30 +21,21 @@ public class 判断子序列 {
     }
 
     public static boolean isSubsequenceCopy(String s, String t) {
-        int sl = s.length();
-        int tl = t.length();
-        if(sl > tl) {
-            return false;
-        }
-        if(sl == 0) {
+        if(s.length() == 0 ) {
             return true;
         }
-        // 移动s的指针。
-        int p1 = 0;
-        // 移动t的指针
-        int p2 = 0;
-        while(p2 < tl) {
-            // 只有在对应指针的字符相同的时候， 才会移动p1
-            if(s.charAt(p1) == t.charAt(p2)) {
-                p1 ++;
-
-                if(p1 >= sl) {
+        int left = 0 ;
+        int right = 0 ;
+        while(right < t.length()) {
+            if(s.charAt(left) == t.charAt(right)) {
+                left ++;
+                if(left >= s.length()) {
                     break;
                 }
             }
-            p2 ++;
+            right ++;
         }
-
-        return p1 == sl;
+        return left == s.length();
     }
+
 }

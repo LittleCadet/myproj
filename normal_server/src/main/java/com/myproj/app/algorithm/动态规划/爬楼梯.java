@@ -34,6 +34,7 @@ public class 爬楼梯 {
 
 
     /**
+     * 解法3：回溯
      * 爬1阶楼梯， 共有1种爬法。
      * 爬2阶楼梯， 共有2种爬法。
      * 爬3阶楼梯， 共有3种爬法。
@@ -66,6 +67,24 @@ public class 爬楼梯 {
     }
 
     /**
+     * 解法1： nums[i] = nums[i-1] + nums[i-2];
+     */
+    public static int climbStairs(int n) {
+        if(n == 1 || n ==2) {
+            return n;
+        }
+        int[] nums = new int[n];
+        nums[0] = 1;
+        nums[1] = 2;
+        for(int i = 2; i<n; i++) {
+            nums[i] = nums[i-1] + nums[i-2];
+        }
+        return nums[n-1];
+
+    }
+
+    /**
+     * 解决2：
      * 这里不使用nums[n] = nums[n-1] + nums[n-2]的原因：
      * 1. nums[n] = nums[n-1] + nums[n-2]的空间复杂度： 为0(n)
      * 2. num = a + b的空间复杂度: 0(1)

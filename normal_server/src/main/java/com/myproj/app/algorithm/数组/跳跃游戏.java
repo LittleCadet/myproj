@@ -15,21 +15,21 @@ package com.myproj.app.algorithm.数组;
 public class 跳跃游戏 {
 
     public static void main(String[] args) {
-        System.out.println(canJumpCopy(new int[]{3,0,8,2,0,0,1}));
+        System.out.println(canJumpCopy(new int[]{3, 0, 8, 2, 0, 0, 1}));
     }
 
-        public static boolean canJumpCopy(int[] nums) {
+    public static boolean canJumpCopy(int[] nums) {
         // 贪心
         // 最大跳跃长度为max
         int max = 0;
-        for(int i = 0 ; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             // 这个判定必须要有： 要避免： 在每个位置都执行跳跃的动作
             // 一定要表达出： 最远只能跳到max, 超过max就不能跳跃了。
-            if(i <= max) {
+            if (i <= max) {
                 // Math.max绝对不能少， 因为要表达出：在max的范围内， 每一步都可以跳跃，并更新跳跃的最远距离。
                 max = Math.max(max, i + nums[i]);
                 // max >= nums.length - 1 而不是 max >= nums.length的原因： 最初已经站在 第一个下标处 起跳了。
-                if( max >= nums.length - 1) {
+                if (max >= nums.length - 1) {
                     return true;
                 }
             }

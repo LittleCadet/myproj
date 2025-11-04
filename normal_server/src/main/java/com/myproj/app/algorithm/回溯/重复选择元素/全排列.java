@@ -1,10 +1,13 @@
-package com.myproj.app.algorithm.回溯;
+package com.myproj.app.algorithm.回溯.重复选择元素;
 
+import com.myproj.app.algorithm.回溯.不重复选择元素.单词搜索;
+import com.myproj.app.algorithm.回溯.不重复选择元素.子集;
+import com.myproj.app.algorithm.回溯.不重复选择元素.括号生成;
+import com.myproj.app.algorithm.回溯.不重复选择元素.电话号码的字母组合;
+import com.myproj.app.algorithm.回溯.不重复选择元素.组合;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.compress.utils.Lists;
 
 /**
  * 题目：
@@ -34,6 +37,12 @@ import org.apache.commons.compress.utils.Lists;
  *              c. 要注意： i的起始位置！！！
  *
  *         解法1： 回溯 + 剪枝：用list完成： list.add() + list.remove();
+ *              - 重复选择元素： 与 {@link 组合总和} 有异曲同工之妙。
+ *                  - {@link 组合总和}：是不主动改变i的值， 则 数值 可以做到重复选择。
+ *                  - {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择
+ *              - 不重复选择元素：
+ *                  - 与 {@link 组合} / {@link 单词搜索} / {@link 子集} / {@link 括号生成} / {@link 电话号码的字母组合}类似：
+ *                      - 是主动变更index的方式【index + 1】，做到不重复选择元素。
  *         解法2： 回溯： 用list完成：Collections.swap(list, index, i) +  Collections.swap(list, i, index);
  *
  * @author shenxie
@@ -57,7 +66,7 @@ public class 全排列 {
 //        System.out.println(list);
 
         // 方法2：
-        System.out.println(permuteCopy(new int[]{1,2,3}));
+        System.out.println(permutationsICopy(new int[]{1,2,3}));
     }
 
 
@@ -85,10 +94,16 @@ public class 全排列 {
     }
 
     /**
+     * 如果不通过 selected 的剪枝：则输出结果如下： 全是元素的重复使用：
+     * [
+     *  [1, 1, 1], [1, 1, 2], [1, 1, 3], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 3, 1], [1, 3, 2], [1, 3, 3],
+     *  [2, 1, 1], [2, 1, 2], [2, 1, 3], [2, 2, 1], [2, 2, 2], [2, 2, 3], [2, 3, 1], [2, 3, 2], [2, 3, 3],
+     *  [3, 1, 1], [3, 1, 2], [3, 1, 3], [3, 2, 1], [3, 2, 2], [3, 2, 3], [3, 3, 1], [3, 3, 2], [3, 3, 3]
+     * ]
      *
      * @param state 直到目前为止， 已被选择的元素
      * @param choices 数组元素
-     * @param selected
+     * @param selected 数组：代表：是否已经使用
      * @param res 所有可能的排序结果
      */
     /* 回溯算法：全排列 I */

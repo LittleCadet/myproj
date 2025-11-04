@@ -15,14 +15,14 @@ import java.util.Arrays;
  * 输出：4
  *
  * 思路：
- *      1. 二分法：
+ *      解法1: 二分法：
  *          核心思想：
  *              1.1 找到旋转的次数
  *              1.2 排序: 即为还原 原来的升序数组
  *              1.3 二分法
  *
  *
- *      2. 二分查找： 在单调递增区间的使用： 把数组分成两段：
+ *      解法2： 二分查找： 在单调递增区间的使用： 把数组分成两段： 【与{@link 搜索旋转排序数组II} 完全相同】
  *          - 如果前一段：单调递增 ，则后一段：单调递减。
  *          - 如果前一段：单调递减 ，则后一段：单调递增。
  *          - 在每一段的单调递增区间中： 使用二分法即可。
@@ -37,6 +37,9 @@ public class 搜索旋转排序数组 {
         System.out.println(searchV3Copy(new int[]{4,5,6,7,0,1,2}, 0));
     }
 
+    /**
+     * 方法1：先还原升序数组， 再用二分法。
+     */
     public static int search(int[] nums, int target) {
         int k = 0, l = 0, r = nums.length -1, mid = 0, ans = Integer.MAX_VALUE;
 
@@ -96,33 +99,35 @@ public class 搜索旋转排序数组 {
      *
      */
     public static int searchV3Copy(int[] nums, int target) {
-        int l = 0 , r= nums.length - 1, mid = 0 ;
-        while(l <= r) {
-            mid = l + (r-l) / 2;
+        int left = 0 , right = nums.length - 1, mid = 0 ;
+        while(left <= right) {
+            mid =  left + (right - left) / 2;
             if(nums[mid] == target) {
                 return mid;
             }
-            // 二分查找， 只在单调递增的区间中， 是有用的。
-            // 假设：前半段：单调递增
-            if(nums[mid] >= nums[l]) {
-                // 如果target在前半段区间中，  则r = mid - 1;
-                if(target >= nums[l] && target <= nums[mid]) {
-                    r = mid - 1;;
+
+            // 左节点 与 mid节点相等时：
+            if(nums[left] == nums[mid]) {
+                left ++ ;
+            }
+            // 左节点 比 mid节点小时：前半段：单调递减
+            else if(nums[left] < nums[mid]) {
+                if(nums[left] <= target && target <nums[mid]) {
+                    right = mid - 1;
                 }else{
-                    // 如果不在， 则 l = mid + 1;
-                    l = mid + 1;
+                    left = mid + 1;
                 }
-            }else{
-                // 假设： 前半段： 单调递减
-                // 如果target在后半段，则 l = mid + 1;
-                if(target > nums[mid] && target <= nums[r]) {
-                    l = mid + 1;
+            }
+            // 左节点 比 mid节点大时：  前半段： 单调递增
+            else{
+                if(nums[mid] < target && target <= nums[nums.length - 1]) {
+                    left = mid + 1;
                 }else{
-                    // 如果target不在后半段， 则 r = mid - 1;
-                    r = mid - 1;
+                    right = mid -1;
                 }
             }
         }
+
         return -1;
     }
 }

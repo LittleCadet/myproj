@@ -1,5 +1,6 @@
-package com.myproj.app.algorithm.回溯;
+package com.myproj.app.algorithm.回溯.重复选择元素;
 
+import com.myproj.app.algorithm.回溯.不重复选择元素.组合;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,12 @@ import java.util.List;
  * 输出: []
  *
  *      思路：
- *          回溯
+ *          回溯：
+ *              - 重复选择元素： 与 {@link 全排列} 有异曲同工之妙。
+     *              - 该题：是不主动改变i的值， 则 数值 可以做到重复选择。
+     *              - {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择
+ *              - 与 {@link 组合} 类似的是：{@link 组合}是主动变更index的方式【index + 1】，做到不重复选择元素。
+ *
  *
  * @author shenxie
  * @date 2025/9/19
@@ -53,6 +59,8 @@ public class 组合总和 {
 
         for(int i = index ; i<candidates.length; i++) {
             tmp.add(candidates[i]);
+            // 这里 不主动改变i的值， 则 数值 可以做到重复选择。
+            // 与 {@link 全排列} 类似的是： {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择
             process(result, candidates, target, sum+candidates[i], tmp, i);
             tmp.remove(tmp.size() - 1);
         }

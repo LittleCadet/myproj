@@ -1,5 +1,7 @@
-package com.myproj.app.algorithm.回溯;
+package com.myproj.app.algorithm.回溯.不重复选择元素;
 
+import com.myproj.app.algorithm.回溯.重复选择元素.全排列;
+import com.myproj.app.algorithm.回溯.重复选择元素.组合总和;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +22,12 @@ import java.util.Map;
  * 输出：false
  *
  *      思路： 回溯
+ *          - 重复选择元素：
+ *              - {@link 组合总和}：是不主动改变i的值， 则 数值 可以做到重复选择。
+ *              - {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择
+ *          - 不重复选择元素：
+ *              - 与 {@link 组合} / {@link 单词搜索} / {@link 子集} / {@link 括号生成} / {@link 电话号码的字母组合}类似：
+ *              - 是主动变更index的方式【index + 1】，做到不重复选择元素。
  *
  * @author shenxie
  * @date 2025/9/19
@@ -78,6 +86,7 @@ public class 单词搜索 {
                 board[i][j] != word.charAt(index)) {
             return false;
         }
+        // 已经找到了 word的最后一个字符， 且在相邻的单元格中能找到， 则返回 true
         if(index == word.length() - 1) {
             return true;
         }

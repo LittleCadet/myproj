@@ -56,11 +56,12 @@ public class 有效的数独 {
     public static boolean isValidSudokuCopy(char[][] board) {
         Set<Character> set = null;
         // 验证在每一行只出现一次。
-        // 行
+        // 行： 注意边界： 是 i< 9 , j <9 : 而不是 i<board.length, j < board[0].length, 因为数独范围是 0-9
         for(int i = 0; i< 9; i++) {
             set = new HashSet<>();
             // 列
             for(int j = 0; j<9; j++) {
+                // 注意：是set.add(board[i][j])， 要保证： 行不变， 列变
                 if( board[i][j] != '.' && !set.add(board[i][j])) {
                     return false;
                 }
@@ -73,6 +74,7 @@ public class 有效的数独 {
             set = new HashSet<>();
             // 行
             for(int j = 0; j<9; j++) {
+                // 注意：是 set.add(board[j][i]): 要保证：行变， 列不变，
                 if( board[j][i] != '.' && !set.add(board[j][i])) {
                     return false;
                 }

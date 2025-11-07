@@ -22,7 +22,7 @@ package com.myproj.app.algorithm.数学;
 public class Pow一xn {
     public static void main(String[] args) {
         // 方法1： 累乘：条件多 + 容易错 + 超时
-        System.out.println(myPow(2.00000, 2));
+//        System.out.println(myPow(2.00000, 2));
         // 方法2： 递归 + 二分法
         System.out.println(myPowV2(2.00000, 2));
     }

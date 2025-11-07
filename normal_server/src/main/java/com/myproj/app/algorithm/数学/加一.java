@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.数学;
 
+import java.util.Arrays;
+
 /**
  * 题目：
  * 给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
@@ -27,11 +29,12 @@ public class 加一 {
         // 方法一：不行。
 //        int[] ans = plusOne(new int[]{9,8,7,6,5,4,3,2,1,0});
         // 方法二： 可以
-        int[] ans = plusOneV2(new int[]{9,8,7,6,5,4,3,2,1,0});
-        int[] tmp = new int[]{9,9,9};
-        tmp = new int[tmp.length + 1];
-        tmp[0] = 1;
-        System.out.println(ans);;
+//        int[] ans = plusOneV2(new int[]{9,8,7,6,5,4,3,2,1,0});
+        int[] ans = plusOneV2(new int[]{9,8,9});
+//        int[] tmp = new int[]{9,9,9};
+//        tmp = new int[tmp.length + 1];
+//        tmp[0] = 1;
+        System.out.println(Arrays.toString(ans));;
     }
 
     /**

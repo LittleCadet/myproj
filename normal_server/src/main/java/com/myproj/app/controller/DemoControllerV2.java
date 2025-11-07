@@ -20,24 +20,24 @@ public class DemoControllerV2 {
         }).start();
 
         new RunnableTest().run();
-
-        Executors.newFixedThreadPool(1).submit(() -> {
-            System.out.println("runnable - executors执行");
-        });
-
-        Executors.newFixedThreadPool(1).submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                System.out.println("callable - executors执行");
-                return "ok";
-            }
-        });
-
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//
+//        Executors.newFixedThreadPool(1).submit(() -> {
+//            System.out.println("runnable - executors执行");
+//        });
+//
+//        Executors.newFixedThreadPool(1).submit(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                System.out.println("callable - executors执行");
+//                return "ok";
+//            }
+//        });
+//
+//        try {
+//            TimeUnit.SECONDS.sleep(5);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
         return "ok";
     }

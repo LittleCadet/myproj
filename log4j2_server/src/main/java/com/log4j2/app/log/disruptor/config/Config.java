@@ -1,9 +1,12 @@
 package com.log4j2.app.log.disruptor.config;
 
 import com.lmax.disruptor.BlockingWaitStrategy;
+import com.lmax.disruptor.BusySpinWaitStrategy;
+import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.log4j2.app.log.disruptor.DisruptorConsumer;
+import com.log4j2.app.log.disruptor.DisruptorConsumerV2;
 import com.log4j2.app.log.disruptor.DisruptorEvent;
 import java.util.concurrent.ThreadFactory;
 import org.springframework.context.annotation.Bean;
@@ -23,10 +26,11 @@ public class Config {
             public Thread newThread(Runnable r) {
                 return new Thread(r);
             }
-        }, ProducerType.MULTI, new BlockingWaitStrategy());
+        }, ProducerType.MULTI, new SleepingWaitStrategy());
 
         // 将EventHandler注册到disruptor。
-        disruptor.handleEventsWith(new DisruptorConsumer());
+//        disruptor.handleEventsWith(new DisruptorConsumer());
+        disruptor.handleEventsWithWorkerPool(new DisruptorConsumerV2());
 
         disruptor.start();
         return disruptor;

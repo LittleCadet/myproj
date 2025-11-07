@@ -1,0 +1,50 @@
+package com.myproj.app.algorithm.数学;
+
+/**
+ * 我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。
+ * 如果一个数的每位数字被旋转以后仍然还是一个数字， 则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方（在这种情况下，它们以不同的方向旋转，换句话说，2 和 5 互为镜像）；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。
+ * 现在我们有一个正整数 N, 计算从 1 到 N 中有多少个数 X 是好数？
+ *
+ * 示例：
+ * 输入: 10
+ * 输出: 4
+ * 解释:
+ * 在[1, 10]中有四个好数： 2, 5, 6, 9。
+ * 注意 1 和 10 不是好数, 因为他们在旋转之后不变。
+ *
+ *      思路：
+ *          - 逐个循环1-n的每个数字
+ *
+ * @author shenxie
+ * @date 2025/11/4
+ */
+public class 旋转数字 {
+
+    public static void main(String[] args) {
+        System.out.println(rotatedDigits(20));
+    }
+
+    public static int rotatedDigits(int n) {
+        int result = 0;
+        // 根据题意：循环1-n的每个数字
+        for (int i = 1; i <= n; ++i) {
+            int temp = i;
+            int count = 0;
+            while (temp > 0) {
+                int t = temp % 10;
+                // 根据题意：0,1，,2，,5，,6，,8，9 都是可以的， 但是只有2，,5，,6，9 是 好数，而3，4，,7都是没意义的。
+                if (t == 2 || t == 5 || t == 6 || t == 9){
+                    count = 1;
+                }else if (t == 3 || t == 4 || t == 7) {
+                    count = 0;
+                    break;
+                }
+                temp = temp / 10;
+            }
+
+            result += count;
+        }
+
+        return result;
+    }
+}

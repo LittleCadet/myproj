@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.回溯.重复选择元素;
 
+import com.myproj.app.algorithm.回溯.不重复选择元素.全排列;
 import com.myproj.app.algorithm.回溯.不重复选择元素.组合;
 import java.util.ArrayList;
 import java.util.List;

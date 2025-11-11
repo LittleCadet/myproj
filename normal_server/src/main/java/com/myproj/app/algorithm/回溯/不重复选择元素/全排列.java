@@ -1,10 +1,6 @@
-package com.myproj.app.algorithm.回溯.重复选择元素;
+package com.myproj.app.algorithm.回溯.不重复选择元素;
 
-import com.myproj.app.algorithm.回溯.不重复选择元素.单词搜索;
-import com.myproj.app.algorithm.回溯.不重复选择元素.子集;
-import com.myproj.app.algorithm.回溯.不重复选择元素.括号生成;
-import com.myproj.app.algorithm.回溯.不重复选择元素.电话号码的字母组合;
-import com.myproj.app.algorithm.回溯.不重复选择元素.组合;
+import com.myproj.app.algorithm.回溯.重复选择元素.组合总和;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +33,13 @@ import java.util.List;
  *              c. 要注意： i的起始位置！！！
  *
  *         解法1： 回溯 + 剪枝：用list完成： list.add() + list.remove();
+ *              此题 与 {@link 全排列II}非常类似， 不同的是：
+ *              - {@link 全排列II}要求：返回不重复的全排列，所以：判定条件为：vis[i] || i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]
+ *                  - vis[i]: 解决相同位置的元素不重复选择。
+ *                  - i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]： 解决：相邻位置但值相等 的 不重复选择。
+ *              - 而本题因为 nums数组不包含重复元素，所以全排列的不重复元素判定：只需要booean[] selected 即可
+ *
+ *
  *              - 重复选择元素： 与 {@link 组合总和} 有异曲同工之妙。
  *                  - {@link 组合总和}：是不主动改变i的值， 则 数值 可以做到重复选择。
  *                  - {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择

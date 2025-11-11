@@ -22,6 +22,7 @@ import java.util.List;
  *              c. 执行操作 ③：把 pre 的下一个节点指向 next。
  *
  *      2. 方法3： 反转链表子区间 + 恢复原链表  【推荐】
+ *          - 反转链表子区间： 与{@link 反转链表}完全相同
  *
  * @author shenxie
  * @date 2023/12/27
@@ -162,6 +163,7 @@ public class 反转链表II {
 
     /**
      * 反转链表的子区间： 通用做法。
+     * 与{@link 反转链表}完全相同
      */
     private static void reverseLinkedList(ListNode head) {
         // 也可以使用递归反转一个链表
@@ -169,9 +171,11 @@ public class 反转链表II {
         ListNode cur = head;
 
         while (cur != null) {
+            // >>>>交换开始
             ListNode next = cur.next;
             cur.next = pre;
             pre = cur;
+            // >>>>交换结束
             cur = next;
         }
     }

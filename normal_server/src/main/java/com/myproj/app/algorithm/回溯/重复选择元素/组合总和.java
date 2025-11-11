@@ -58,6 +58,7 @@ public class 组合总和 {
             return;
         }
 
+        // 注意： i 起始位置是 index: 保证：同一个元素不重复使用
         for(int i = index ; i<candidates.length; i++) {
             tmp.add(candidates[i]);
             // 这里 不主动改变i的值， 则 数值 可以做到重复选择。

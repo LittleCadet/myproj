@@ -39,6 +39,7 @@ public class 全排列II {
     public static List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         List<Integer> perm = new ArrayList<Integer>();
+        // 必须排序， 不然"相邻的相同元素不能重复使用"的语义：无法完成
         Arrays.sort(nums);
         backtrack(nums, ans, 0, perm, new boolean[nums.length]);
         return ans;

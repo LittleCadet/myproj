@@ -13,6 +13,10 @@ import com.myproj.app.algorithm.链表.抽象类.ListNode;
  * 输入：head = [1,1,2,3,3]
  * 输出：[1,2,3]
  *
+ *      思路：
+ *          - 本题与{@link 删除排序链表中的重复元素II}很类似：
+ *              - 本题：站在当前元素的角度， 删除下一个元素。
+ *              - 后者：站在前一个元素的角度， 删除下一个元素。类似于{@link 移除链表元素}
  *
  *
  * @author shenxie
@@ -33,6 +37,7 @@ public class 删除排序链表中的重复元素 extends ListNode {
         }
         ListNode dummy = new ListNode(0, head);
         while(head.next != null) {
+            // 站在当前元素的角度， 删除下一个元素
             if(head.val == head.next.val){
                 head.next = head.next.next;
             }else{

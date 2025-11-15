@@ -90,13 +90,16 @@ public class 前序遍历构造二叉搜索树 extends TreeNode {
         // root节点， 一定是 left所在的元素，因为是前序遍历
         TreeNode root = new TreeNode(preorder[left]);
 
+        // 在区间 [left..right] 里找最后一个小于 preorder[left] 的下标
         int l = left, r=right;
         while(l<r) {
             // 注意mid: r-l + 1： 因为：preorder的首个元素是root节点，一定不包含左右子树，所以 + 1
             int mid = l + (r-l + 1) / 2;
             if(preorder[mid] < preorder[left]) {
+                // 下一轮搜索区间是 [mid, r]
                 l = mid;
             }else {
+                // 下一轮搜索区间是 [l, mid - 1]
                 r = mid - 1;
             }
         }

@@ -110,7 +110,7 @@ public class 搜索旋转排序数组 {
             if(nums[left] == nums[mid]) {
                 left ++ ;
             }
-            // 左节点 比 mid节点小时：前半段：单调递减
+            // 左节点 比 mid节点小时：前半段：单调递增
             else if(nums[left] < nums[mid]) {
                 if(nums[left] <= target && target <nums[mid]) {
                     right = mid - 1;
@@ -118,7 +118,7 @@ public class 搜索旋转排序数组 {
                     left = mid + 1;
                 }
             }
-            // 左节点 比 mid节点大时：  前半段： 单调递增
+            // 左节点 比 mid节点大时：  前半段： 单调递减
             else{
                 if(nums[mid] < target && target <= nums[nums.length - 1]) {
                     left = mid + 1;

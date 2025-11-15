@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm.动态规划;
 
+import com.myproj.app.algorithm.回溯.不重复选择元素.复原IP地址;
+import com.myproj.app.algorithm.字符串.验证IP地址;
+
 /**
  * 一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：
  * "1" -> 'A'
@@ -38,6 +41,13 @@ package com.myproj.app.algorithm.动态规划;
  *              - 本题：有限制：
  *                  - 爬一步时： 要求数字：不能是0
  *                  - 爬两步时： 要求数字：前一个数字不能是 0 ， 且 两个数字的和 <= 26
+ *                      - 最优子结构：
+ *                          s.charAt(i - 2) != '0' && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0') <= 26)
+ *
+ *  *              - 注意前导0的表达方式：
+ *  *                  - {@link 复原IP地址}：s.charAt(i) == '0' && j > i
+ *  *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'
+ *  *                  - {@link 解码方法}： i > 1 && s.charAt(i - 2) != '0'
  *
  *
  * @author shenxie
@@ -58,7 +68,7 @@ public class 解码方法 {
             if (s.charAt(i - 1) != '0') {
                 f[i] += f[i - 1];
             }
-            // 爬两步的解法：要求：爬两步时，数字和 不能超过26.
+            // 爬两步的解法【注意：前导0的解法】：要求：爬两步时，数字和 不能超过26.
             if (i > 1 && s.charAt(i - 2) != '0' && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0') <= 26)) {
                 f[i] += f[i - 2];
             }

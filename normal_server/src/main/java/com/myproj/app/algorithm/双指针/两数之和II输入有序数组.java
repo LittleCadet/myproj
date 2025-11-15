@@ -19,9 +19,9 @@ import java.util.Map;
  * 思路：
  *  方法1： 快慢双指针：
  *      核心思想： 类似于双重for循环。
- *  方法2： 首尾双指针：
+ *  方法2【推荐】： 首尾双指针：
  *      核心思想： 类似于二分法。
- *  方法3【推荐】： hashMap:
+ *  方法3： hashMap:
  *      该方法与 {@link com.myproj.app.algorithm.哈希表.两数之和}一致。
  *      核心思想： 将数和索引 放入map中，之后判定map.containesKey(target - numbers[i]);即可
  *

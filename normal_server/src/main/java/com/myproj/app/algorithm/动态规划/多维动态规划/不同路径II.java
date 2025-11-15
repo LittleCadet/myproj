@@ -24,6 +24,10 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  */
 public class 不同路径II {
 
+    /**
+     * 动态规划正确： 但此题不能仿效{@link 不同路径} 方法2的解法来： 因为：如果只有一行 且 该行有石头时， 会因为初始化错误的原因，导致答案错误。
+     * eg: [[0,1,0,0]]: 如果按照{@link 不同路径} 方法2来， 答案会是1 ， 应该为0.
+     */
     public int uniquePathsWithObstaclesCopy(int[][] obstacleGrid) {
         if (obstacleGrid[0][0] == 1) {
             return 0;

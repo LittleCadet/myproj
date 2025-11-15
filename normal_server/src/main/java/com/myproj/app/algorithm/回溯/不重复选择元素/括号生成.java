@@ -44,6 +44,7 @@ public class 括号生成 {
             builder.deleteCharAt(builder.length() -1);
         }
 
+        // 注意： close < open ， 而不是 close < max: 因为： 括号必定需要现有 (, 再有 )。  如果是 close < max, 则 可以出现 ) ( 的组合。
         if(close < open) {
             builder.append(")");
             backtrack(ans, builder, open, close + 1, max) ;

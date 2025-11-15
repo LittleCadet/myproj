@@ -34,6 +34,8 @@ import java.util.List;
  *              - 与{@link 组合总和}很类似：不同的是：
  *                  - 本题： 要求： 元素不能重复使用， 且 解集不能包含重复的组合
  *                  - {@link 组合总和}： 元素可以重复使用，
+ *              - 与{@link 全排列II}很类似：在相邻元素 且 值相等时， 不能重复使用：
+ *                  - visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
  *
  * @author shenxie
  * @date 2025/11/11
@@ -44,11 +46,11 @@ public class 组合总和II {
         List<List<Integer>> results = new ArrayList<>();
         // 必须排序， 不然"相邻的相同元素不能重复使用"的语义：无法完成
         Arrays.sort(candidates);
-        dfs(candidates, target, 0, new ArrayList(), results, 0);
+        dfs(candidates, target, 0, new ArrayList(), results, 0, new boolean[candidates.length]);
         return results;
     }
 
-    private void dfs(int[] candidates, int target , int index, List<Integer> result, List<List<Integer>> results, int sum) {
+    private void dfs(int[] candidates, int target , int index, List<Integer> result, List<List<Integer>> results, int sum, boolean[] visit) {
         if(sum == target) {
             results.add(new ArrayList<>(result));
             return;
@@ -60,15 +62,16 @@ public class 组合总和II {
         // 注意： i 起始位置是 index: 保证：同一个元素不重复使用
         for(int i = index ; i<candidates.length; i++) {
             // 保证：相邻的相同元素不能重复使用
-            // 这里不能使用《全排列II》的判定方式： if (vis[i] || (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]))
-            // 因为：题目要求：不能包含重复的组合
-            if(i > index && candidates[i] == candidates[i-1]) {
+            // 这里与使用《全排列II》的判定方式相同： if (vis[i] || (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]))
+            if(visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]){
                 continue;
             }
 
+            visit[i] = true;
             result.add(candidates[i]);
-            dfs(candidates, target, i + 1, result, results, sum+candidates[i]);
+            dfs(candidates, target, i + 1, result, results, sum+candidates[i], visit);
             result.remove(result.size() - 1);
+            visit[i] = false;
         }
     }
 }

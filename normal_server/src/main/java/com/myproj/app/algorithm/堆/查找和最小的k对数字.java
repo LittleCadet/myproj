@@ -65,8 +65,9 @@ public class 查找和最小的k对数字 {
                         queue.poll();
                         queue.offer(new A(nums1[i],nums2[j], nums1[i] + nums2[j]));
                     }else{
-                        // 因为是入参是递增数组。 所以： 后面都不用看了。
+                        // 因为是入参是递增数组。 后续的nums1[i] + nums2[i] 肯定是 >= queue.peek().sum，  所以： 后面都不用看了。
                         // 避免时间超限。
+                        System.out.println(">>>>>>");
                         break;
                     }
                 }

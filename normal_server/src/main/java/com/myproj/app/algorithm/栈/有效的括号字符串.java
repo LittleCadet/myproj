@@ -26,6 +26,7 @@ import java.util.LinkedList;
  *
  *      思路：
  *          - 栈： 遇到括号： 栈应该优先考虑
+ *          - 当 左括号 的下标 > 星号下标时： 一定不满足
  *
  * @author shenxie
  * @date 2025/11/5

@@ -50,6 +50,7 @@ public class 岛屿数量 {
             for(int j = 0; j < grid[0].length; j++ ){
                 if(grid[i][j] == '1') {
                     dfs(grid, i, j);
+                    // 后治理
                     // 直接count ++ 的原因： 检索过的岛屿： 被置为2：检索过了。 所以不满足第一个if的判定。
                     count++;
                 }
@@ -69,6 +70,7 @@ public class 岛屿数量 {
             return ;
         }
 
+        // 先污染
         // 是岛屿： 则标记2： 代表： 该岛屿已经被检索过。
         grid[i][j] = '2';
 

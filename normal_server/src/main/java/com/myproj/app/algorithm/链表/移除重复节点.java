@@ -44,7 +44,7 @@ public class 移除重复节点 {
 //        removeDuplicateNodes(head);
         removeDuplicateNodesV2Copy(head);
 //        removeDuplicateNodesV3(head);
-        removeDuplicateNodesV4(head);
+//        removeDuplicateNodesV4(head);
     }
 
     /**

@@ -24,6 +24,7 @@ import com.myproj.app.algorithm.动态规划.多维动态规划.最长回文子�
  *  *                  - 本题：动态规划：substring(i,j);
  *  *                  - 中者：在 {@link 回文子串}的基础上，添加了回溯
  *  *                  - 后者：在{@link 回文子串}的基础上， 找到最大值。
+ *          - “回文子串”问题：多需要 动态规划  /  回溯
  *
  * @author shenxie
  * @date 2025/11/3

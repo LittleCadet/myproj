@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.数学;
 
+import com.myproj.app.algorithm.字符串.字符串转换为整数;
+
 /**
  * 给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
  *
@@ -24,6 +26,9 @@ package com.myproj.app.algorithm.数学;
  *
  *      思路：
  *          - StringBuilder.reverse() + 异常捕获
+ *          - int超限的处理方式：
+ *              - 本题：try-catch
+ *              - {@link 字符串转换为整数}: 用 long 来比较大小
  *
  * @author shenxie
  * @date 2025/11/3
@@ -41,7 +46,8 @@ public class 整数反转 {
         try{
             int num = Integer.parseInt(sb.reverse().toString());
             return x > 0 ? num : - num;
-        }catch(NumberFormatException e) {
+            // 实际是 NumberFormatException ， 太长了， 不容易记住， 所以直接用Exception
+        }catch(Exception e) {
             return 0;
         }
     }

@@ -29,7 +29,8 @@ import java.util.List;
  * 解释：空字符串也是有效的
  *
  *      思路：
- *          - 栈 + StringBuilder
+ *          - 栈 + ArrayList + StringBuilder
+ *          - 括号的删除： 这个概念： 与 {@link 删除最外层的括号}很类似： 都是通过stringBuilder完成。
  *
  * @author shenxie
  * @date 2025/11/5

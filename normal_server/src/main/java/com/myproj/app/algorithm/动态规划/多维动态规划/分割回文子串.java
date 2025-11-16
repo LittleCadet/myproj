@@ -21,6 +21,7 @@ import java.util.List;
  *                  - 本题：在 {@link 回文子串}的基础上，添加了回溯
  *                  - 中者：动态规划：substring(i,j);
  *                  - 后者：在{@link 回文子串}的基础上， 找到最大值。
+ *         - “回文子串”问题：多需要 动态规划  /  回溯
  *
  *
  * @author shenxie

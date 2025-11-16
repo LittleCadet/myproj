@@ -26,6 +26,7 @@ public class 旋转字符串 {
     }
 
     public static boolean rotateString(String s, String goal) {
+        // 或者 s.length() == goal.length() && (s + s).contains(goal) 也行。
         return s.length() == goal.length() && (goal + goal).contains(s);
     }
 }

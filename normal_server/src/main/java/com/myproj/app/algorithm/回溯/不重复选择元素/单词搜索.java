@@ -1,6 +1,7 @@
 package com.myproj.app.algorithm.回溯.不重复选择元素;
 
 import com.myproj.app.algorithm.回溯.重复选择元素.组合总和;
+import com.myproj.app.algorithm.图.岛屿数量;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,9 @@ import java.util.Map;
  *          - 不重复选择元素：
  *              - 与 {@link 组合} / {@link 单词搜索} / {@link 子集} / {@link 括号生成} / {@link 电话号码的字母组合}类似：
  *              - 是主动变更index的方式【index + 1】，做到不重复选择元素。
+ *
+ *          - 类似于岛屿问题：
+ *              - {@link 岛屿数量} 等： 遵循先污染，后治理的原理
  *
  * @author shenxie
  * @date 2025/9/19
@@ -71,6 +75,7 @@ public class 单词搜索 {
             for(int j = 0 ; j<board[0].length; j++) {
                 // 这里必须要通过遍历所有的board的元素的方法来执行， 因为需要找到起点元素的位置， 才能以此为原点，找其他的相邻元素。
                 if( dfs(i,j, board, word, 0)) {
+                    // 后治理
                     return true;
                 }
             }
@@ -92,6 +97,7 @@ public class 单词搜索 {
 
         System.out.println("i:" + i + ",j:" + j + ",index:" + index);
 
+        // 先污染
         // 随便填，目的是为了不再重复运算， 最后会回溯的
         board[i][j] = '0';
 

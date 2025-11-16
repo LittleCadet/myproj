@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.字符串;
 
+import com.myproj.app.algorithm.回溯.不重复选择元素.复原IP地址;
+
 /**
  * 给定一个字符串 queryIP。如果是有效的 IPv4 地址，返回 "IPv4" ；如果是有效的 IPv6 地址，返回 "IPv6" ；如果不是上述类型的 IP 地址，返回 "Neither" 。
  * 有效的IPv4地址 是 “x1.x2.x3.x4” 形式的IP地址。 其中 0 <= xi <= 255 且 xi 不能包含 前导零。例如: “192.168.1.1” 、 “192.168.1.0” 为有效IPv4地址， “192.168.01.1” 为无效IPv4地址; “192.168.1.00” 、 “192.168@1.1” 为无效IPv4地址。
@@ -28,8 +30,8 @@ package com.myproj.app.algorithm.字符串;
  *      思路：
  *          - 逻辑判定：
  *              - 注意前导0的表达方式：
- *                  - 本题：s.charAt(i) == '0' && j > i
- *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'
+ *                  - {@link 复原IP地址}：s.charAt(i) == '0' && j > i
+ *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0': eg： 01
  *
  * @author shenxie
  * @date 2025/11/15

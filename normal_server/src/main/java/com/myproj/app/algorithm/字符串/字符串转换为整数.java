@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.字符串;
 
+import com.myproj.app.algorithm.数学.整数反转;
+
 /**
  *请你来实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数。
  * 函数 myAtoi(string s) 的算法如下：
@@ -54,7 +56,11 @@ package com.myproj.app.algorithm.字符串;
  *      思路：
  *          - 字符的数字拼接：
  *              num = num * 10 + Integer.parseInt(s.charAt(i) + "") * flag;
- *          - Integer的界限判定：
+ *          - 前导0的处理方式：
+ *              s.charAt(i) == '0' && num ==0
+ *          - int超限的处理方式：
+ *  *              - 本题：用 long 来比较大小
+ *  *              - {@link 整数反转}: try-catch
  *              long num = 0 ;
  *              if(num > Integer.MAX_VALUE) {
  *                 return Integer.MAX_VALUE;
@@ -86,7 +92,7 @@ public class 字符串转换为整数 {
                 }
             }
 
-            // 首尾是0 ， 则跳过
+            // 前导0 ， 则跳过
             if(s.charAt(i) == '0' && num ==0) {
                 continue;
             }

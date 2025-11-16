@@ -20,7 +20,7 @@ import java.util.List;
  * 输出: [1,5,2,4,3]
  *
  *      思路：
- *          - 线性表：
+ *          - 首尾双指针 + 线性表【即为ArrayList】：
  *              因为链表无法支持下标访问， 所以借助 ArrayList 可以完成。
  *
  *
@@ -31,15 +31,18 @@ import java.util.List;
 public class 重排链表 extends ListNode {
 
     public static void main(String[] args) {
-
+        ListNode node =  new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        reorderList(node);
     }
 
-    public void reorderList(ListNode head) {
+    public static void reorderList(ListNode head) {
         ListNode dummy = new ListNode(0,head);
         ListNode cur = dummy.next;
         List<ListNode> list = new ArrayList<>();
 
-        boolean reverse = true;
         while(cur != null) {
             list.add(cur);
             cur = cur.next;

@@ -2,6 +2,7 @@ package com.myproj.app.algorithm.动态规划;
 
 import com.myproj.app.algorithm.回溯.不重复选择元素.复原IP地址;
 import com.myproj.app.algorithm.字符串.验证IP地址;
+import com.myproj.app.algorithm.数组.比较版本号;
 
 /**
  * 一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：
@@ -45,9 +46,10 @@ import com.myproj.app.algorithm.字符串.验证IP地址;
  *                          s.charAt(i - 2) != '0' && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0') <= 26)
  *
  *  *              - 注意前导0的表达方式：
- *  *                  - {@link 复原IP地址}：s.charAt(i) == '0' && j > i
- *  *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'
- *  *                  - {@link 解码方法}： i > 1 && s.charAt(i - 2) != '0'
+ *  *                  - {@link 复原IP地址}：s.charAt(i) == '0' && j > i  eg: 01
+ *  *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'   eg: 01
+ *  *                  - {@link 解码方法}： i > 1 && s.charAt(i - 2) != '0'   eg: 01
+ *                     - {@link 比较版本号}： 直接通过Integer.parseInt(str)的方式处理即可。eg: 001   eg: 001
  *
  *
  * @author shenxie
@@ -68,7 +70,7 @@ public class 解码方法 {
             if (s.charAt(i - 1) != '0') {
                 f[i] += f[i - 1];
             }
-            // 爬两步的解法【注意：前导0的解法】：要求：爬两步时，数字和 不能超过26.
+            // 爬两步的解法【注意：前导0的解法】：要求：爬两步时，不能是前导0， 且 数字和 不能超过26.
             if (i > 1 && s.charAt(i - 2) != '0' && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0') <= 26)) {
                 f[i] += f[i - 2];
             }

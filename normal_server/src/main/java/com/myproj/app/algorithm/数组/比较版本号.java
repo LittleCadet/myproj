@@ -31,7 +31,8 @@ package com.myproj.app.algorithm.数组;
  *
  *
  *      思路：
- *          -
+ *          - 前导0的处理方式：
+ *              本题：直接通过Integer.parseInt(str)的方式处理即可。
  *
  * @author shenxie
  * @date 2025/11/14
@@ -39,7 +40,8 @@ package com.myproj.app.algorithm.数组;
 public class 比较版本号 {
 
     public static void main(String[] args) {
-        System.out.println(compareVersion("1.0", "1.0.0.0"));
+//        System.out.println(compareVersion("1.0", "1.0.0.0"));
+        System.out.println(Integer.parseInt("001"));
     }
 
     public static int compareVersion(String version1, String version2) {

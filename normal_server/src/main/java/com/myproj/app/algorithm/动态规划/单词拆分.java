@@ -47,6 +47,19 @@ public class 单词拆分 {
         System.out.println(wordBreakCopy("leetcode", sts));;
     }
 
+    /**
+     * 以leet code为例，理解官解状态转移：
+     * 当i=0时，""为空字符串，dp[0] = true
+     * 当i=1时，"l"不在字典，dp[1]=false
+     * i=2时，"le"不在字典，dp[2]=false
+     * i=3时，"lee"不在字典，dp[3]=false
+     * i=4时，"leet"在字典，dp[4]=true
+     * 由于有两个位置，0和4都为true，接下来要检查两个子串
+     * i=5时，"leetc"和"c"都不在字典，dp[5]=false
+     * i=6时，"leetco"和"co"都不在字典，dp[6]=false
+     * i=7时，"leetcod"和"cod"都不在字典，dp[7]=false
+     * i=8时，"leetcode"不在字典，但"code"在字典，dp[8]=true
+     */
     public static boolean wordBreakCopy(String s, List<String> wordDict) {
         boolean[] res = new boolean[s.length() + 1];
         // 表示： 空字符串。 初始化为true
@@ -67,5 +80,18 @@ public class 单词拆分 {
         // 返回数据最后一个元素的原因： 代表整个s是否都可以在wordDict中找到。
         return res[s.length()] ;
 
+    }
+
+
+    /**
+     * 错误方法： 不能通过 replaceAll的方式来解决， 因为wordDict的替换顺序是不一定的： eg:
+     *  当 s = "cars" , wordDict = ["car","ca","rs"]时， 会判定为false, 但实际为true
+     */
+    public static boolean wordBreakV2(String s, List<String> wordDict) {
+        for(String word : wordDict) {
+            s = s.replaceAll(word, "");
+        }
+
+        return s.length() == 0;
     }
 }

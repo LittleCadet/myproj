@@ -33,6 +33,10 @@ import java.util.LinkedList;
  *
  *      思路：
  *          - 栈： 【题意很重要： 删除最外层的括号！！！】
+ *              - 先去除最外层的"("
+ *              - 再stringBuilder进场
+ *              - 最终压栈 "("
+ *          - 括号的删除： 这个概念： 与 {@link 移除无效的括号}很类似： 都是通过stringBuilder完成。
  *
  * @author shenxie
  * @date 2025/11/5

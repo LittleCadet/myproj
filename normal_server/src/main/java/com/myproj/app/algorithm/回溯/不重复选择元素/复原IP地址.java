@@ -2,6 +2,7 @@ package com.myproj.app.algorithm.回溯.不重复选择元素;
 
 import com.myproj.app.algorithm.动态规划.解码方法;
 import com.myproj.app.algorithm.字符串.验证IP地址;
+import com.myproj.app.algorithm.数组.比较版本号;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +26,10 @@ import java.util.List;
  *      思路：
  *          - 回溯：
  *              - 注意前导0的表达方式：
- *                  - 本题：s.charAt(i) == '0' && j > i
- *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'
- *                  - {@link 解码方法}： i > 1 && s.charAt(i - 2) != '0'
+ *                  - 本题：s.charAt(i) == '0' && j > i： eg: 01
+ *                  - {@link 验证IP地址}： t[i].length() > 1 && t[i].charAt(0) == '0'： eg: 01
+ *                  - {@link 解码方法}： i > 1 && s.charAt(i - 2) != '0'： eg: 01
+ *                  - {@link 比较版本号}： 直接通过Integer.parseInt(str)的方式处理即可。eg: 001
  *
  * @author shenxie
  * @date 2025/11/14

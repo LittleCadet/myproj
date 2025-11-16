@@ -27,7 +27,7 @@ import java.util.List;
  *                  - i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]： 解决：相邻位置但值相等 的 不重复选择。
  *              - 而{@link 全排列}因为 nums数组不包含重复元素，所以全排列的不重复元素判定：只需要booean[] selected 即可
  *
- * *            - 与{@link 组合总和II}很类似：在相邻元素 且 值相等时， 不能重复使用：
+ * *            - 与{@link 组合总和II}很类似：在相邻元素 且 值相等时， 不能重复使用：[表达式一致]
  * *                  - visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
  *
  * @author shenxie

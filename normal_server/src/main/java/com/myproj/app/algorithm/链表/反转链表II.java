@@ -163,7 +163,7 @@ public class 反转链表II {
 
     /**
      * 反转链表的子区间： 通用做法。
-     * 与{@link 反转链表}完全相同
+     * 与{@link 反转链表}完全相同： 即为 将 1 -> 2 -> 3 变为 3-> 2 -> 1
      */
     private static void reverseLinkedList(ListNode head) {
         // 也可以使用递归反转一个链表

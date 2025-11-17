@@ -29,6 +29,8 @@ import java.util.List;
  *
  * *            - 与{@link 组合总和II}很类似：在相邻元素 且 值相等时， 不能重复使用：[表达式一致]
  * *                  - visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
+ *              - 与{@link 子集II}很类似：在相邻元素 且 值相等时， 不能重复使用
+ *                  - i>index && nums[i-1] == nums[i]
  *
  * @author shenxie
  * @date 2025/11/10

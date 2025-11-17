@@ -1,0 +1,55 @@
+package com.myproj.app.algorithm.回溯.不重复选择元素;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * 给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的
+ * （幂集）。
+ * 解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。
+ *
+ * 示例 1：
+ * 输入：nums = [1,2,2]
+ * 输出：[[],[1],[1,2],[1,2,2],[2],[2,2]]
+ *
+ * 示例 2：
+ * 输入：nums = [0]
+ * 输出：[[],[0]]
+ *
+ *      思路：
+ *          - 回溯：
+ *              - 与{@link 子集} 很类似：
+ *                  前者：相邻的相同元素不能重复使用： i>index && nums[i-1] == nums[i]
+ *                      - 与{@link 全排列II}很类似：vis[i] || i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]
+ *                      - 与{@link 组合总和II}很类似：visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
+ *                  后者： 随便搞
+ * @author shenxie
+ * @date 2025/11/17
+ */
+public class 子集II {
+
+    public static void main(String[] args) {
+        System.out.println(subsetsWithDup(new int[]{1,2,2}));
+    }
+
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        Arrays.sort(nums);
+        dfs(nums, results, new ArrayList<>(), 0);
+        return results;
+    }
+
+    private static void dfs(int[] nums, List<List<Integer>> results, List<Integer> result, Integer index){
+        results.add(new ArrayList(result));
+        for(int i = index; i<nums.length; i++) {
+            // 相邻的相同元素不重复使用：
+            if(i>index && nums[i-1] == nums[i]){
+                continue;
+            }
+            result.add(nums[i]);
+            dfs(nums, results, result, i+1);
+            result.remove(result.size() - 1);
+        }
+    }
+}

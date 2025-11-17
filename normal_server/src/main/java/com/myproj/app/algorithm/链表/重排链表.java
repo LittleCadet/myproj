@@ -39,8 +39,7 @@ public class 重排链表 extends ListNode {
     }
 
     public static void reorderList(ListNode head) {
-        ListNode dummy = new ListNode(0,head);
-        ListNode cur = dummy.next;
+        ListNode cur = head;
         List<ListNode> list = new ArrayList<>();
 
         while(cur != null) {
@@ -54,9 +53,6 @@ public class 重排链表 extends ListNode {
             // 将 L0 => Ln
             list.get(i).next = list.get(j);
             i++;
-            if(i == j) {
-                break;
-            }
 
             // 将 Ln => L1
             list.get(j).next = list.get(i);

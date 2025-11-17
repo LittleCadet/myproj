@@ -15,6 +15,10 @@ import java.util.List;
  * 输入：nums = [0]
  * 输出：[[],[0]]
  *
+ *      回溯：
+ *          - 与{@link 子集II} 很类似：
+ *              前者：随便搞
+ *              后者： 相邻的相同元素不能重复使用： i>index && nums[i-1] == nums[i]
  *
  * @author shenxie
  * @date 2025/11/3

@@ -36,6 +36,8 @@ import java.util.List;
  *                  - {@link 组合总和}： 元素可以重复使用，
  *              - 与{@link 全排列II}很类似：在相邻元素 且 值相等时， 不能重复使用：
  *                  - visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
+ *              - 与{@link 子集II}很类似：在相邻元素 且 值相等时， 不能重复使用：
+ *                  - i>index && nums[i-1] == nums[i]
  *
  * @author shenxie
  * @date 2025/11/11

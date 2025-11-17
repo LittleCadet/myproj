@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm.区间;
 
+import com.myproj.app.algorithm.二分查找.检索插入位置;
+import com.myproj.app.algorithm.二叉树.二叉搜索树.二叉搜索树中的插入操作;
+import com.myproj.app.algorithm.链表.对链表进行插入排序;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -14,6 +17,12 @@ import java.util.List;
  *
  * 思路：
  *      1. 将newInterval 合并到 intervals中， 后续操作与合并区间 完全一致。
+ *
+ *  *          - 与 {@link 检索插入位置}类似：
+ *  *              - {@link 对链表进行插入排序}： 链表的节点插入： 变为有序链表
+ *  *              - {@link 检索插入位置}： 将target 插入 二叉搜索树中， 返回 插入位置。
+ *  *              - {@link 插入区间}: 区间插入： 变为 有序区间
+ *  *              - {@link 二叉搜索树中的插入操作}： 将target 插入二叉搜索树中， 并形成节点
  *
  * @author shenxie
  * @date 2023/12/29

@@ -1,5 +1,9 @@
 package com.myproj.app.algorithm.链表;
 
+import com.myproj.app.algorithm.二分查找.检索插入位置;
+import com.myproj.app.algorithm.二叉树.二叉搜索树.二叉搜索树中的插入操作;
+import com.myproj.app.algorithm.区间.插入区间;
+
 /**
  * ‘给定单个链表的头 head ，使用 插入排序 对链表进行排序，并返回 排序后链表的头 。
  * 插入排序 算法的步骤:
@@ -34,6 +38,12 @@ package com.myproj.app.algorithm.链表;
  *              注意： 插入顺序的调整：与 {@link 反转链表} 不同：
  *                  - 本题： 强调 插入顺序的调整: 对于一个插入元素而言： 是一次性调整。
  *                  - 后者： 强调 链表反转： 对于链表而言： 是递归调整
+ *
+ *          - 与 {@link 检索插入位置}类似：
+ *              - {@link 对链表进行插入排序}： 链表的节点插入： 变为有序链表
+ *              - {@link 检索插入位置}： 将target 插入 二叉搜索树中， 返回 插入位置。
+ *              - {@link 插入区间}: 区间插入： 变为 有序区间
+ *              - {@link 二叉搜索树中的插入操作}： 将target 插入二叉搜索树中， 并形成节点
  *
  * @author shenxie
  * @date 2025/11/17

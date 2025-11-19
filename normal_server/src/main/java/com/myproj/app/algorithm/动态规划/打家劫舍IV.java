@@ -55,6 +55,7 @@ public class 打家劫舍IV {
             upper = Math.max(nums[i], upper);
         }
 
+        // 模拟所有间隔抢劫的可能性
         while (lower <= upper) {
             int middle = lower + (upper - lower) / 2;
             int count = 0;

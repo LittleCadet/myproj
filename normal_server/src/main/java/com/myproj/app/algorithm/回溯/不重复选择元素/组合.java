@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.回溯.不重复选择元素;
 
+import com.myproj.app.algorithm.回溯.重复选择元素.组合总和;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,10 @@ import java.util.List;
  *
  *      思路：
  *          回溯
+ *  *              - 与{@link 组合总和}很类似：不同的是：
+ *  *                  - {@link 组合总和}： 元素可以重复使用；
+ *  *                  - {@link 组合总和II}： 要求： 元素不能重复使用， 且 解集不能包含重复的组合
+ *  *                  - {@link 组合总和III}: 元素不可重复使用， 且 是求和问题
  *
  * @author shenxie
  * @date 2025/9/19

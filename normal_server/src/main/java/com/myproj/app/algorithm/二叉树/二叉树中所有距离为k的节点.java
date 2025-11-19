@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.二叉树;
 
+import com.myproj.app.algorithm.动态规划.打家劫舍III;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,10 @@ import java.util.Map;
  *                      在向上遍历的， 不会出现向下遍历。
  *                  解法： 用from来控制即可。 from为父节点时， 代表： 向下递归。
  *                                          from为子节点时， 代表： 向上递归。
+ *
+ *  *              - 二叉树的节点检索问题： 与{@link 二叉树中所有距离为k的节点}有点类似：
+ *  *                  - {@link 二叉树中所有距离为k的节点}: 通过 hashMap 记录各个节点的父节点， 从而完成向上递归
+ *  *                  - {@link 打家劫舍III}: 通过 hashMap记录各个节点的最大权益值， 从而完成 看似 向上递归 但 本质 向下递归的目标。
  *
  * @author shenxie
  * @date 2023/12/20

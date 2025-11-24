@@ -43,6 +43,7 @@ public class 分割回文子串 {
     }
 
     private static void partition(String s, int idx, List<String> list, List<List<String>> res) {
+        // 注意条件：而不是没有条件
         if (idx == s.length()) {
             res.add(new ArrayList<>(list));
             return;

@@ -50,6 +50,8 @@ public class 最大二叉树II extends TreeNode {
 
         if (root.val < val) {
             // val > root.val时： root为左子树
+            // 想想最大二叉树的定义：root节点是最大值，在数组中：root节点的左侧元素， 在左节点; 而右侧元素，在右节点。
+            // 而val插在数组最后面，所以， 如果val > root.val， 则 root为左子树
             return new TreeNode(val, root, null);
         } else {
             // val < root.val时， val插入右子树： 因为“在末尾附加值val”

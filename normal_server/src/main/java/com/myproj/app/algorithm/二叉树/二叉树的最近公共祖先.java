@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.二叉树;
 
+import com.myproj.app.algorithm.二叉树.二叉搜索树.二叉搜索树的最近公共祖先;
+
 /**
  * 题目：
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
@@ -14,6 +16,10 @@ package com.myproj.app.algorithm.二叉树;
  * 1. 节点p/q在左子树： 则right = null , 此时返回left 就是最近公共祖先。
  * 2. 节点p/q在右子树： 则left = null, 此时返回right 就是最近公共祖先。
  * 3. 节点在 左子树 + 右子树： 则left != null && right != null, 此时root就是最近公共祖先。
+ *
+ *
+ *      - 与{@link 二叉搜索树的最近公共祖先}：解法一致：
+ *          但{@link 二叉搜索树的最近公共祖先}可以用二叉搜索树的特性【left.val < root.val < right.val;】求解：
  *
  * @author shenxie
  * @date 2023/12/11

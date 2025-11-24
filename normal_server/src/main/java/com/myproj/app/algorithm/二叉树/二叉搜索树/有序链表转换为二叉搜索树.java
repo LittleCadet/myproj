@@ -74,7 +74,7 @@ public class 有序链表转换为二叉搜索树 extends TreeNode {
         int mid = left + (right - left + 1) / 2;
         TreeNode root = new TreeNode();
         root.left = buildTree(left, mid - 1);
-        // 第一个节点， 一定是root节点， 因为这是先序遍历的语义
+        // 第一个节点， 一定是root节点， 因为这是中序遍历的语义
         root.val = globalHead.val;
         globalHead = globalHead.next;
         root.right = buildTree(mid + 1, right);

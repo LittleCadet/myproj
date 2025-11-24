@@ -68,11 +68,13 @@ public class 单词拆分 {
         for(int i =1; i<= s.length(); i++) {
             // j<i的原因： 判定前i个元素：是否能在wordDict中找到。
             for(int j = 0 ; j < i; j++) {
-                // 这里需要res[j]的原因： 判定前j个字符是否在wordDict中。
-                // 而wordDict.contains(s.substring(j,i))的原因： 判定后N个字符是否在wordDict中。
+                // 假如 有i个字符， 其中j是分割点，则如果 [0,j] 满足 且 [j,i] 也满足， 则前 i 个字符都满足。
+                // res[j]的原因： 判定前j个字符是否在wordDict中。即为 [0,j] 都满足
+                // wordDict.contains(s.substring(j,i))的原因： 判定[j,1]个字符是否在wordDict中。
                 if(res[j] && wordDict.contains(s.substring(j,i))){
                     // res[j]相当于存量数据， 用动态规划。
                     // res[i]相当于增量数据， 为后续的动态规划做准备。
+                    // 含义： 指的是前i个字符：能被找到。
                     res[i] = true;
                 }
             }

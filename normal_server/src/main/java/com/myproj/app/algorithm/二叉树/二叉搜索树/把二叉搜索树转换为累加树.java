@@ -29,6 +29,8 @@ import com.myproj.app.algorithm.二叉树.抽象类.TreeNode;
  *          - 题意：累加树：让每个节点的新值 >= 原树中 node.val的和
  *              即为： 反序中序遍历：即可得到累加树
  *
+ *              只能用中序遍历： 二叉搜索树的题目： 应该优先考虑中序遍历
+ *
  * @author shenxie
  * @date 2025/11/4
  */

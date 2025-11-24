@@ -82,10 +82,12 @@ public class 二叉树中所有距离为k的节点 {
             return;
         }
         // 在左子树中找到所有depth = k的节点
+        // 在当前节点的父节点 与 from不同时， 才继续向上查找
         if (node.left != from) {
             findAns(node.left, node, depth + 1, k);
         }
         // 在右子树中找到所有depth = k的节点
+        // 在当前节点的父节点 与 from不同时， 才继续向上查找
         if (node.right != from) {
             findAns(node.right, node, depth + 1, k);
         }

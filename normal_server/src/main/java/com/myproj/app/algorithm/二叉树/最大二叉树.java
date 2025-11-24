@@ -35,11 +35,15 @@ import com.myproj.app.algorithm.二叉树.抽象类.TreeNode;
  */
 public class 最大二叉树 extends TreeNode {
 
-    public TreeNode constructMaximumBinaryTree(int[] nums) {
+    public static void main(String[] args) {
+        constructMaximumBinaryTree(new int[]{3,2,1,6,0,5});
+    }
+
+    public static TreeNode constructMaximumBinaryTree(int[] nums) {
         return dfs(nums, 0, nums.length -1);
     }
 
-    private TreeNode dfs(int[] nums, int left, int right) {
+    private static TreeNode dfs(int[] nums, int left, int right) {
         if(left > right) {
             return null;
         }

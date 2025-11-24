@@ -15,6 +15,7 @@ import com.myproj.app.algorithm.二叉树.抽象类.TreeNode;
  *
  *      思路：
  *          - 中序遍历：累加求和
+ *              - 实际：前中后序排序， 都行： 但 二叉搜索树 优先使用中序遍历：不容易出错： eg: {@link 把二叉搜索树转换为累加树}：只能用中序遍历
  *
  * @author shenxie
  * @date 2025/11/4
@@ -40,6 +41,7 @@ public class 二叉搜索树的范围和 extends TreeNode {
             return ;
         }
         dfs(root.left,low, high);
+        // 实际上： 前中后序遍历， 都行
         if(low <= root.val && root.val <= high) {
             sum += root.val;
         }

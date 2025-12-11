@@ -1,8 +1,13 @@
 package com.myproj.app.controller;
 
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.PostConstruct;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DemoControllerV2 {
+    private OkHttpClient httpClient;
+
+    @PostConstruct
+    public void init() {
+        httpClient = new OkHttpClient();
+    }
 
     @GetMapping("/demo/async")
-    public String async(){
+    public String async() {
         new Thread(() -> {
             System.out.println("runnable执行");
         }).start();
@@ -40,5 +51,21 @@ public class DemoControllerV2 {
 //        }
 
         return "ok";
+    }
+
+    @GetMapping("/rpc")
+    public String rpc() {
+        Request request = new Request.Builder()
+                .get()
+                .url("http://localhost:8082/consumer2")
+                .build();
+
+        try {
+            Response response = httpClient.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "xxx";
     }
 }

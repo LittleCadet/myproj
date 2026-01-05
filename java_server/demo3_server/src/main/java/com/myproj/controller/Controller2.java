@@ -25,17 +25,8 @@ public class Controller2 {
         httpClient = new OkHttpClient();
     }
 
-    @GetMapping("rpc2")
+    @GetMapping("rpc3")
     public String rpc() throws IOException {
-        Request request = new Request.Builder()
-                .get()
-                .url("http:localhost:8083/test/rpc3")
-                .build();
-
-        Response response = httpClient.newCall(request).execute();
-//        Response response2 = httpClient.newCall(request).execute();
-//        Response response3 = httpClient.newCall(request).execute();
-//        Response response4 = httpClient.newCall(request).execute();
-        return "ok2";
+        return "ok3";
     }
 }

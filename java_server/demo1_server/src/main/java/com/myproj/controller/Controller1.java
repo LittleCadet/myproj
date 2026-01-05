@@ -33,16 +33,19 @@ public class Controller1 {
                 .url("http:localhost:8082/test/rpc2")
                 .build();
 
-        new Thread(() -> {
-            try {
-                Response response = httpClient.newCall(request).execute();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//        new Thread(() -> {
+//            try {
+//                Response response = httpClient.newCall(request).execute();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//        }).start();
 
-        }).start();
-
-//        Response response = httpClient.newCall(request).execute();
+        Response response = httpClient.newCall(request).execute();
+        Response response2 = httpClient.newCall(request).execute();
+        Response response3 = httpClient.newCall(request).execute();
+        Response response4 = httpClient.newCall(request).execute();
 
         return "ok:" ;
     }

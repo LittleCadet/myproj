@@ -95,6 +95,10 @@ public class 前序遍历构造二叉搜索树 extends TreeNode {
         while(l<r) {
             // 注意mid: r-l + 1： 因为：preorder的首个元素是root节点，一定不包含左右子树，所以 + 1
             int mid = l + (r-l + 1) / 2;
+            // 用 mid 与 left比较的原因： 求的是 最后一个小于 preorder[left]的下标： 即为 剩余元素中的最大值： 所以缩小 最小值的范围。详见：《寻找旋转排序数组中的最小值》
+            // 此时 preorder[left] 本质是 target,  即为：
+            // - preorder[mid] < target 则 l = mid
+            // - preorder[mid] >= target 则 r = mid - 1
             if(preorder[mid] < preorder[left]) {
                 // 下一轮搜索区间是 [mid, r]
                 l = mid;

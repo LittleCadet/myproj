@@ -83,8 +83,8 @@ public class 销售利润最大化 {
             //选,买end号房的方案可能有多个
             for(int[] endOffer:group){
                 System.out.println("dp[end+1]:" + dp[end+1] + ", sum:" + dp[endOffer[0]] + endOffer[1]  );
-                // dp[end + 1]: 存量
-                // dp[endOffer[0]] + endOffer[1]: 增量
+                // dp[end + 1]: 存量：代表不卖
+                // dp[endOffer[0]] + endOffer[1]: 增量：代表卖
                 dp[end+1] = Math.max(dp[end+1],dp[endOffer[0]] + endOffer[1]);
                 System.out.println("result:" + dp[end+1]);
             }

@@ -70,6 +70,9 @@ public class 复原IP地址 {
             int v = Integer.parseInt(s.substring(i, j + 1));
             if (v >= 0 && v <= 255) {
                 t.add(s.substring(i, j + 1));
+                // 此处必定用 i + 1， 而不是 index + 1: 原因：
+                // - index + 1: 代表： i 和 index的增长速度不一致， 会导致 i 比 index大， 从而导致 nums[1] 比 nums[0]大 【即为 选择之前选择过的元素】， 这是不符合题意的【看 例子】。
+                // - i + 1: 代表： i 和 index的增长速度一致， 即为 nums[1] > nums[0] 永远成立。
                 dfs(s, j + 1, k - 1);
                 t.remove(t.size() - 1);
             }

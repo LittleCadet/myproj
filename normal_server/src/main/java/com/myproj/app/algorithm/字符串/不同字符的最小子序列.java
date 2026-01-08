@@ -15,15 +15,19 @@ package com.myproj.app.algorithm.字符串;
  *      思路：
  *          - 题意：返回字典序最小的，且每个字符只能包含一次。
  *              所以：会有将ans的答案不断修正的过程：
- *          - 注意： 这题很特殊： 最小子序列： 并没有 Math.min(x1,x2)的过程。
+ *          - 注意：
+ *              -- 这题很特殊： 最小子序列： 并没有 Math.min(x1,x2)的过程。
+ *              -- 字典序最小： 不代表要按照 字典序排序， 而是说：按照字母出现的顺序排序：
+ *                  如果当前字母A 比ans最后一个字母B 小 且 B在left中依旧有 ， 则优先按照字典序排序，并删除之前比A小的字符，
+ *                  如果B在left中没有， 则不按照字典序排序：直接加进来。
  *
  * @author shenxie
  * @date 2025/11/20
  */
-public class 不同字符的最小最序列 {
+public class 不同字符的最小子序列 {
 
     public static void main(String[] args) {
-        System.out.println(smallestSubsequence("bcabc"));
+        System.out.println(smallestSubsequence("bcdabc"));
     }
 
     /**

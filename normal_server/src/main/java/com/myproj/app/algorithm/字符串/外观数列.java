@@ -46,6 +46,7 @@ public class 外观数列 {
             int start = 0;
             int pos = 0;
 
+            // 用当前的 str 形成一个 外观数列
             while (pos < str.length()) {
                 // 记录相同字符重复次数
                 while (pos < str.length() && str.charAt(pos) == str.charAt(start)) {
@@ -55,7 +56,7 @@ public class 外观数列 {
                 sb.append(pos - start).append(str.charAt(start));
                 start = pos;
             }
-            // 更新str
+            // 更新str： 准备形成下一个外观数列
             str = sb.toString();
         }
 

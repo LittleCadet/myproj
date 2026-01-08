@@ -46,15 +46,16 @@ public class 全排列II {
         List<Integer> perm = new ArrayList<Integer>();
         // 必须排序， 不然"相邻的相同元素不能重复使用"的语义：无法完成
         Arrays.sort(nums);
-        backtrack(nums, ans, 0, perm, new boolean[nums.length]);
+        backtrack(nums, ans,  perm, new boolean[nums.length]);
         return ans;
     }
 
-    public static void backtrack(int[] nums, List<List<Integer>> ans, int idx, List<Integer> perm, boolean[] vis) {
+    public static void backtrack(int[] nums, List<List<Integer>> ans,  List<Integer> perm, boolean[] vis) {
         if (perm.size() == nums.length) {
             ans.add(new ArrayList<>(perm));
             return;
         }
+        // i从0 开始： 只有全排列是 这样， 其他都是从 index开始
         for (int i = 0; i < nums.length; ++i) {
             // 对于 !vis[i-1]的原因：
             // 需要将两个相邻的重复数字 去重：eg: 11, 假设 1a代表第一个1， 1b代表第二个1， 所以排列有1a1b 或者 1b1a。 但题意是只保留 1a1b。
@@ -64,7 +65,7 @@ public class 全排列II {
             }
             perm.add(nums[i]);
             vis[i] = true;
-            backtrack(nums, ans, idx + 1, perm, vis);
+            backtrack(nums, ans, perm, vis);
             vis[i] = false;
             perm.remove(perm.size() -1);
         }

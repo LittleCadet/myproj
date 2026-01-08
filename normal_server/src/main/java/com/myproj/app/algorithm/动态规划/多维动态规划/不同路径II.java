@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.动态规划.多维动态规划;
 
+import com.myproj.app.algorithm.二叉树.二叉搜索树.不同的二叉搜索树;
+
 /**
  * 题目：
  * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
@@ -18,6 +20,11 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  * 1. 动态规划：
  *      核心思想： 到当前节点的总路径数 ： 左边节点的总路径数 + 上边节点的总路径数：
  *                  即为：ans[i][j] = ans[i - 1][j] + ans[i][j - 1];
+ *
+ *   - {@link 不同路径} && {@link 不同路径II} && {@link 不同的二叉搜索树} 类似：
+ *     -- {@link 不同路径}： 网格中没有障碍物: 表达式：result[i][j] = result[i-1][j] + result[i][j-1];
+ *     -- {@link 不同路径II}: 网格中有障碍物: 表达式：同上
+ *     -- {@link 不同的二叉搜索树}： 表达式：dp[i] += dp[j-1] * dp[i-j]
  *
  * @author shenxie
  * @date 2023/12/31

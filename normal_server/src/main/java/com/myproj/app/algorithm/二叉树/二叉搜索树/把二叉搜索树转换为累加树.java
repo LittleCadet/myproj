@@ -47,6 +47,7 @@ public class 把二叉搜索树转换为累加树 extends TreeNode {
     static int sum = 0;
     public static TreeNode convertBST(TreeNode root) {
         if(root != null) {
+            // 反向 中序遍历： 得到累加树：每个节点 node 的新值等于原树中大于或等于 node.val 的值之和
             convertBST(root.right);
             sum += root.val;
             root.val = sum;

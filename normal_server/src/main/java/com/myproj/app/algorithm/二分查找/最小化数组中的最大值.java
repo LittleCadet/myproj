@@ -1,7 +1,5 @@
 package com.myproj.app.algorithm.二分查找;
 
-import com.myproj.app.algorithm.动态规划.打家劫舍IV;
-
 /**
  * 给你一个下标从 0 开始的数组 nums ，它含有 n 个非负整数。
  * 每一步操作中，你需要：
@@ -85,7 +83,7 @@ public class 最小化数组中的最大值 {
             // 如果 nums[i]>limit，那么应当去掉多余的 extra=nums[i]−limit 加到 nums[i−1] 上，最后如果 nums[0]≤limit，则二分判定成功。
             extra = Math.max(nums[i] + extra - limit, 0);
         }
-        // 让所有元素：都不超过 limit
+        // 让所有元素：都不超过 limit： 越往左 ，加的越多 ， 所以 “让所有元素：都不超过 limi” 变为 nums[0] + extra <= limit
         // limit的二分判定成功：说明：这是其中的一个最大值， 还要继续执行二分， 才能找到最小的最大值。
         return nums[0] + extra <= limit;
     }

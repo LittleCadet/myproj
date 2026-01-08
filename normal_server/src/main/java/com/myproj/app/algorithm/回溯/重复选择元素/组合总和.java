@@ -59,10 +59,10 @@ public class 组合总和 {
         }
 
         // 注意： i 起始位置是 index: 保证：同一个元素不重复使用
+        // i 从0 开始： 那是全排列。{@link 全排列} + {@link 全排列II}
         for(int i = index ; i<candidates.length; i++) {
             tmp.add(candidates[i]);
             // 这里 不主动改变i的值， 则 数值 可以做到重复选择。
-            // 与 {@link 全排列} 类似的是： {@link 全排列} 也没有主动改变 下标， 而是通过for循环的方式完成， 所以 数值可以重复选择
             process(result, candidates, target, sum+candidates[i], tmp, i);
             tmp.remove(tmp.size() - 1);
         }

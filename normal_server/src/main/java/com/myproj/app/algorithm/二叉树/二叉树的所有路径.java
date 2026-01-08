@@ -49,7 +49,7 @@ public class 二叉树的所有路径 extends TreeNode {
      * 回溯： stringBuilder 只需要创建一次， 但需要用 回溯的复原
      */
     public static List<String> binaryTreePathsV2(TreeNode root) {
-        dfs(root, new StringBuilder());
+        dfsV2(root, new StringBuilder());
         return results;
     }
 

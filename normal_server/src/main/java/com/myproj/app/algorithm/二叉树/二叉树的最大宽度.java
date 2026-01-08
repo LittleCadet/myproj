@@ -39,7 +39,7 @@ public class 二叉树的最大宽度 extends TreeNode {
         treeNode.right.right = new TreeNode(9);
 
 
-        System.out.println(widthOfBinaryTree(treeNode));
+        System.out.println(widthOfBinaryTreeV2(treeNode));
     }
 
 

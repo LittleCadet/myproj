@@ -1,4 +1,4 @@
-package com.myproj.app.algorithm.动态规划;
+package com.myproj.app.algorithm.动态规划.多维动态规划;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -12,6 +12,9 @@ package com.myproj.app.algorithm.矩阵;
  *      1. 找规律： 旋转90度， 即为： 每一行的数据都旋转90度。
  *                  则matrix[row][col]，在旋转后，它的新位置为 matrixnew[col][n−row−1]
  *
+ *                  {@link 旋转图像}: 顺时针旋转90度： matrix[row][col]，在旋转后，它的新位置为 matrixnew[col][n−row−1]
+ *                  与{@link 旋转盒子} 也是顺时针旋转90度： 表达式一致。
+ *
  * @author shenxie
  * @date 2024/1/16
  */

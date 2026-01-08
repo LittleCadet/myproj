@@ -72,9 +72,15 @@ public class 有序链表转换为二叉搜索树 extends TreeNode {
         }
         // mid = left + (right - left ) / 2 也可以： 因为中位数：可以是唯二的数字中的任意一个。
         int mid = left + (right - left + 1) / 2;
+        // 此处使用占位符 即为 空节点的方式表达 root节点。等到 中序遍历遍历到的时候， 再去填充该值即可。
         TreeNode root = new TreeNode();
         root.left = buildTree(left, mid - 1);
-        // 第一个节点， 一定是root节点， 因为这是中序遍历的语义
+        // 中序遍历的本质： 虽然真正的root节点在 链表的中间位置，
+        // 但是root.left 和 root.right的之间的位置说明：当前位置是 二叉搜索树的最小节点， 即为 最左节点。 即为：链表的当前值。
+        // 所以在此时： 用 globalHead.val 填充 root节点 ：本质上是 填充最左节点。
+        // 即为： 先填充最左节点 ，再填充 root节点， 最后填充 最右节点
+        // 思维发散：为啥 《将二叉搜索树变平衡》中序遍历形成的有序数组， 可以直接形成 真正的root节点， 而 链表 需要用占位符：先填充 left, 再root, 最后 right ？？
+        // 因为： 数组找到 mid 节点【即为 root节点】很简单， 直接 arr[mid] 即可。 但是链表不行： 为了 降低 复杂度， 所以 用占位符， 先填充left, 再 root, 最后right.
         root.val = globalHead.val;
         globalHead = globalHead.next;
         root.right = buildTree(mid + 1, right);

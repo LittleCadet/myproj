@@ -21,7 +21,7 @@ package com.myproj.app.algorithm.数学;
 public class 旋转数字 {
 
     public static void main(String[] args) {
-        System.out.println(rotatedDigits(20));
+        System.out.println(rotatedDigits(32));
     }
 
     public static int rotatedDigits(int n) {
@@ -31,12 +31,18 @@ public class 旋转数字 {
             int temp = i;
             int count = 0;
             while (temp > 0) {
+                if(i == 23) {
+                    System.out.println();
+                }
                 int t = temp % 10;
                 // 根据题意：0,1，,2，,5，,6，,8，9 都是可以的， 但是只有2，,5，,6，9 是 好数，而3，4，,7都是没意义的。
                 if (t == 2 || t == 5 || t == 6 || t == 9){
                     count = 1;
                 }else if (t == 3 || t == 4 || t == 7) {
+                    // 必须要重置为0 ， 虽然1-n的每个数： 都会重置count, 但是当前数会轮询判定每个字符：只要有一个字符不符合：那么就不是好数：eg：
+                    // 32 不是好数： 虽然执行的第一个字符“2”：是好数， 但是3不是， 所以 32不是好数， 此时要把 由于2导致的count置为0.
                     count = 0;
+                    // break: 只是跳出当前这个数的判定， 其他数依旧会执行：
                     break;
                 }
                 temp = temp / 10;

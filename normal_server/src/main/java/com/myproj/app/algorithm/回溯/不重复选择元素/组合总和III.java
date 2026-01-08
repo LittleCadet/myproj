@@ -71,6 +71,9 @@ public class 组合总和III {
                 return;
             }
             result.add(i);
+            // 此处必定用 i + 1， 而不是 index + 1: 原因：
+            // - index + 1: 代表： i 和 index的增长速度不一致， 会导致 i 比 index大， 从而导致 nums[0] 比 nums[1]大， 这是不符合题意的【看 例子】。
+            // - i + 1: 代表： i 和 index的增长速度一致， 即为 nums[1] > nums[0] 永远成立。
             dfs(k, n, results, result, i+1, sum + i);
             result.remove(result.size() - 1);
         }

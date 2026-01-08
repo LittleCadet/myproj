@@ -1,5 +1,8 @@
 package com.myproj.app.algorithm.二叉树.二叉搜索树;
 
+import com.myproj.app.algorithm.动态规划.多维动态规划.不同路径;
+import com.myproj.app.algorithm.动态规划.多维动态规划.不同路径II;
+
 /**
  * 给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。
  *
@@ -19,6 +22,10 @@ package com.myproj.app.algorithm.二叉树.二叉搜索树;
  *          最优子结构：dp[i] += dp[j-1] * dp[i-j];
  *      - 此题与{@link 有序链表转换为二叉搜索树}有类似的地方：
  *          - dp[j-1]:代表左子树： 因为升序排序：所以可以理解为二叉树中的中序排序，则j-1代表：左子树
+ *      - {@link 不同路径} && {@link 不同路径II} && {@link 不同的二叉搜索树} 类似：
+ *          -- {@link 不同路径}： 网格中没有障碍物: 表达式：result[i][j] = result[i-1][j] + result[i][j-1];
+ *          -- {@link 不同路径II}: 网格中有障碍物: 表达式：同上
+ *          -- {@link 不同的二叉搜索树}： 表达式：dp[i] += dp[j-1] * dp[i-j]
  * @author shenxie
  * @date 2025/11/4
  */

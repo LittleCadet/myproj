@@ -1,7 +1,9 @@
 package com.myproj.app.algorithm.堆;
 
 import com.myproj.app.algorithm.数学.丑数;
+import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Set;
 
@@ -31,11 +33,15 @@ public class 丑数II {
 
     public static void main(String[] args) {
         System.out.println(nthUglyNumber(10));
+//        System.out.println(nthUglyNumberV2(10));
     }
     public static int nthUglyNumber(int n) {
         int[] nums = {2,3,5};
         Set<Long> set = new HashSet<>();
-        // 最小堆
+        // 最小堆： 用堆 而不是 Deque 或者 ArrayList的原因：
+        // - Deque / ArrayList:
+        // -- 只能保证 LILO 或者 LIFO， 但是题意要求：将丑数按照从小到大 排序， 取第N个丑数。
+        // -- 可以每次将Deque排序，再取出最小数， 最后返回第1个元素。但是这样：没有PriorityQueue简单
         PriorityQueue<Long> queue = new PriorityQueue<>();
         // queue中预置数， 只能是1，因为：1 * 任何数 = 任何数
         queue.offer(1L);

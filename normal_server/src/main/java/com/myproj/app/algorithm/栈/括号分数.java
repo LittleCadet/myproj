@@ -76,6 +76,7 @@ public class 括号分数 {
      * 方法2： 栈：两次出栈 + Math.max(2*v, 1)
      */
     public static int scoreOfParenthesesV2(String s) {
+        // 注意 stack的泛型：是Integer, 用于压入 括号的分数 ！！
         Deque<Integer> st = new LinkedList<Integer>();
         // 为了兼容两次出栈，而必须在开始的时候：压入0
         st.push(0);

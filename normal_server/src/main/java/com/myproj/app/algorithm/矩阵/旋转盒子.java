@@ -38,7 +38,9 @@ import java.util.Arrays;
  *
  *       思路：【不太好懂 ~。~】
  *          - 解法1： 先旋转，再搬运
- *          - 解法2： 先搬运，再旋转
+ *          - 解法2【推荐】： 先搬运，再旋转
+ *              {@link 旋转图像}: 顺时针旋转90度： matrix[row][col]，在旋转后，它的新位置为 matrixnew[col][n−row−1]
+ *              与{@link 旋转盒子} 也是顺时针旋转90度： 表达式一致。
  *
  * @author shenxie
  * @date 2025/11/4
@@ -47,7 +49,8 @@ public class 旋转盒子 {
 
     public static void main(String[] args) {
 //        System.out.println(Arrays.deepToString(rotateTheBox(new char[][]{{'#', '.', '*', '.'}, {'#', '#', '*', '.'}})));
-        System.out.println(Arrays.deepToString(rotateTheBox(new char[][]{{'1', '2', '3', '4'}, {'5', '6', '7', '8'}})));
+//        System.out.println(Arrays.deepToString(rotateTheBoxV2(new char[][]{{'#', '.', '*', '.'}, {'#', '#', '*', '.'}})));
+        System.out.println(Arrays.deepToString(rotateTheBoxV2(new char[][]{{'#', '.', '#'}})));
     }
 
     /**
@@ -83,9 +86,12 @@ public class 旋转盒子 {
 
 
     /**
-     * 解法2： 先搬运再旋转
+     * 解法2： 先搬运再旋转：
+     *  搬运思想：
+     *      当碰到石头时：就将石头放在pos位置，之后pos的位置左移 ， 且 将原位置空
+     *      当碰到障碍物时， 将pos的位置左移。
      */
-    public char[][] rotateTheBoxV2(char[][] box) {
+    public static char[][] rotateTheBoxV2(char[][] box) {
         int m = box.length, n = box[0].length;
         char[][] ans = new char[n][m];  // 用来构建返回值的二维数组
         // 首先逐行处理，把石头挪到该放的地方去
@@ -95,13 +101,20 @@ public class 旋转盒子 {
             // 然后从右往左遍历，逐个更新石头的位置
             for (int j = n - 1; j >= 0; --j) {
                 if (box[i][j] == '#') {
-                    // 遇到了石头，先把它放到该放的位置去
-                    box[i][pos--] = '#';
-                    // 确保没有覆盖掉起始位置的石头，然后把挪动前的位置置为 空（.）
-                    if (pos != j - 1) box[i][j] = '.';
+                    // 遇到了石头，先把它放到该放的位置去: 即为 碰到障碍物的前一个位置。
+                    box[i][pos] = '#';
+                    // 更新pos的位置
+                    pos--;
+                    // 如果最后一列已经有石头了， 那么在box[i][pos] = ‘#’ 的时候， 相当于石头 虽然已经被覆盖了， 但是 从空间上来讲：石头位置没有发生改变。 即为：挪动前的位置：不需要置空： '.'
+                    // 如果最后一列没有石头：那么在bos[i][pos] = '#'的时候， 相当于改变石头的位置，放到了最后一列。那么需要将挪动前的位置置为空： 即为：‘。’
+                    if (pos != j - 1){
+                        box[i][j] = '.';
+                    }
                 }
                 // 如果遇到了障碍物，那么就更新可放的位置为障碍物的下一个位置（左边）
-                else if (box[i][j] == '*') pos = j - 1;
+                else if (box[i][j] == '*'){
+                    pos = j - 1;
+                }
 
             }
         }

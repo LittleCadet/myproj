@@ -46,9 +46,12 @@ public class 反转链表 extends ListNode {
         ListNode pre = null;
         ListNode cur = head;
         while(cur != null) {
+            // 1 => 2 => 3 转变为 3 => 2 => 1
             ListNode next = cur.next;
+            // >>>>交换开始
             cur.next = pre;
             pre = cur;
+            // >>>>交换结束
             cur = next;
         }
         // 不能返回head, 因为在第一次经过：cur.next = pre时， head.next就已经为null 了;

@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.矩阵;
 
+import com.myproj.app.algorithm.图.岛屿数量;
+
 /**
  * 题目：
  * 根据 百度百科 ， 生命游戏 ，简称为 生命 ，是英国数学家约翰·何顿·康威在 1970 年发明的细胞自动机。
@@ -25,6 +27,10 @@ package com.myproj.app.algorithm.矩阵;
  *                   b. 原来是死的，周围有3个活的，成为活的
  *                   c. 其他都是死了
  *
+ *
+ *         {@link 生命游戏}：以当前节点为核心，表达四周的概念：用directions数组， 而不是递归。
+ *         {@link 岛屿数量}等岛屿问题：表达相邻节点的概念：用的递归  ！！！
+ *
  * @author shenxie
  * @date 2024/1/16
  */
@@ -46,6 +52,7 @@ public class 生命游戏 {
                 // 原理： 周边每出现1个活细胞， 那么核心+10, 所以 liveNums = 核心数 / 10: 从而表示： 当前细胞周围有多少个活细胞。
                 // 用于后面的计算。
                 if(board[i][j] % 10 == 1) {
+                    // 用directions表达四周的概念， 而不是 岛屿问题的 递归！
                     affect(directions, i,j, board, rows, cols);
                 }
             }

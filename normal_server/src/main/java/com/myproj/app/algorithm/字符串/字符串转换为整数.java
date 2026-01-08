@@ -75,7 +75,8 @@ import com.myproj.app.algorithm.数学.整数反转;
 public class 字符串转换为整数 {
 
     public static void main(String[] args) {
-        System.out.println(myAtoiV2("21474836460"));
+//        System.out.println(myAtoiV2("21474836460"));
+        System.out.println(myAtoiV2("-22"));
     }
 
     public static int myAtoiV2(String s) {

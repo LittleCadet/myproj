@@ -25,17 +25,26 @@ package com.myproj.app.algorithm.数组;
  */
 public class 乘积最大的子数组 {
 
-    public int maxProduct(int[] nums) {
+    public static void main(String[] args) {
+        System.out.println(maxProduct(new int[]{2,3,-2,4}));
+    }
+
+    public static int maxProduct(int[] nums) {
         int result = nums[0];
+        // positive: 表示正数， negative: 表示负数
         int positive = Math.max(0, nums[0]), negative = Math.min(0, nums[0]);
 
         for(int i = 1 ; i<nums.length; i++) {
             if(nums[i]>0){
+                // positive = 正数 * 正数
                 positive = Math.max(nums[i], nums[i] * positive);
+                // negative = 正数 * 负数
                 negative = Math.min(nums[i], nums[i] * negative);
             }else{
                 int tmp = positive;
+                // positive = 负数 * 负数
                 positive = Math.max(nums[i], nums[i] * negative);
+                // negative = 负数 * 正数
                 negative = Math.min(nums[i], nums[i] * tmp);
             }
 

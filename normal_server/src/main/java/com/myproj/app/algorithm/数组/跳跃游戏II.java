@@ -26,6 +26,7 @@ public class 跳跃游戏II {
     public static int jumpCopy(int[] nums) {
         int times = 0;
         int max = 0 ;
+        // 用来保存： 之前跳的最大值
         int tmp = 0;
 
         // i < nums.length - 1 而不是 nums.length的原因： 题干指出： 生成的测试用例可以到达 nums[n - 1]。

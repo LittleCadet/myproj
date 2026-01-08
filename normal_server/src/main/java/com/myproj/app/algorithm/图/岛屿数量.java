@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.图;
 
+import com.myproj.app.algorithm.矩阵.生命游戏;
+
 /**
  * 题目：
  * 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
@@ -24,6 +26,9 @@ package com.myproj.app.algorithm.图;
  *                  0：代表： 水：
  *                  1：代表： 岛屿【未被检索过】
  *                  2：代表： 岛屿【被检索过】
+ *
+ *       {@link 生命游戏}：以当前节点为核心，表达四周的概念：用directions数组， 而不是递归。
+ *       {@link 岛屿数量}等岛屿问题：表达相邻节点的概念：用的递归  ！！！
  *
  * @author shenxie
  * @date 2023/12/31

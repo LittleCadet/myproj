@@ -32,7 +32,7 @@ import java.util.List;
  *              b. 要注意： 如何放入lists中！！！
  *              c. 要注意： i的起始位置！！！
  *
- *         解法1： 回溯 + 剪枝：用list完成： list.add() + list.remove();
+ *         解法1【推荐： 通用】： 回溯 + 剪枝：用list完成： list.add() + list.remove();
  *              此题 与 {@link 全排列II}非常类似， 不同的是：
  *              - {@link 全排列II}要求：返回不重复的全排列，所以：判定条件为：vis[i] || i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]
  *                  - vis[i]: 解决相同位置的元素不重复选择。
@@ -47,6 +47,7 @@ import java.util.List;
  *                  - 与 {@link 组合} / {@link 单词搜索} / {@link 子集} / {@link 括号生成} / {@link 电话号码的字母组合}类似：
  *                      - 是主动变更index的方式【index + 1】，做到不重复选择元素。
  *         解法2： 回溯： 用list完成：Collections.swap(list, index, i) +  Collections.swap(list, i, index);
+ *         解法3： 同解法1： 好懂：“不重复”的语义：依赖 if(! list.contains(key)) 而不是 vis[i]。
  *
  * @author shenxie
  * @date 2023/12/7
@@ -80,6 +81,16 @@ public class 全排列 {
     public static List<List<Integer>> permutationsICopy(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         backtrack(new ArrayList<Integer>(), nums, new boolean[nums.length], res);
+        return res;
+    }
+    /**
+     * 解法三：回溯 + 剪枝： 用list完成： list.add() + list.remove();
+     * 整体同解法二： 唯一的不同是：不重复使用元素：依赖 if( ! list.contains(key))
+     *
+     */
+    public static List<List<Integer>> permutationsICopyV2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        backtrackV2(new ArrayList<Integer>(), nums,  res);
         return res;
     }
 
@@ -117,6 +128,7 @@ public class 全排列 {
             return;
         }
         // 遍历所有选择
+        // i从0 开始： 只有全排列是 这样， 其他都是从 index开始
         for (int i = 0; i < choices.length; i++) {
             int choice = choices[i];
             // 剪枝：不允许重复选择元素
@@ -128,6 +140,26 @@ public class 全排列 {
                 backtrack(state, choices, selected, res);
                 // 回退：撤销选择，恢复到之前的状态
                 selected[i] = false;
+                state.remove(state.size() - 1);
+            }
+        }
+    }
+    public static void backtrackV2(List<Integer> state, int[] choices, List<List<Integer>> res) {
+        // 当状态长度等于元素数量时，记录解
+        if (state.size() == choices.length) {
+            res.add(new ArrayList<Integer>(state));
+            return;
+        }
+        // 遍历所有选择
+        for (int i = 0; i < choices.length; i++) {
+            int choice = choices[i];
+            // 剪枝：不允许重复选择元素
+            if (!state.contains(choice)) {
+                // 尝试：做出选择，更新状态
+                state.add(choice);
+                // 进行下一轮选择
+                backtrackV2(state, choices,  res);
+                // 回退：撤销选择，恢复到之前的状态
                 state.remove(state.size() - 1);
             }
         }

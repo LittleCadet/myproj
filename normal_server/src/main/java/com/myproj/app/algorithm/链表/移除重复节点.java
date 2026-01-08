@@ -23,9 +23,13 @@ import java.util.Set;
  *          1.1 核心点： 链表去重： 当前节点： 必须用dummy.next来表示， 而不是dummy.
  *                      因为： 去重必定需要： dummy.next = dummy.next.next
  *                              如果是dummy = dummy.next： 仅仅代表： 正常递归。
- *      2. 方法2： 双重while循环： 类似数组的双重for循环， 且内层循环起点为外层循环的值
+ *      2. 方法2【推荐】： 双重while循环： 类似数组的双重for循环， 且内层循环起点为外层循环的值
  *          2.1 实则： 双指针： 慢指针： 在外， 快指针： 在内， 且： 让快指针的每个值 都与 慢指针比较 即可。
  *          2.2 启发： 如何控制链表：多次从头循环。 用双重for循环来解决 即可！！！
+ *
+ *          {@link 移除重复节点}：删除重复的元素【不包括本元素】： 站在前一个节点执行删除动作。 因为链表未排序。
+ *          {@link 删除排序链表中的重复元素}：删除重复元素【不包含本元素】： 站在当前节点执行删除动作。 因为链表排序。
+ *          {@link 删除排序链表中的重复元素II}： 所有重复元素【包括本元素】： 站在前一个节点执行删除动作。 因为链表未排序。 与 {@link 移除重复节点}相同
  *
  *      3. 方法3：dummy节点 + linkedHashSet
  *
@@ -111,8 +115,11 @@ public class 移除重复节点 {
     public static ListNode removeDuplicateNodesV3(ListNode head) {
         ListNode aa = head;
         while (aa != null) {
+            // 重置快指针的链表
             ListNode ac = aa;
             while (ac.next != null) {
+                // 站在前一个节点， 删除下一个节点
+                // 没有站在 当前节点删除的原因： 该链表： 没有排序
                 if (ac.next.val == aa.val) {
                     ac.next = ac.next.next;
                 } else {

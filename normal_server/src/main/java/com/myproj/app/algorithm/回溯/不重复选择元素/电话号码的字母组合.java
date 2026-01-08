@@ -74,6 +74,7 @@ public class 电话号码的字母组合 {
             char digit = digits.charAt(index);
             String letters = phoneMap.get(digit);
             int lettersCount = letters.length();
+            // i 必定从 0 开始: 因为：题意：会按下多个数字： 每个数字对应的字母组合 都应该从头开始 相互组合。
             for (int i = 0; i < lettersCount; i++) {
                 // 在combination中放入字符的组合。
                 combination.append(letters.charAt(i));

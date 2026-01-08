@@ -51,6 +51,7 @@ public class 统计子岛屿 {
         }
 
         int result = 0;
+        // 注意： 此时不再是迭代岛屿了， 而是迭代 ans
         for(int i = 0 ; i < ans.size() ; i++){
             int tmp = 0;
             // 将grid2的岛屿 放入 grid1中比较，看在grid1中是否依旧是陆地，是则 + 1

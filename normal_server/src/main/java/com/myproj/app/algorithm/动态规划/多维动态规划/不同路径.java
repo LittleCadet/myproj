@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.动态规划.多维动态规划;
 
+import com.myproj.app.algorithm.二叉树.二叉搜索树.不同的二叉搜索树;
+
 /**
  * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
  * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
@@ -22,6 +24,11 @@ package com.myproj.app.algorithm.动态规划.多维动态规划;
  *          - 动态规划： {@link 不同路径II}的思路一致。
  *              方法1：
  *              方法2：【推荐】
+ *
+ *          - {@link 不同路径} && {@link 不同路径II} && {@link 不同的二叉搜索树} 类似：
+ *              -- {@link 不同路径}： 网格中没有障碍物: 表达式：result[i][j] = result[i-1][j] + result[i][j-1];
+ *              -- {@link 不同路径II}: 网格中有障碍物: 表达式：同上
+ *              -- {@link 不同的二叉搜索树}： 表达式：dp[i] += dp[j-1] * dp[i-j]
  *
  * @author shenxie
  * @date 2025/11/15

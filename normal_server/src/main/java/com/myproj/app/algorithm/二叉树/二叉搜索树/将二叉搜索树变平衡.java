@@ -64,7 +64,12 @@ public class 将二叉搜索树变平衡 extends TreeNode {
      */
     private static TreeNode build(int l, int r, List<Integer> nums){
         int mid = l + (r-l) /2;
+        // 数组 找到 mid节点 即为 root节点 很简单，
+        // 但是链表 很麻烦：详见 《有序链表转换为二叉搜索树》, 为了降低复杂度， 用 占位符 ：先填充left, 再 root, 最后right
         TreeNode root = new TreeNode(nums.get(mid));
+        // “二叉搜索树变平衡”的语义：左右子树的高度差 <= 1, 在二叉搜索树中很特殊：升序数组【中序遍历】，用索引 配合 mid 即可完成 “左右子树高度差<=1”：
+        // 因为： 在数组中： index 是 均匀分布在mid周边的：即为： 要么 index >= mid , 要么 index <= mid.
+        // 即为： l<mid -1 或者 r>= mid + 1
         if(l <= mid - 1) {
             root.left = build(l, mid - 1, nums);
         }

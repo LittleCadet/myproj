@@ -1,6 +1,8 @@
-package com.myproj.app.algorithm.动态规划;
+package com.myproj.app.algorithm.二分查找;
 
-import com.myproj.app.algorithm.二分查找.最小化数组中的最大值;
+import com.myproj.app.algorithm.动态规划.打家劫舍;
+import com.myproj.app.algorithm.动态规划.打家劫舍II;
+import com.myproj.app.algorithm.动态规划.打家劫舍III;
 
 /**
  * 沿街有一排连续的房屋。每间房屋内都藏有一定的现金。现在有一位小偷计划从这些房屋中窃取现金。
@@ -28,7 +30,7 @@ import com.myproj.app.algorithm.二分查找.最小化数组中的最大值;
  *      思路：
  *          - 二分法：
  *              此题 与 {@link 打家劫舍} + {@link 打家劫舍II} + {@link 打家劫舍III} 都不同：原因：
- *                  - 他们看重的是 窃取总金额的最大值。
+ *                  - 之前的：他们看重的是 窃取总金额的最大值。
  *                  - {@link 打家劫舍IV} 看重的是：最小的窃取能力 【窃取能力 定义为他在窃取过程中能从单间房屋中窃取的 最大金额 】
  *
  *          - 与 {@link 最小化数组中的最大值}很类似：都是最小化 最大值的问题。
@@ -62,6 +64,7 @@ public class 打家劫舍IV {
             // 用visited 控制：间隔抢， 而不是连续抢
             boolean visited = false;
             for (int x : nums) {
+                // 当金额 <= middle 且 之前没抢过， 才能抢
                 if (x <= middle && !visited) {
                     count++;
                     visited = true;

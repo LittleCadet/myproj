@@ -60,6 +60,9 @@ public class 组合 {
         //[1,4],
         for(int i = index ; i<= n; i++) {
             list.add(i);
+            // 此处必定用 i + 1， 而不是 index + 1: 原因：
+            // - index + 1: 代表： i 和 index的增长速度不一致， 会导致 i 比 index大， 从而导致 nums[0] 比 nums[1]大， 这是不符合题意的【看 例子】。
+            // - i + 1: 代表： i 和 index的增长速度一致， 即为 nums[1] > nums[0] 永远成立。
             process(n, k, i+1, results, list);
             // 这里只能 remove list.size() - 1, 不能是 index, 因为index 可能是3，也可能是4， 但是list的size只能 是 k, k 可能比3 和 4都小。
             list.remove(list.size() - 1);

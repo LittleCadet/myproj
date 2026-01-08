@@ -171,8 +171,8 @@ public class 反转链表II {
         ListNode cur = head;
 
         while (cur != null) {
-            // >>>>交换开始
             ListNode next = cur.next;
+            // >>>>交换开始
             cur.next = pre;
             pre = cur;
             // >>>>交换结束

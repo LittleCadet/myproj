@@ -47,6 +47,9 @@ public class 寻找旋转排序数组中的最小值 {
         while(l < r) {
             mid = l + (r - l) / 2;
             // 如果nums[mid] < nums[r]时， 则说明在[l,mid]的区间内，存在最小值， 所以 r = mid
+            // 用 mid 与 r 比较大小， 而不用 mid 与 l 的原因：
+            // - 现求最小值：用 mid 与 r 比较： 是缩小 r 【最大值】的范围。
+            // - 如果求最大值， 则 用 mid 与 l比较： 是缩小 l 【最小值】的范围
             if(nums[mid] < nums[r]){
                 r = mid ;
             }else{

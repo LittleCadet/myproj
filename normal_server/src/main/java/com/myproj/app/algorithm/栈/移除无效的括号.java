@@ -44,6 +44,7 @@ public class 移除无效的括号 {
     public static String minRemoveToMakeValid(String s) {
         StringBuilder builder = new StringBuilder();
         List<Integer> removeList = new ArrayList<>();
+        // 注意stack的泛型：是 Integer, 用于 记录 "("的 下标
         Deque<Integer> stack = new LinkedList<>();
 
         // 先将不符合要求的 ')' 放入 待移除列表

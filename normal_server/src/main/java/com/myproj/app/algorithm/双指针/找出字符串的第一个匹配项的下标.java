@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
+
 /**
  * 题目：
  * 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回  -1 。
@@ -11,7 +13,7 @@ package com.myproj.app.algorithm.双指针;
  *
  * 思路：
  *      1. 方法一：string.indexOf();
- *      2. 方法二：普通双指针：
+ *      2. 方法二：快慢双指针：
  *          注意：双指针： 分为：快慢指针 + 首尾双指针+ 普通双指针。
  *          本题使用：双指针本身来解答：
  *              2.1 p1指针：用于移动字符串1， p2指针： 用于移动字符串2；
@@ -19,6 +21,12 @@ package com.myproj.app.algorithm.双指针;
  *           {@link 判断子序列}与 {@link 找出字符串的第一个匹配项的下标}相似：
  *              - {@link 判断子序列}：字符串中的字符能匹配到就行， 不要求连续匹配
  *              - {@link 找出字符串的第一个匹配项的下标}： 字符串中字符 要能连续匹配。
+ *
+ *
+ *      快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *          {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ *      首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
+ *
  *
  * @author shenxie
  * @date 2023/12/26

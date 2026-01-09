@@ -64,7 +64,7 @@ public class 单词拆分 {
         boolean[] res = new boolean[s.length() + 1];
         // 表示： 空字符串。 初始化为true
         res[0] = true;
-        // i 从1开始， s.length()结束的原因： 因为 substring()是左开右闭区间， 所以必须要从1开始，而 到 s.length()的原因是 为了substring 整个字符串。
+        // i 从1开始， s.length()结束的原因： 因为 substring()是左闭右开区间， 所以必须要从1开始，而 到 s.length()的原因是 为了substring 整个字符串。
         for(int i =1; i<= s.length(); i++) {
             // j<i的原因： 判定前i个元素：是否能在wordDict中找到。
             for(int j = 0 ; j < i; j++) {

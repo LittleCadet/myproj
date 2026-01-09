@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +22,14 @@ import java.util.Map;
  *      核心思想： 类似于双重for循环。
  *  方法2【推荐】： 首尾双指针：
  *      核心思想： 类似于二分法。
+ *      快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *              {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ *      首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
+ *
  *  方法3： hashMap:
  *      该方法与 {@link com.myproj.app.algorithm.哈希表.两数之和}一致。
  *      核心思想： 将数和索引 放入map中，之后判定map.containesKey(target - numbers[i]);即可
+ *
  *
  * @author shenxie
  * @date 2023/12/26

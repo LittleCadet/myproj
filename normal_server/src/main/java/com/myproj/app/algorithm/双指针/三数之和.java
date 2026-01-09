@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,6 +32,11 @@ import java.util.Set;
  *                  - 详见：{@link  com.myproj.app.algorithm_二刷.数组.三数之和}
  *          去重问题：【题目要求】
  *              1.3 因为双重for循环， 所以： 相邻元素： 至少重复使用一次【起始位置就重复】，最多重复使用两次【非起始位置】
+ *
+ *          快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *                  {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ *          首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
+ *
  *
  * @author shenxie
  * @date 2024/1/3

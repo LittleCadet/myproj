@@ -46,6 +46,7 @@ public class 反转链表 extends ListNode {
         ListNode pre = null;
         ListNode cur = head;
         while(cur != null) {
+            // 本质是pre 和 cur 的两两交换：
             // 1 => 2 => 3 转变为 3 => 2 => 1
             ListNode next = cur.next;
             // >>>>交换开始

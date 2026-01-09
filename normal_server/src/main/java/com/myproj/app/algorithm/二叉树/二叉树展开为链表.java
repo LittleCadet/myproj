@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.二叉树;
 
+import com.myproj.app.algorithm.二叉树.二叉搜索树.递增顺序搜索树;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * 先先序遍历， 将元素放入集合中， 再遍历集合，
  * 将pre.left = null; pre.right = cur;
  *
+ * {@link 二叉树展开为链表} && {@link 递增顺序搜索树} : 本质一致， 只是写法不同。
  *
  * @author shenxie
  * @date 2023/12/16

@@ -41,7 +41,7 @@ import com.myproj.app.algorithm.区间.插入区间;
  *
  *          - 与 {@link 检索插入位置}类似：
  *              - {@link 对链表进行插入排序}： 链表的节点插入： 变为有序链表
- *              - {@link 检索插入位置}： 将target 插入 二叉搜索树中， 返回 插入位置。
+ *              - {@link 检索插入位置}： 将target 插入 排序数组中， 返回 插入位置。
  *              - {@link 插入区间}: 区间插入： 变为 有序区间
  *              - {@link 二叉搜索树中的插入操作}： 将target 插入二叉搜索树中， 并形成节点
  *
@@ -75,6 +75,7 @@ public class 对链表进行插入排序 {
             } else {
                 // 当curr较小时， 需要从头遍历链表的节点， 找到插入位置： 即为要插入位置的前一个元素：prev.next 就是curr的插入位置。
                 ListNode prev = dummyHead;
+                // 站在上个节点， 执行替换动作： 不站在当前节点执行的原因： 找到插入位置prev.next 就是curr的插入位置。
                 while (prev.next.val <= curr.val) {
                     prev = prev.next;
                 }

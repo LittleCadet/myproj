@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.数学;
 
+import com.myproj.app.algorithm.字符串.不同字符的最小子序列;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,9 @@ import java.util.List;
  *              会有低位 向 高位进阶的过程，之后 number ++ ,
  *              但不会一直这样， 因为对于个位数9 和 number + 1>n 的要特殊处理：不然对于199 ，加1直接变为200的场景， 是不满足字典排序的。
  *              所以会有 高位 向 低位转化的过程：
- *
+ *          字典序：
+ *              {@link 不同字符的最小子序列}： 尽量用字典序排序，但不强求， 最终要求输出的是最小子序列
+ *              {@link 字典序排数}： 严格按照字典序排序。
  *
  * @author shenxie
  * @date 2025/11/19

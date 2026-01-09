@@ -34,13 +34,13 @@ public class 被围绕的区域 {
     public static void solve(char[][] board) {
         int n = board.length;
         int m = board[0].length;
-        // 将第一列 和 最后一列的'O' 全部置为'A'
+        // 将第一列 和 最后一列的'O' 以及与其相连的'0'： 全部置为'A'
         for(int i = 0; i< n ; i++){
             dfs(board, i, 0);
             dfs(board, i, m-1);
         }
 
-        // 将第一行 和 最后一行的'0' 全部置为'A'
+        // 将第一行 和 最后一行的'0' 以及与其相连的‘0’： 全部置为'A'
         for(int i = 0; i < m; i++) {
             dfs(board, 0, i);
             dfs(board, n-1, i);

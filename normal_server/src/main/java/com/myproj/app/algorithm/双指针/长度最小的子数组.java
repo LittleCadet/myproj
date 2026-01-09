@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
+
 /**
  * 题目：
  * 给定一个含有 n 个正整数的数组和一个正整数 target 。
@@ -15,6 +17,10 @@ package com.myproj.app.algorithm.双指针;
  * 2. 最小的连续子数组 的理解： 移动右指针 且 当sum >= target时， 需要继续移动左指针，并累减左指针的值， 当不满足条件的时候， 重新移动右指针。
  *                          为了达到此要求： 右指针只能在外层， 左指针只能在内层。
  *                          因为如果右指针在内层， 会导致sum >= target时，停不下来，直到right < nums.length, 才能移动左指针， 从而浪费cpu的执行时间
+ *
+ * 快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *      {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ * 首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
  *
  * @author shenxie
  * @date 2023/12/10

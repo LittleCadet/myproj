@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.字符串;
 
+import com.myproj.app.algorithm.数学.字典序排数;
+
 /**
  * 返回 s 字典序最小的
  * ，该子序列包含 s 的所有不同字符，且只包含一次。
@@ -20,6 +22,10 @@ package com.myproj.app.algorithm.字符串;
  *              -- 字典序最小： 不代表要按照 字典序排序， 而是说：按照字母出现的顺序排序：
  *                  如果当前字母A 比ans最后一个字母B 小 且 B在left中依旧有 ， 则优先按照字典序排序，并删除之前比A小的字符，
  *                  如果B在left中没有， 则不按照字典序排序：直接加进来。
+ *
+ *          字典序：
+ *              {@link 不同字符的最小子序列}： 尽量用字典序排序，但不强求， 最终要求输出的是最小子序列
+ *              {@link 字典序排数}： 严格按照字典序排序。
  *
  * @author shenxie
  * @date 2025/11/20

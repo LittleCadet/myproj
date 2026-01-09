@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.二叉树.二叉搜索树;
 
+import com.myproj.app.algorithm.二叉树.二叉树展开为链表;
 import com.myproj.app.algorithm.二叉树.抽象类.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * 输入：root = [5,1,7]
  * 输出：[1,null,5,null,7]
  *
- *
+ * {@link 二叉树展开为链表} && {@link 递增顺序搜索树} : 本质一致， 只是写法不同。
  *
  *
  * @author shenxie

@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.链表;
 
+import com.myproj.app.algorithm.数学.加一;
+
 /**
  * 题目：
  * 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
@@ -24,6 +26,10 @@ package com.myproj.app.algorithm.链表;
  *      使用的时候， 从head开始。
  *
  * 3. 更友好的解法：{@link com.myproj.app.algorithm_二刷.链表.两数相加}
+ *
+ * 两数相加：
+ *      {@link 两数相加}：链表的两数相加：向右进位：通过carry表示进位1： 最终判定是否要新增节点。
+ *      {@link 加一}： 数组元素 + 1，向左进位：
  *
  *
  *

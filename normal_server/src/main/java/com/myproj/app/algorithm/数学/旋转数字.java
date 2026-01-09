@@ -30,10 +30,8 @@ public class 旋转数字 {
         for (int i = 1; i <= n; ++i) {
             int temp = i;
             int count = 0;
+            // 题目要求： 每位数字都要判定是否是好数
             while (temp > 0) {
-                if(i == 23) {
-                    System.out.println();
-                }
                 int t = temp % 10;
                 // 根据题意：0,1，,2，,5，,6，,8，9 都是可以的， 但是只有2，,5，,6，9 是 好数，而3，4，,7都是没意义的。
                 if (t == 2 || t == 5 || t == 6 || t == 9){

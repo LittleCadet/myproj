@@ -20,7 +20,7 @@ public class 阶乘后的零 {
         // 方法1： 不行： 原因：精度丢失
 //        System.out.println(trailingZeroes(13));
         // 方法2： 可以
-        System.out.println(trailingZeroesV2(13));
+        System.out.println(trailingZeroesV2(26));
     }
 
     /**

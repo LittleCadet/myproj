@@ -1,5 +1,6 @@
 package com.myproj.app.algorithm.数学;
 
+import com.myproj.app.algorithm.链表.两数相加;
 import java.util.Arrays;
 
 /**
@@ -20,6 +21,10 @@ import java.util.Arrays;
  *              2.1 数字中某一个元素 + 1后， 没有进位， 则直接返回。
  *              2.2 数字中某一个元素 + 1后， 进位了， 则继续倒序循环。
  *              2.3 特殊情况： 全是9， 则：新建数组： 除了首位是1， 其余全是0；
+ *
+ *              两数相加：
+ *                  {@link 两数相加}：链表的两数相加：向右进位：通过carry表示进位1： 最终判定是否要新增节点。
+ *                  {@link 加一}： 数组元素 + 1，向左进位：
  * @author shenxie
  * @date 2023/12/29
  */

@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
+
 /**
  * 题目：
  * 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
@@ -17,6 +19,10 @@ package com.myproj.app.algorithm.双指针;
  * 思路： 与 {@link 删除有序数组中的重复项} 和 {@link 删除有序数组中的重复项II}  非常类似
  * 1. 使用快慢指针的思想即可解决问题。
  * 2. 快指针在外侧， 慢指针在内侧， 当快指针对应的值 != val时， 将快指针的复制给慢指针。 从而达到“与目标值不同时， 元素往前移动的效果”。
+ *
+ * 快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *      {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ * 首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
  *
  * @author shenxie
  * @date 2023/12/9

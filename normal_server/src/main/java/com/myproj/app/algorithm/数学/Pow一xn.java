@@ -15,6 +15,11 @@ package com.myproj.app.algorithm.数学;
  * 思路：
  *      1. 方法1：累乘：条件多 + 容易错 + 超时
  *      2. 方法2【推荐】：递归 + 二分法
+ *          对于负号的处理方式：
+ *              {@link Pow一xn}: 在一开始就判定 并 处理。
+ *                  表达式：n > 0 ? process(x, n) : 1/ process(x,n);
+ *              {@link 整数反转}：最后统一处理：
+ *                  表达式：x > 0 ? num : - num;
  *
  * @author shenxie
  * @date 2023/12/30
@@ -24,7 +29,7 @@ public class Pow一xn {
         // 方法1： 累乘：条件多 + 容易错 + 超时
 //        System.out.println(myPow(2.00000, 2));
         // 方法2： 递归 + 二分法
-        System.out.println(myPowV2(2.00000, 2));
+        System.out.println(myPowV2(2.00000, 4));
     }
 
     /**

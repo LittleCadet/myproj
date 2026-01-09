@@ -33,7 +33,7 @@ import com.myproj.app.algorithm.堆.丑数II;
 public class 丑数 {
 
     public static void main(String[] args) {
-        System.out.println(isUgly(50));
+        System.out.println(isUgly(10));
     }
 
     public static boolean isUgly(int n) {

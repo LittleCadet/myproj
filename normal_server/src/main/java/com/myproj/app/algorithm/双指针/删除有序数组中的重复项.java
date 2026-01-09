@@ -1,5 +1,7 @@
 package com.myproj.app.algorithm.双指针;
 
+import com.myproj.app.algorithm.数组.颜色分类;
+
 /**
  * 题目：
  * 给你一个 非严格递增排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。
@@ -18,6 +20,9 @@ package com.myproj.app.algorithm.双指针;
  *
  * 1. 快慢指针。
  *
+ *      快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *          {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ *      首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
  * @author shenxie
  * @date 2023/12/9
  */

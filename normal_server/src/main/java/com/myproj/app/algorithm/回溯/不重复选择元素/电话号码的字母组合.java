@@ -85,7 +85,7 @@ public class 电话号码的字母组合 {
                 // 这个不能删除第i个字符，只能删除第index个字符: 原因：
                 // i代表的是： 字母的下标： 为他的最大长度为4【在数字7，9的时候， 有4个字母】
                 // combination代表的是： 字母的组合， 组合长度 = 数字长度， 如果输入的数字长度为2， 那么此时会出现数组下标越界。
-                combination.deleteCharAt(index);
+                combination.deleteCharAt(combination.toString().length() - 1);
                 System.out.println("combination后：i:" +i+ ", index:"+index+ ",combination:"+combination );
             }
         }

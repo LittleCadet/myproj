@@ -1,5 +1,9 @@
 package com.myproj.app.algorithm.数组;
 
+import com.myproj.app.algorithm.双指针.删除有序数组中的重复项;
+import com.myproj.app.algorithm.双指针.删除有序数组中的重复项II;
+import com.myproj.app.algorithm.双指针.判断子序列;
+import com.myproj.app.algorithm.双指针.找出字符串的第一个匹配项的下标;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +23,11 @@ import java.util.Map;
  * 输出：[0,1,2]
  *
  *  方法1：  用HashMap将颜色归类， 之后用list 替换 原nums中的元素
- *  方法2【推荐】：  用单指针：先排0 ， 再排1， 而2自然在最后了。
+ *  方法2【推荐】：  用快慢双指针：先排0 ， 再排1， 而2自然在最后了。
  *
+ * 快慢双指针：{@link 删除有序数组中的重复项} {@link 删除有序数组中的重复项II} {@link 判断子序列} {@link 找出字符串的第一个匹配项的下标}
+ *      {@link 移除元素} {@link 长度最小的子数组}{@link 颜色分类}
+ * 首尾双指针：{@link 三数之和} {@link 两数之和II输入有序数组} {@link 盛最多水的容器}
  *
  * @author shenxie
  * @date 2025/11/3
@@ -71,7 +78,7 @@ public class 颜色分类 {
     }
 
     /**
-     *  方法2：用单指针：先排0 ， 再排1， 而2自然在最后了。
+     *  方法2：用双指针：先排0 ， 再排1， 而2自然在最后了。
      */
     public static void sortColorsV2(int[] nums) {
         int pre = 0;

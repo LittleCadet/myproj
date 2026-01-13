@@ -85,7 +85,7 @@ public class 全排列 {
     }
     /**
      * 解法三：回溯 + 剪枝： 用list完成： list.add() + list.remove();
-     * 整体同解法二： 唯一的不同是：不重复使用元素：依赖 if( ! list.contains(key))
+     * 整体同解法一： 唯一的不同是：不重复使用元素：依赖 if( ! list.contains(key))， 而没用 visit的boolean数组
      *
      */
     public static List<List<Integer>> permutationsICopyV2(int[] nums) {

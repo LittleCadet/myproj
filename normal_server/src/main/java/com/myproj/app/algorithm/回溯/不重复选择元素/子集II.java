@@ -33,6 +33,7 @@ public class 子集II {
 
     public static void main(String[] args) {
         System.out.println(subsetsWithDup(new int[]{1,2,2}));
+        System.out.println(subsetsWithDupV2(new int[]{1,2,2}));
     }
 
     /**
@@ -65,14 +66,14 @@ public class 子集II {
      * @param nums
      * @return
      */
-    public List<List<Integer>> subsetsWithDupV2(int[] nums) {
+    public static List<List<Integer>> subsetsWithDupV2(int[] nums) {
         List<List<Integer>> results = new ArrayList<>();
         Arrays.sort(nums);
         dfsV2(nums, results, new ArrayList<>(), 0, new boolean[nums.length]);
         return results;
     }
 
-    private void dfsV2(int[] nums, List<List<Integer>> results, List<Integer> result, Integer index, boolean[] vis){
+    private static void dfsV2(int[] nums, List<List<Integer>> results, List<Integer> result, Integer index, boolean[] vis){
         results.add(new ArrayList(result));
         for(int i = index; i<nums.length; i++) {
             if(vis[i] || (i > 0 && nums[i-1] == nums[i] && ! vis[i-1])){

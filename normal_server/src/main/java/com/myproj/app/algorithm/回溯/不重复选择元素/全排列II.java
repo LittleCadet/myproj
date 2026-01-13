@@ -27,10 +27,8 @@ import java.util.List;
  *                  - i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]： 解决：相邻位置但值相等 的 不重复选择。
  *              - 而{@link 全排列}因为 nums数组不包含重复元素，所以全排列的不重复元素判定：只需要booean[] selected 即可
  *
- * *            - 用visit数组 完成去重的场景【只有这2个场景适用】：{@link 全排列II} + {@link 组合总和II} ： 完全一致：
+ * *            - 用visit数组 完成去重的场景【只有这2个场景适用】：{@link 全排列II} + {@link 组合总和II} + {@link 子集II} ： 完全一致：
  * *                  - visit[i] || i>0 && candidates[i] == candidates[i-1] && ! visit[i-1]
- *              - 与{@link 子集II}很类似：在相邻元素 且 值相等时， 不能重复使用
- *                  - i>index && nums[i-1] == nums[i]
  *              - 与{@link 非递减子序列} 类似： 但去重逻辑完全不同：用自身顺序 而不是 排序后的数组， 所以：
  *                  {@link 非递减子序列}： 用HashSet去重。
  *                  {@link 全排列II}: 用 sort + visit[] 去重。

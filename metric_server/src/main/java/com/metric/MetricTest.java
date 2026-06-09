@@ -6,7 +6,6 @@ import io.micrometer.core.instrument.Tags;
 import io.micrometer.core.instrument.binder.jvm.*;
 import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
-import sun.management.snmp.jvminstr.JvmClassLoadingImpl;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;

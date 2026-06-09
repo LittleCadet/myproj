@@ -16,6 +16,7 @@
         <module>normal_server</module>
         <module>jedis_server</module>
         <module>dingtalk_server</module>
+        <module>qywx_server</module>
         <module>rocketmq_server</module>
         <module>loadingcache_server</module>
         <module>oss_server</module>
